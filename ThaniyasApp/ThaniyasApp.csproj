@@ -1,0 +1,91 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <IsPackable>false</IsPackable>
+    <SpaRoot>ClientApp\</SpaRoot>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.0.0" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.7.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Content Remove="$(SpaRoot)**" />
+    <None Remove="$(SpaRoot)**" />
+    <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\containers\common\Footer.tsx" />
+    <None Remove="ClientApp\src\containers\common\Header.tsx" />
+    <None Remove="ClientApp\src\containers\core\Harvesting\Harvesting.tsx" />
+    <None Remove="ClientApp\src\containers\core\Home\Home.tsx" />
+    <None Remove="ClientApp\src\containers\core\ManageLand\ManageLand.tsx" />
+    <None Remove="ClientApp\src\containers\core\ManagePartition\ManagePartition.tsx" />
+    <None Remove="ClientApp\src\containers\core\PestControl\PestControl.tsx" />
+    <None Remove="ClientApp\src\containers\core\Plowing\Plowing.tsx" />
+    <None Remove="ClientApp\src\containers\core\Report\Report.tsx" />
+    <None Remove="ClientApp\src\containers\core\Sale\Sale.tsx" />
+    <None Remove="ClientApp\src\containers\core\Seeding\Seeding.tsx" />
+    <None Remove="ClientApp\src\containers\core\WeedRemove\WeedRemove.tsx" />
+    <None Remove="ClientApp\src\containers\pages\FirstPage.tsx" />
+    <None Remove="ClientApp\src\containers\pages\Harvestings\Harvestings.tsx" />
+    <None Remove="ClientApp\src\containers\pages\HomeApp.tsx" />
+    <None Remove="ClientApp\src\containers\pages\Homes\Homes.tsx" />
+    <None Remove="ClientApp\src\containers\pages\LoginPage.tsx" />
+    <None Remove="ClientApp\src\containers\pages\ManageLands\ManageLands.tsx" />
+    <None Remove="ClientApp\src\containers\pages\ManagePartitions\ManagePartitions.tsx" />
+    <None Remove="ClientApp\src\containers\pages\OtpPage.tsx" />
+    <None Remove="ClientApp\src\containers\pages\PestControls\PestControls.tsx" />
+    <None Remove="ClientApp\src\containers\pages\Plowings\Plowings.tsx" />
+    <None Remove="ClientApp\src\containers\pages\Registrations\Registrations.tsx" />
+    <None Remove="ClientApp\src\containers\pages\Reports\Reports.tsx" />
+    <None Remove="ClientApp\src\containers\pages\Sales\Sales.tsx" />
+    <None Remove="ClientApp\src\containers\pages\Seedings\Seedings.tsx" />
+    <None Remove="ClientApp\src\containers\pages\WeedRemoves\WeedRemoves.tsx" />
+    <None Remove="ClientApp\src\store\index.ts" />
+    <None Remove="ClientApp\src\store\reducers\index.ts" />
+    <None Remove="ClientApp\src\store\sagas\index.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\store\actions\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
+    <!-- Ensure Node.js is installed -->
+    <Exec Command="node --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+    <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+  </Target>
+
+  <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" />
+
+    <!-- Include the newly-built files in the publish output -->
+    <ItemGroup>
+      <DistFiles Include="$(SpaRoot)build\**; $(SpaRoot)build-ssr\**" />
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>%(DistFiles.Identity)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+
+</Project>
