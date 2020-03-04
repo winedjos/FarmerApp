@@ -1,11 +1,48 @@
-﻿import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSelect, IonSelectOption, IonText, IonList, IonItem, IonInput, IonCheckbox, IonLabel, IonButton, IonNote, IonBadge, IonRow, IonCol, IonGrid, IonImg } from '@ionic/react';
-import * as React from 'react';
+﻿import { IonItem, IonContent, IonPage, IonList, IonPopover, IonSelectOption, IonLabel, IonSelect } from '@ionic/react';
+import React, { useState } from 'react';
 //import './Reg.scss';
 import Header from '../../common/Header';
 import Footer from '../../common/Footer';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
+import { getHarvestList } from '../../../store/actions/Harvestings';
 
-const Harvesting: React.FC = () => {
-  // <IonImg src="assets/naturaldrawing.jpg" ></IonImg>  
+interface IWeedRemoveProps {
+  dispatch: Dispatch<any>;
+  harvestData: any;
+}
+
+
+const Harvesting: React.SFC<IWeedRemoveProps> = ({ dispatch, harvestData }) => {
+  React.useEffect(() => {
+    dispatch(getHarvestList());
+  }, []);
+  const [showPopover, setShowPopover] = useState(false);
+  const [Harvest, setHarvest] = useState();
+  const onEditHarvestClick = (id:any) => {
+    setHarvest(id);
+  }
+
+  const onDeleteHarvestClick = () => {
+    alert("DELETE");
+  }
+
+  const [HarvestData, setHarvestData] = useState([]);
+
+  if (harvestData.HarvestItems.length > 0 && HarvestData.length === 0) {
+    setHarvestData(harvestData.HarvestItems);
+  }
+  const HarvestItems: any = (HarvestData || []);
+  const HarvestList: any = [];
+  HarvestItems.forEach((HarvestItems: any) => HarvestList.push(
+    <IonItem key={HarvestItems.id}>
+      <IonLabel> {HarvestItems.cost} </IonLabel>
+      <a href={"/harvestingEditPage/" + HarvestItems.id} >
+        <img src="assets/Edit.png" height="15" width="15" className="edit-icon" onClick={() => onEditHarvestClick(HarvestItems.id)}></img>
+      </a>
+
+      <img src="assets/Delete.png" height="23" width="23" className="del-icon" onClick={() => onDeleteHarvestClick} ></img>
+    </IonItem>));
   return (
     <IonPage>
       <Header />
@@ -14,19 +51,15 @@ const Harvesting: React.FC = () => {
           <div className="reg-head">
             <h1>Harvesting</h1>
           </div>
+
           <form className="form">
-            <IonRow>
-              <IonCol>
-                <IonText className="reg-fields">
-                  Land <input type="text" placeholder="Land " className="input-text" required />
-                  Partition Land <input type="text" placeholder="Partition Land" className="input-text" required />
-                  Date <input type="text" placeholder="Plowing type" className="input-text" required />
-                  Cost <input type="text" placeholder="Plowing Expenses" className="input-text" required />
-                  NO of Labours <input type="text" placeholder="Plowing Expenses" className="input-text" required />
-                  Labour Cost <input type="text" placeholder="Plowing Expenses" className="input-text" required />                 
-                </IonText>
-              </IonCol>
-            </IonRow>
+            <IonItem className="MLand-Lbl">
+              <label className="lbl"> Harvest Details </label>
+              <a href="/harvestDetails" className="add-btn">  ADD  </a>
+            </IonItem>
+            <IonList>
+              {HarvestList}
+            </IonList>
           </form>
         </div>
       </IonContent>
@@ -34,5 +67,11 @@ const Harvesting: React.FC = () => {
     </IonPage>
   );
 };
+const mapStateToProps = (state: any) => {
+  const { harvestData } = state;
 
-export default Harvesting;
+  return {
+    harvestData
+  };
+};
+export default connect(mapStateToProps)(Harvesting);

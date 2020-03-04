@@ -4,7 +4,8 @@ import * as React from 'react';
 import Header from '../../common/Header';
 
 const Report: React.FC = () => {
-  // <IonImg src="assets/naturaldrawing.jpg" ></IonImg>  
+ 
+  //<img src="assets/share.png" height="75" width="75"></img>
   return (
     <IonPage>
       <Header />
@@ -14,37 +15,16 @@ const Report: React.FC = () => {
             <h1>Report</h1>
           </div>
           <form className="form">
-            <IonRow>
-              <IonCol>
-                <IonText className="reg-fields">
-                  <IonList>
-                    <IonItemDivider>
-                      <IonLabel>
-                        Section A
-        </IonLabel>
-                    </IonItemDivider>
-
-                    <IonItem><IonLabel>A1</IonLabel></IonItem>
-                    <IonItem><IonLabel>A2</IonLabel></IonItem>
-                    <IonItem><IonLabel>A3</IonLabel></IonItem>
-                    <IonItem><IonLabel>A4</IonLabel></IonItem>
-                    <IonItem><IonLabel>A5</IonLabel></IonItem>
-
-                    <IonItemDivider>
-                      <IonLabel>
-                        Section B
-        </IonLabel>
-                    </IonItemDivider>
-
-                    <IonItem><IonLabel>B1</IonLabel></IonItem>
-                    <IonItem><IonLabel>B2</IonLabel></IonItem>
-                    <IonItem><IonLabel>B3</IonLabel></IonItem>
-                    <IonItem><IonLabel>B4</IonLabel></IonItem>
-                    <IonItem><IonLabel>B5</IonLabel></IonItem>
-                  </IonList>
-                </IonText>
-              </IonCol>
-            </IonRow>
+            <button className="view-btn"> View </button>
+            <img src="assets/share.png" className="share-icon"></img> 
+            <table className="table">
+              <tr>
+                <th>SNO</th>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Expenses</th>
+              </tr>
+            </table>
           </form>
         </div>
       </IonContent>
