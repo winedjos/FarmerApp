@@ -4,6 +4,7 @@ var react_1 = require("@ionic/react");
 var React = require("react");
 //import './Reg.scss';
 var Header_1 = require("../../common/Header");
+var Footer_1 = require("../../common/Footer");
 var react_2 = require("react");
 var Seedings_1 = require("../../../store/actions/Seedings");
 var PartitionLand_1 = require("../../../store/actions/PartitionLand");
@@ -67,7 +68,7 @@ var SeedingDetails = function (_a) {
         React.createElement(react_1.IonContent, { className: ".reg-login" },
             React.createElement("div", { className: "bg-image" },
                 React.createElement("div", { className: "reg-head" },
-                    React.createElement("h1", null, "Seeding Details")),
+                    React.createElement("h1", null, "Add Seeding ")),
                 React.createElement("form", { className: "form" },
                     React.createElement(react_1.IonRow, null,
                         React.createElement(react_1.IonCol, null,
@@ -95,8 +96,7 @@ var SeedingDetails = function (_a) {
         React.createElement("footer", { className: "footcolor" },
             React.createElement("div", null,
                 React.createElement("button", { className: "ok-btn", onClick: onSeedSubmit }, " OK ")),
-            React.createElement("div", null,
-                React.createElement("button", { className: "cancel-btn" }, " CANCEL ")))));
+            React.createElement(Footer_1.default, null))));
 };
 var mapStateToProps = function (state) {
     var seedData = state.seedData, PartitionLandData = state.PartitionLandData, LandDetailData = state.LandDetailData;

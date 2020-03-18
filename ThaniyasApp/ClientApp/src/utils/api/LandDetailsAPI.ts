@@ -7,16 +7,37 @@ export class LandDetailsAPI {
     var obj = JSON.stringify(input);
     var tObj = JSON.parse(obj);
     var url = '/api/LandDetails/add-LandDetail';
-    return Http.axios().post(url,tObj)
-      .catch((e) => {
-        return e.response;
-      }) as AxiosPromise<any>;
-
-
+    if (input.id && input.id !== 0) {
+      // url = '/api/Harvesting/add-Harvestings/' + input.id + "?";
+      return Http.axios().post(url, obj,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "*",
+            "Access-Control-Allow-Headers": "*"
+          }
+        })
+        .then(response => {
+          return response;
+        }).catch((e: any) => {
+          console.log("Error in post" + e);
+          return e.response;
+        }) as AxiosPromise<any>;
+    }
+    else {
+      return Http.axios().post(url, tObj)
+        .catch((e) => {
+          return e.response;
+        }) as AxiosPromise<any>;
+    }
   }
   public static getLandDetailsList() {
     return Http.axios().get('/api/LandDetails/get-LandDetails')
-      .catch((e) => {
+      .then(response => {
+        return response;
+      }).catch((e: any) => {
+        console.log("Error in post" + e);
         return e.response;
       }) as AxiosPromise<any>;
   }

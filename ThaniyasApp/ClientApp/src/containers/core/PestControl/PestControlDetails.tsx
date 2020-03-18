@@ -9,7 +9,7 @@ import { useState } from "react";
 import { storePestControlData } from '../../../store/actions/PestControl';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { getPartitionLandList } from '../../../store/actions/PartitionLand';
+import { getPartitionLandList, getPartitionLandById } from '../../../store/actions/PartitionLand';
 import { getLandDetailList } from '../../../store/actions/LandDetail';
 
 interface IPestControlProps {
@@ -30,12 +30,19 @@ const PestControlDetails: React.SFC<IPestControlProps> = ({ dispatch, pestContro
   const onPestControlSubmit = () => {
     dispatch(storePestControlData(pestControlData.pestControlInput));
   }
-
+  const handleDateChange = (date: any) => {
+    setStartDate(date || new Date());
+    pestControlData.pestControlInput.pestControlDate = date;
+    //date => { setStartDate(date || new Date()) } 
+  }
 
   const handleLandChange = (event: any) => {
     pestControlData.pestControlInput.landDetailsId = event.target.value;
+   // var items = PLitems.filter((item: any) => item.landDetailsId == event.target.value);
+   // dispatch(getPartitionLandById(Landitems.id)); 
   }
   const handlePLChange = (event: any) => {
+   
     pestControlData.pestControlInput.partitionLandDetailsId = event.target.value;
   };
   const handleCostChange = (event: any) => {
@@ -74,13 +81,19 @@ const PestControlDetails: React.SFC<IPestControlProps> = ({ dispatch, pestContro
     <IonItem key={Landitems.id}>
       <IonLabel> {Landitems.name} </IonLabel>
     </IonItem>));
+
+  //<label> Partition Land Name </label>
+  //  <IonSelect placeholder="Select One" className="dropclr" onIonChange={handlePLChange}>
+  //    {PLitems.map((data: any) => { return <IonSelectOption value={data.id} key={data.id} title={data.landDirection} selected={PartitionLandData.PLitems.landDetails}> {data.landDirection} </IonSelectOption> })}
+  //  </IonSelect>
+
   return (
     <IonPage>
       <Header />
       <IonContent className=".reg-login">
         <div className="bg-image">
           <div className="reg-head">
-            <h1>Pest Control Details</h1>
+            <h1>Add Pest Control </h1>
           </div>
           <form className="form">
             <IonRow>
@@ -92,10 +105,10 @@ const PestControlDetails: React.SFC<IPestControlProps> = ({ dispatch, pestContro
                   </IonSelect>
                   <label> Partition Land Name </label>
                   <IonSelect placeholder="Select One" className="dropclr" onIonChange={handlePLChange}>
-                    {PLitems.map((data: any) => { return <IonSelectOption value={data.id} key={data.id} title={data.landDirection} selected={PartitionLandData.PLitems.landDetails}> {data.landDirection} </IonSelectOption> })}
-                  </IonSelect>
-                  Name of the PestSide Name<input type="text" placeholder="PestSide Name" className="input-text" onChange={handleNameofPestChange} required />
-                  Date  <DatePicker selected={startDate} onChange={date => { setStartDate(date || new Date()) }} className="input-text" />
+                    {PLitems.filter((v:any)=> v.landDetailsId == pestControlData.pestControlInput.partitionLandDetailsId ).map(function (data: any) { return <IonSelectOption value={data.id} key={data.id} title={data.landDirection}> {data.landDirection} </IonSelectOption> })}
+                  </IonSelect>                 
+                  Date  <DatePicker dateFormat="dd/MM/yyyy" selected={startDate} onChange={(date: Date) => handleDateChange(date)} className="input-text" />  
+                  Name of the PestSide Name<input type="text" placeholder="PestSide Name" className="input-text" onChange={handleNameofPestChange} required />                  
                   Cost <input type="text" placeholder="Pest Cost" className="input-text" onChange={handleCostChange} required />
                   Purpose <input type="text" placeholder="Pest Using Purpose" className="input-text" onChange={handlePurposeChange} required />
                   Labour Cost <input type="text" placeholder="Labour Cost" className="input-text" onChange={handleLCChange} required />
@@ -111,9 +124,7 @@ const PestControlDetails: React.SFC<IPestControlProps> = ({ dispatch, pestContro
           <button className="ok-btn" onClick={onPestControlSubmit}> OK </button>
 
         </div>
-        <div>
-          <button className="cancel-btn"> CANCEL </button>
-        </div>
+        <Footer />
       </footer>
     </IonPage>
   );

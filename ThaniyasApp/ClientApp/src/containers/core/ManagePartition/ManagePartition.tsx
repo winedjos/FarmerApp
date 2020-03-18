@@ -6,20 +6,23 @@ import Footer from '../../common/Footer';
 //import ReactTable from 'react-table';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
+import { RouteComponentProps, withRouter } from 'react-router';
 //import { storeLandDetailData } from '../../../store/actions/LandDetail';
 import { getPartitionLandList, deletePartitionLand} from '../../../store/actions/PartitionLand';
 //import { CANCEL } from 'redux-saga';
 //import PartitionLandData from '../../../store/reducers/PartitionLand/PartitionLand';
 //import PartitionLandData from '../../../store/reducers/PartitionLand/PartitionLand';
 
+interface Props extends RouteComponentProps { }
 
 interface IPartitionProps {
   dispatch: Dispatch<any>;
   PartitionLandData: any;
+  route: RouteComponentProps;
   //LandDetailData: any;  
 }
 
-const ManagePartition: React.SFC<IPartitionProps> = ({ dispatch, PartitionLandData }) => {
+const ManagePartition: React.SFC<IPartitionProps & RouteComponentProps> = ({ dispatch, PartitionLandData, history }) => {
 
 
   React.useEffect(() => {
@@ -31,18 +34,13 @@ const ManagePartition: React.SFC<IPartitionProps> = ({ dispatch, PartitionLandDa
   const [partitionLand, setPartitionLand] = useState();
   const onEditPartitionClick = (id: any) => {
     setPartitionLand(id);
+    history.push("/managePartitionEdit/" + id);
    // dispatch(savePartitionLand(id));
   }
-  const [PartInput, setPartrInput] = useState();
-  const onDeletePartitionClick = (id: any, value: boolean, ) => {
-    alert("DELETe");
-   
-    if (value) {
-      setShowAlert1(true);
-      setPartrInput(id);
-      dispatch(deletePartitionLand(id));
-    }
-    setShowAlert(false);
+  const [partInput, setPartrInput] = useState();
+  const onDeletePartitionClick = (id:any) => {
+    setPartrInput(id);
+    setShowAlert(true); 
   }
 
   const [PLdata, setPLData] = useState([]);
@@ -57,14 +55,9 @@ const ManagePartition: React.SFC<IPartitionProps> = ({ dispatch, PartitionLandDa
   
   PLitems.forEach((PLitems: any) => itemPL.push(
     <IonItem key={PLitems.id}>
-      <IonLabel> {PLitems.landDirection} </IonLabel>     
-      <a href={"/managePartitionEdit/" + PLitems.id} >
-        <img src="assets/Edit.png" height="15" width="15" className="edit-icon" onClick={() => onEditPartitionClick(PLitems.id)}></img>
-      </a>
-
-      <img src="assets/Delete.png" height="23" width="23" className="del-icon" onClick={() => onDeletePartitionClick(PLitems.id, PLitems.value)} ></img>
-       
-     
+      <IonLabel> {PLitems.landDirection} </IonLabel>         
+        <img src="assets/Edit.png" height="15" width="15" className="edit-icon" onClick={() => onEditPartitionClick(PLitems.id)}></img>  
+      <img src="assets/Delete.png" height="23" width="23" className="del-icon" onClick={() => onDeletePartitionClick(PLitems.id)} ></img>
     </IonItem>));
  
   return (
@@ -80,7 +73,12 @@ const ManagePartition: React.SFC<IPartitionProps> = ({ dispatch, PartitionLandDa
           <form className="form">
             <IonItem className="MLand-Lbl">
               <label className="lbl"> Manage Partition Details </label>
-              <a href="/managePartitionDetails" className="add-btn">  ADD  </a>
+              <a onClick={() => {               
+                  history.push("/managePartitionDetails")
+              
+              }}
+
+                className="add-btn">  ADD  </a>
             </IonItem>
             
             <IonList>
@@ -92,20 +90,31 @@ const ManagePartition: React.SFC<IPartitionProps> = ({ dispatch, PartitionLandDa
           </form>
           <IonAlert isOpen={showAlert}
             onDidDismiss={() => setShowAlert(false)}
-            message={'Permanently deleted'}
-            buttons={['OK','CNACEL']}
+            message={'Are you sure want to delete..?'}            
+            buttons={[
+              {
+                text: 'Cancel',
+                handler: blah => {
+
+                  //setShowAlert(true),
+                  console.log('Confirm Cancel: blah');                  
+                }
+              },
+              {
+                text: 'Okay',                
+                handler: () => {                  
+                  var idvalue = partitionLand;
+                  if (idvalue != null) {
+                    dispatch(deletePartitionLand(idvalue));  
+                  }                                                   
+                  console.log('Confirm Okay');
+                }
+              }
+            ]}
           />
-          <IonAlert
-            isOpen={showAlert1}
-            onDidDismiss={() => setShowAlert1(false)}
-           // header={'Alert'}
-           // subHeader={'Subtitle'}
-            message={'Successfully Deleted'}
-            buttons={['OK']}
-          />
-        </div>
-      </IonContent>
-      <Footer />
+         
+        </div> 
+      </IonContent>     
     </IonPage>
   );
 };
@@ -118,4 +127,7 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-export default connect(mapStateToProps)(ManagePartition);
+const Child = withRouter(ManagePartition as any);
+export default connect(mapStateToProps)(Child);
+
+

@@ -22,7 +22,7 @@ const initialWeedRemoveData = {
     nOofLabours: "",
     labourCost: "",
   },
-
+  isFormSubmit: true,
 }
 
 const weedRemoveData = (state = initialWeedRemoveData, action: any) => {

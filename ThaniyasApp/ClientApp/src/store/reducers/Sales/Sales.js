@@ -23,22 +23,23 @@ var initialSaleData = {
         landDetailsId: 0,
         partitionLandDetailsId: 0,
         ID: 0,
-        date: "",
+        saleDate: "",
         quantity: "",
         price: "",
         buyerName: "",
         buyerMobileNumber: "",
     },
+    isFormSubmit: true,
 };
 var saleData = function (state, action) {
     if (state === void 0) { state = initialSaleData; }
     switch (action.type) {
         case Sales_1.STORE_SALES_STARTED:
-            return __assign(__assign({}, state), { isFormSubmit: false, saleInput: action.input });
+            return __assign(__assign({}, state), { isFormSubmit: true, saleInput: action.input });
         case Sales_1.STORE_SALES_COMPLETED:
-            return __assign(__assign({}, state), { isFormSubmit: true });
+            return __assign(__assign({}, state), { isFormSubmit: false });
         case Sales_1.STORE_SALES_FAILED:
-            return __assign({}, state);
+            return __assign(__assign({}, state), { isFormSubmit: true });
         case Sales_1.GET_SALES_STARTED:
             return __assign({}, state);
         case Sales_1.GET_SALES_COMPLETED:

@@ -15,14 +15,15 @@ const initialLandDetailData = {
     statusValue: true,
   },
   landDetailInput: {
-    state: "",
+    ID: 0,
+    StateId: 0,
     city: "",
     village: "",
     pattaNumber: "",
     areaSize: "",
     name: "",
   },
-
+  isFormSubmit: true,
 }
 
 const LandDetailData = (state = initialLandDetailData, action: any) => {
@@ -30,18 +31,19 @@ const LandDetailData = (state = initialLandDetailData, action: any) => {
     case STORE_LANDDETAIL_STARTED:
       return {
         ...state,
-        isFormSubmit: false,
+        isFormSubmit: true,
         landDetailInput: action.input
       };
     case STORE_LANDDETAIL_COMPLETED:
       return {
         ...state,
-        isFormSubmit: true,
+        isFormSubmit: false,
         // status: action.payload.status     
       };
     case STORE_LANDDETAIL_FAILED:
       return {
         ...state,
+        isFormSubmit: true,
       };
     case GET_LANDDETAIL_STARTED:
       return {

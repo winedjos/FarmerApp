@@ -8,7 +8,8 @@ const initialRegData = {
     statusValue: true,
   },
   regInput: {
-    name: "",
+    userName: "",
+    password: "",
     mobileNumber: "",
     email:"",
   },
@@ -27,7 +28,7 @@ const regData = (state=initialRegData, action:any) => {
       return {
         ...state,       
         isFormSubmit: true,
-        status: action.payload.status,
+        status: action.payload,
         loginInput: action.input,        
         userDetail: action.payload.userDetail,
       };

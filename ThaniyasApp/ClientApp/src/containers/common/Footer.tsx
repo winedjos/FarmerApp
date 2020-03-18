@@ -1,19 +1,23 @@
 ﻿import { IonFooter, IonSelect, IonSelectOption } from '@ionic/react';
 import * as React from 'react';
+import { RouteComponentProps, withRouter } from 'react-router';
 
-const Footer: React.FC = () => {
+interface Props extends RouteComponentProps { }
+
+interface IHeaderProps {
+  route: RouteComponentProps;  
+}
+
+const Footer: React.SFC<IHeaderProps & RouteComponentProps> = ({ history }) => {
 
   return (
-    <IonFooter className="footcolor">
+    <IonFooter>    
       <div>
-        <button className="ok-btn"> OK </button>
-        
-      </div>
-      <div>
-        <button className="cancel-btn"> CANCEL </button>
+        <button className="cancel-btn" onClick={history.goBack}> CANCEL </button>
         </div>
     </IonFooter>
   );
 };
 
-export default Footer;
+const Child = withRouter(Footer as any);
+export default Child;

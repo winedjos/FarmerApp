@@ -26,29 +26,34 @@ const SaleDetails: React.SFC<ISaleProps> = ({ dispatch, saleData, PartitionLandD
     dispatch(getLandDetailList());
   }, [])
   const [startDate, setStartDate] = useState(new Date());
-
+ // Date < DatePicker selected = { startDate } onChange = { date => { setStartDate(date || new Date()) }} className = "input-text" />
   const onSaleSubmit = () => {
-    dispatch(storeSaleData(saleData.salesInput));
+    dispatch(storeSaleData(saleData.saleInput));
   }
 
-  const handleLandChange = (event: any) => {
-    saleData.salesInput.landDetailsId = event.target.value;
+  const handleDateChange = (date: any) => {
+    setStartDate(date || new Date());
+    saleData.saleInput.saleDate = date;
+  }
+
+  const handleLandNameChange = (event: any) => {
+    saleData.saleInput.landDetailsId = event.target.value;
   }
   const handlePLChange = (event: any) => {
-    saleData.salesInput.partitionLandDetailsId = event.target.value;
+    saleData.saleInput.partitionLandDetailsId = event.target.value;
   };
   const handleQuantityChange = (event: any) => {
-    saleData.salesInput.quantity = event.target.value;
+    saleData.saleInput.quantity = event.target.value;
   };
   const handlePriceChange = (event: any) => {
-    saleData.salesInput.price = event.target.value;
+    saleData.saleInput.price = event.target.value;
   };
   const handleBNChange = (event: any) => {
-    saleData.salesInput.buyerName = event.target.value;
+    saleData.saleInput.buyerName = event.target.value;
   };
 
   const handleMBChange = (event: any) => {
-    saleData.salesInput.buyerMobileNumber = event.target.value;
+    saleData.saleInput.buyerMobileNumber = event.target.value;
   };
 
   const [PartLandData, setPartLandData] = useState([]);
@@ -80,21 +85,21 @@ const SaleDetails: React.SFC<ISaleProps> = ({ dispatch, saleData, PartitionLandD
       <IonContent className=".reg-login">
         <div className="bg-image">
           <div className="reg-head">
-            <h1>Sale Details</h1>
+            <h1>Add Sale</h1>
           </div>
           <form className="form">
             <IonRow>
               <IonCol>
                 <IonText className="reg-fields">
                   <label> Land Name </label>
-                  <IonSelect placeholder="Select One" className="dropclr" onIonChange={handleLandChange}>
+                  <IonSelect placeholder="Select One" className="dropclr" onIonChange={handleLandNameChange}>
                     {Landitems.map((data: any) => { return <IonSelectOption value={data.id} key={data.id} title={data.name}> {data.name} </IonSelectOption> })}
                   </IonSelect>
                   <label> Partition Land Name </label>
                   <IonSelect placeholder="Select One" className="dropclr" onIonChange={handlePLChange}>
                     {PLitems.map((data: any) => { return <IonSelectOption value={data.id} key={data.id} title={data.landDirection} selected={PartitionLandData.PLitems.landDetails}> {data.landDirection} </IonSelectOption> })}
                   </IonSelect>
-                  Date  <DatePicker selected={startDate} onChange={date => { setStartDate(date || new Date()) }} className="input-text" />
+                  Date  <DatePicker dateFormat="dd/MM/yyyy" selected={startDate} onChange={(date: Date) => handleDateChange(date)} className="input-text" />                    
                   Quantity <input type="text" placeholder="Material Quantity" className="input-text" onChange={handleQuantityChange} required />
                   Price <input type="text" placeholder="Material Price" className="input-text" onChange={handlePriceChange} required />
                   Buyer Name <input type="text" placeholder="Buyer Name" className="input-text" onChange={handleBNChange} required />
@@ -110,9 +115,7 @@ const SaleDetails: React.SFC<ISaleProps> = ({ dispatch, saleData, PartitionLandD
           <button className="ok-btn" onClick={onSaleSubmit}> OK </button>
 
         </div>
-        <div>
-          <button className="cancel-btn"> CANCEL </button>
-        </div>
+        <Footer />
       </footer>
     </IonPage>
   );

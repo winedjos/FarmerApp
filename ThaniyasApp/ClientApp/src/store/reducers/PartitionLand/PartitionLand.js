@@ -27,6 +27,8 @@ var initialPartitionLandData = {
         landDetailsId: 0,
         ID: 0
     },
+    isLandId: true,
+    isFormSubmit: true,
 };
 var PartitionLandData = function (state, action) {
     if (state === void 0) { state = initialPartitionLandData; }
@@ -59,11 +61,11 @@ var PartitionLandData = function (state, action) {
         case PartitionLand_1.DELETE_PARTITIONLAND_FAILED:
             return __assign(__assign({}, state), { error: action.error });
         case PartitionLand_1.GET_PARTITIONLANDBYID_STARTED:
-            return __assign(__assign({}, state), { partitionLandInput: action.payload });
+            return __assign(__assign({}, state), { partitionLandInput: action.payload, isLandId: true });
         case PartitionLand_1.GET_PARTITIONLANDBYID_COMPLETED:
-            return __assign(__assign({}, state), { PLitem: action.payload });
+            return __assign(__assign({}, state), { PLitem: action.payload, isLandId: false });
         case PartitionLand_1.GET_PARTITIONLANDBYID_FAILED:
-            return __assign(__assign({}, state), { error: action.error });
+            return __assign(__assign({}, state), { error: action.error, isLandId: true });
         default:
             return state;
     }

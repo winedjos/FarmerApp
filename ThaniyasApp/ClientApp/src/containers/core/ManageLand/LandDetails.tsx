@@ -28,7 +28,7 @@ export const LandDetails: React.SFC<ILandDetailProps> = ({ dispatch, LandDetailD
 
 
   const handleStateChange = (event: any) => {
-    LandDetailData.landDetailInput.state = event.target.value;
+    LandDetailData.landDetailInput.StateId = event.target.value;
   }
   const handleCityChange = (event: any) => {
     LandDetailData.landDetailInput.city = event.target.value;
@@ -76,7 +76,7 @@ export const LandDetails: React.SFC<ILandDetailProps> = ({ dispatch, LandDetailD
                 <IonText className="reg-fields">
                   <IonItem >
                   <IonLabel>State</IonLabel>
-                    <IonSelect placeholder="Select One" onIonChange={handleStateChange}>
+                    <IonSelect placeholder="Select One" className="dropclr" onIonChange={handleStateChange}>
                       {stateitems.map((data: any) => { return <IonSelectOption value={data.id} key={data.id} title={data.stateName}> {data.stateName } </IonSelectOption> })}
                   </IonSelect>
                   </IonItem>  
@@ -96,9 +96,7 @@ export const LandDetails: React.SFC<ILandDetailProps> = ({ dispatch, LandDetailD
           <button className="ok-btn" onClick={onLandDetailSubmit}> OK </button>
 
         </div>
-        <div>
-          <button className="cancel-btn"> CANCEL </button>
-        </div>
+        <Footer />
       </footer>
   </IonPage>
    

@@ -23,22 +23,23 @@ var initialPestControlData = {
         landDetailsId: 0,
         partitionLandDetailsId: 0,
         ID: 0,
-        date: "",
+        pestControlDate: "",
         nameofthePestSide: "",
         cost: "",
         purpose: "",
         labourCost: "",
     },
+    isLoading: true,
 };
 var pestControlData = function (state, action) {
     if (state === void 0) { state = initialPestControlData; }
     switch (action.type) {
         case PestControl_1.STORE_PESTCONTROL_STARTED:
-            return __assign(__assign({}, state), { isFormSubmit: false, pestControlInput: action.input });
+            return __assign(__assign({}, state), { isFormSubmit: false, pestControlInput: action.input, isLoading: true });
         case PestControl_1.STORE_PESTCONTROL_COMPLETED:
-            return __assign(__assign({}, state), { isFormSubmit: true });
+            return __assign(__assign({}, state), { isFormSubmit: true, isLoading: false });
         case PestControl_1.STORE_PESTCONTROL_FAILED:
-            return __assign({}, state);
+            return __assign(__assign({}, state), { isFormSubmit: false, isLoading: true });
         case PestControl_1.GET_PESTCONTROL_STARTED:
             return __assign({}, state);
         case PestControl_1.GET_PESTCONTROL_COMPLETED:

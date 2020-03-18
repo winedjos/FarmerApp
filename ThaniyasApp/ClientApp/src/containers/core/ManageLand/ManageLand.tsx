@@ -1,4 +1,4 @@
-﻿import { IonItem, IonContent, IonPage, IonList, IonAlert, IonPopover, IonSelectOption, IonLabel, IonSelect, IonVirtualScroll } from '@ionic/react';
+﻿import { IonItem, IonContent, IonPage, IonList, IonAlert, IonPopover, IonSelectOption, IonLabel, IonSelect, IonVirtualScroll, IonLoading } from '@ionic/react';
 import React, { useState } from 'react';
 //import './Reg.scss';
 import Header from '../../common/Header';
@@ -6,21 +6,27 @@ import Footer from '../../common/Footer';
 import { getLandDetailList, deleteLand } from '../../../store/actions/LandDetail';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
+import { RouteComponentProps, withRouter } from 'react-router';
+import { IonicImageLoader, ImgLoaderComponent, ImageLoader } from 'ionic-image-loader';
 
+import { createBrowserHistory } from "history";
+//import { __RouterContext as RouterContext, withRouter } from 'react-router';
 
+interface Props extends RouteComponentProps { }
 
 interface ILandDetailProps {
   dispatch: Dispatch<any>;
-  LandDetailData : any;
+  LandDetailData: any;
+  route: RouteComponentProps;
   //LandDetailData: any;  
 }
 
 
-const ManageLand: React.SFC<ILandDetailProps> = ({ dispatch, LandDetailData }) => {
-  React.useEffect(() => {
+const ManageLand: React.FunctionComponent<ILandDetailProps & RouteComponentProps> = ({ dispatch, LandDetailData, history }) => {
+  React.useEffect(() => {   
     dispatch(getLandDetailList());
   }, []);
-
+  //var history = createBrowserHistory();
   const [showPopover, setShowPopover] = useState(false);
   // <IonButton onClick={() => setShowModal(false)}>Close Modal</IonButton>
   //const onaddClick = () => {
@@ -31,9 +37,12 @@ const ManageLand: React.SFC<ILandDetailProps> = ({ dispatch, LandDetailData }) =
     //setShowModal(false);
   //<button onClick={() => onaddClick}> add  </button>
   //}
+   
 
-  const onEditLandClick = () => {
-    alert("Edit");
+  const [Land, setLand] = useState();
+  const onEditLandClick = (id: any) => {   
+    setLand(id);   
+    history.push("/landDetailEditPage/" + id);
   }
   const [showAlert1, setShowAlert1] = useState(false);
   const [LandInput, setLandInput] = useState();
@@ -51,17 +60,11 @@ const ManageLand: React.SFC<ILandDetailProps> = ({ dispatch, LandDetailData }) =
   const Landitems: any = (LandData || []);
   const itemLand: any = [];
 
-
   Landitems.forEach((Landitems: any) => itemLand.push(
     <IonItem key={Landitems.id}>
-      <IonLabel> {Landitems.name} </IonLabel>
-      <a href={"/landDetailEditPage/" + Landitems.id} >
-        <img src="assets/Edit.png" height="15" width="15" className="edit-icon" onClick={() => onEditLandClick}></img>
-      </a>
-
+      <IonLabel> {Landitems.name} </IonLabel>     
+      <img src="assets/Edit.png" height="15" width="15" className="edit-icon" onClick={() => onEditLandClick(Landitems.id)}></img>
       <img src="assets/Delete.png" height="23" width="23" className="del-icon" onClick={() => onDeleteLnadClick(Landitems.id)} ></img>
-
-
     </IonItem>));
 
   return (
@@ -71,12 +74,17 @@ const ManageLand: React.SFC<ILandDetailProps> = ({ dispatch, LandDetailData }) =
         <div className="bg-image">
           <div className="reg-head">
             <h1>Manage Land </h1>
-          </div>      
-         
+          </div>
           <form className="form">
             <IonItem className="MLand-Lbl">
               <label className="lbl"> Land Details </label>
-              <a href="/landDetails" className="add-btn">  ADD  </a> 
+              <a onClick={() =>
+              {
+               
+                history.push("/landDetails")
+              }}
+
+                className="add-btn">  ADD  </a>
             </IonItem>
   
             <IonList>
@@ -88,15 +96,12 @@ const ManageLand: React.SFC<ILandDetailProps> = ({ dispatch, LandDetailData }) =
           </form>
           <IonAlert
             isOpen={showAlert1}
-            onDidDismiss={() => setShowAlert1(false)}
-            // header={'Alert'}
-            // subHeader={'Subtitle'}
+            onDidDismiss={() => setShowAlert1(false)}           
             message={'Successfully Deleted'}
             buttons={['OK']}
           />
         </div>
-      </IonContent>
-      <Footer />
+      </IonContent>    
     </IonPage>
   );
 };
@@ -108,5 +113,5 @@ const mapStateToProps = (state: any) => {
     LandDetailData
   };
 };
-
-export default connect(mapStateToProps)(ManageLand);
+const Child = withRouter(ManageLand as any);
+export default connect(mapStateToProps)(Child);

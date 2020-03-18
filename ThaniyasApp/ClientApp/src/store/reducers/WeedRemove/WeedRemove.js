@@ -28,6 +28,7 @@ var initialWeedRemoveData = {
         nOofLabours: "",
         labourCost: "",
     },
+    isFormSubmit: true,
 };
 var weedRemoveData = function (state, action) {
     if (state === void 0) { state = initialWeedRemoveData; }

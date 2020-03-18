@@ -127,6 +127,7 @@
     .arrow {
         float: left;
         margin-top: 1%;
+        cursor:pointer;   
     }
     .search {
         margin-left: 75%;
@@ -264,16 +265,21 @@ a{
     background-color: rgba(12, 60, 0, 0.5);
     padding: 10px 10px;
     color: white;
+    cursor:pointer;
 }
 
 .edit-icon{
     margin-left: 70px;
     margin-right:10px;
+    cursor:pointer;
 }
-.view-icon{
-   margin-left:10px;
-   margin-bottom: -8px;
-   cursor:pointer;
+.del-icon{
+    cursor:pointer;
+}
+.view-icon {
+    margin-left: 10px;
+    margin-bottom: -8px;
+    cursor: pointer;
 }
 label{
     cursor:pointer;
@@ -298,4 +304,24 @@ label{
   //  display: inline-block;
     padding: 0;
     border: 0;
+    }
+
+.login {
+    margin-left: 45%;
+    background-color: #859d7f;
+    margin-top: 10%;
+    display: inline-block;
+    color: wheat;
+    padding: 5px 10px 5px 10px;
+}
+
+.login:hover {
+    background-color: rgba(12, 60, 0, 0.5);
+    padding: 10px 10px;
+    color: white;
+    cursor: pointer;
+}
+
+    .or-lbl {
+        margin-left: 50%;
     }

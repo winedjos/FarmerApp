@@ -2,31 +2,33 @@
 import React, { useState } from 'react';
 //import './Reg.scss';
 import Header from '../../common/Header';
+import Footer from '../../common/Footer';
 import { Dispatch } from 'redux';
-import { getLandDetailById } from "../../../store/actions/LandDetail";
+import { getLandDetailById, storeLandDetailData } from "../../../store/actions/LandDetail";
+//import { getStatelList } from "../../../store/actions/StateList";
 import { useDispatch, connect } from 'react-redux';
 
 
 interface ILandAddEditProps {
   dispatch: Dispatch<any>;
   getLandDetailById1: any;
-  LandDetailData: any;
-  //PartitionLandData: any;
+  storeLandDetailData1: any;
+  LandDetailData: any;  
+  stateListData: any;
   match: any;
   params: any;
-  // LandDetailData: any;
-
+ 
 }
 
 interface ILandAddEditState {
-  LandDetailData: {
-   // state: any;
+    id: 0;
+    StateId: 0;
     city: any;
     village: any;
     pattaNumber: any;
     areaSize: any;
     name: any;
-  };
+  
 }
 
 class LandDetailEditPage extends React.Component<ILandAddEditProps, ILandAddEditState> {
@@ -34,14 +36,14 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps, ILandAddEdit
     super(props);
 
     this.state = {
-      LandDetailData: {
-        //state: null,
+        id:0,
+        StateId: 0,
         city: null,
         village: null,
         pattaNumber: null,
         areaSize: null,
         name: null,
-      }
+     
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -52,65 +54,76 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps, ILandAddEdit
     this.props.getLandDetailById1(this.props.match.params.id);
   }
 
-  componentDidMount() {
-    //const { partitionLandInput } = this.props;   
-    //this.setState({ PartitionLandData: this.props });
-
+  componentWillReceiveProps(newProps: any) {
+    if (!newProps.LandDetailData.isFormSubmit) {
+      window.location.href = '/manageLands';
+    }
+    if (newProps.LandDetailData.LandItem) {
+      this.setState({
+        StateId: newProps.LandDetailData.LandItem.selectedStateListId,
+        city: newProps.LandDetailData.LandItem.city,
+        village: newProps.LandDetailData.LandItem.village,
+        pattaNumber: newProps.LandDetailData.LandItem.pattaNumber,
+        areaSize: newProps.LandDetailData.LandItem.areaSize,
+        name: newProps.LandDetailData.LandItem.name,
+        id: newProps.LandDetailData.LandItem.id,
+       // state: newProps.LandDetailData.Landitems.state
+      })
+    }
   }
 
   handleOnsubmit(event: any) {
-    alert("Edit");
-    //  event.preventDefault();
-    // const { dispatch } = this.props;
-    //  dispatch(savePartitionLand(this.state.PartitionLandData));
-  }
+    event.preventDefault();
+    this.props.storeLandDetailData1(this.state);
+     }
 
   handleChange(event: any) {
     const { name, value } = event.target;
     if (this.state) {
       this.setState({
-        LandDetailData: {
-          ...this.state.LandDetailData,
+        
+          ...this.state,
           [name]: value
-        }
+       
       });
     }
   }
 
-
+  handleStateChange = (event: any) => {
+    this.setState({
+      StateId: event.target.value
+    });
+  }
 
   render() {
-    if (!this.state.LandDetailData.name) {
-      this.state = {
-        LandDetailData: {
-          //state: this.props.LandDetailData.WeedItems.state,
-          city: this.props.LandDetailData.Landitems.city,
-          village: this.props.LandDetailData.Landitems.village,
-          pattaNumber: this.props.LandDetailData.Landitems.pattaNumber,
-          areaSize: this.props.LandDetailData.Landitems.areaSize,
-          name: this.props.LandDetailData.Landitems.name,
-        }
-      };
-    }
-
+   
     return (
       <IonPage>
         <Header />
         <IonContent className=".reg-login">
           <div className="bg-image">
             <div className="reg-head">
-              <h1> Edit Manage Partition </h1>
+              <h1>  Edit Land Detail </h1>
             </div>
-            {this.props.LandDetailData && (
+            {this.state.id > 0 && (
               <form className="form">
                 <IonRow>
                   <IonCol>
                     <IonText className="reg-fields">
-                      City <input type="text" placeholder="City" className="input-text" onChange={this.handleChange} value={this.state.LandDetailData.city} required />
-                      Village <input type="text" placeholder="Village Name" className="input-text" onChange={this.handleChange} value={this.state.LandDetailData.village} required />
-                      Patta Number <input type="text" placeholder="Land Patta Number" className="input-text" onChange={this.handleChange} value={this.state.LandDetailData.pattaNumber} required />
-                      Area Size <input type="text" placeholder="Size of Land" className="input-text" onChange={this.handleChange} value={this.state.LandDetailData.areaSize} required />
-                      Land Name <input type="text" placeholder="Land Name" className="input-text" onChange={this.handleChange} value={this.state.LandDetailData.name} required />
+                      <IonLabel>State</IonLabel>
+                      <IonItem >   
+                        <IonLabel>State</IonLabel>
+                        {this.props.LandDetailData.LandItem.states && (
+                          <IonSelect placeholder="Select One" className="dropclr" onIonChange={this.handleStateChange}>
+                            {this.props.LandDetailData.LandItem.states.map((data: any) => { return <IonSelectOption value={data.id} onChange={this.handleChange} key={data.id} title={data.stateName} selected={data.id == this.props.LandDetailData.LandItem.selectedStateListId}> {data.stateName} </IonSelectOption> })}
+                          </IonSelect>
+                        )}
+                  </IonItem> 
+                      City <input type="text" name="city" className="input-text" onChange={this.handleChange} value={this.state.city} required />
+                      Village <input type="text" name="village" className="input-text" onChange={this.handleChange} value={this.state.village} required />
+                      Patta Number <input type="text" name="pattaNumber" className="input-text" onChange={this.handleChange} value={this.state.pattaNumber} required />
+                      Area Size <input type="text" name="areaSize" className="input-text" onChange={this.handleChange} value={this.state.areaSize} required />
+                      Land Name <input type="text" name="name" className="input-text" onChange={this.handleChange} value={this.state.name} required />
                     </IonText>
                   </IonCol>
                 </IonRow>
@@ -120,11 +133,9 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps, ILandAddEdit
         </IonContent>
         <footer className="footcolor" >
           <div>
-            <button className="ok-btn"> OK </button>
+            <button className="ok-btn" onClick={this.handleOnsubmit}> OK </button>
           </div>
-          <div>
-            <button className="cancel-btn"> CANCEL </button>
-          </div>
+          <Footer />
         </footer>
       </IonPage>
     );
@@ -133,10 +144,10 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps, ILandAddEdit
 };
 
 const mapStateToProps = (state: any) => {
-  const { LandDetailData } = state;
+  const { LandDetailData, stateListData } = state;
 
   return {
-    LandDetailData
+    LandDetailData, stateListData
   };
 };
 
@@ -144,8 +155,10 @@ const mapDisptchToProps = (dispatch: any) => {
   return {
     getLandDetailById1: (id: any) => {
       dispatch(getLandDetailById(id));
+    },
+    storeLandDetailData1: (id: any) => {
+      dispatch(storeLandDetailData(id));
     }
-
   };
 };
 

@@ -8,10 +8,28 @@ var SaleAPI = /** @class */ (function () {
         var obj = JSON.stringify(input);
         var tObj = JSON.parse(obj);
         var url = '/api/Sale/add-Sale';
-        return Http_1.Http.axios().post(url, tObj)
-            .catch(function (e) {
-            return e.response;
-        });
+        if (input.id && input.id !== 0) {
+            return Http_1.Http.axios().post(url, obj, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods": "*",
+                    "Access-Control-Allow-Headers": "*"
+                }
+            })
+                .then(function (response) {
+                return response;
+            }).catch(function (e) {
+                console.log("Error in post" + e);
+                return e.response;
+            });
+        }
+        else {
+            return Http_1.Http.axios().post(url, tObj)
+                .catch(function (e) {
+                return e.response;
+            });
+        }
     };
     SaleAPI.getSaleList = function () {
         return Http_1.Http.axios().get('/api/Sale/sale-list')

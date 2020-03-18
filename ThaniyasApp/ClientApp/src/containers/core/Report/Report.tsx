@@ -1,11 +1,39 @@
 ﻿import { IonContent, IonHeader, IonPage, IonTitle, IonItemDivider, IonToolbar, IonSelect, IonSelectOption, IonText, IonList, IonItem, IonInput, IonCheckbox, IonLabel, IonButton, IonNote, IonBadge, IonRow, IonCol, IonGrid, IonImg } from '@ionic/react';
-import * as React from 'react';
+import React, { useState } from 'react';
 //import './Reg.scss';
 import Header from '../../common/Header';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
+import { getLandDetailList } from '../../../store/actions/LandDetail';
 
-const Report: React.FC = () => {
- 
+interface IReportProps {
+  dispatch: Dispatch<any>;
+  LandDetailData: any;
+ // route: RouteComponentProps;
+  //LandDetailData: any;  
+}
+
+const Report: React.SFC<IReportProps> = ({ dispatch, LandDetailData }) => {
+
+  React.useEffect(() => {
+    dispatch(getLandDetailList());
+  }, []);
   //<img src="assets/share.png" height="75" width="75"></img>
+  const [LandData, setLandData] = useState([]);
+
+  if (LandDetailData.Landitems.length > 0 && LandData.length === 0) {
+    setLandData(LandDetailData.Landitems);
+  }
+
+  const Landitems: any = (LandData || []);
+  const itemLand: any = [];
+
+  Landitems.forEach((Landitems: any) => itemLand.push(
+    <IonItem key={Landitems.id}>
+      <IonLabel> {Landitems.name} </IonLabel>
+      <div > <button> View </button></div>      
+    </IonItem>));
+
   return (
     <IonPage>
       <Header />
@@ -25,6 +53,11 @@ const Report: React.FC = () => {
                 <th>Expenses</th>
               </tr>
             </table>
+            <IonList>
+              <div className="scroll">
+                {itemLand}
+              </div>
+            </IonList>
           </form>
         </div>
       </IonContent>
@@ -32,4 +65,12 @@ const Report: React.FC = () => {
   );
 };
 
-export default Report;
+
+const mapStateToProps = (state: any) => {
+  const { LandDetailData } = state;
+
+  return {
+    LandDetailData
+  };
+};
+export default connect(mapStateToProps)(Report);

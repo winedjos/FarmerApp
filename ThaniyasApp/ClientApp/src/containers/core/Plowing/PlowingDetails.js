@@ -4,6 +4,7 @@ var react_1 = require("@ionic/react");
 var React = require("react");
 //import './Reg.scss';
 var Header_1 = require("../../common/Header");
+var Footer_1 = require("../../common/Footer");
 var react_datepicker_1 = require("react-datepicker");
 require("react-datepicker/dist/react-datepicker.css");
 var react_2 = require("react");
@@ -32,7 +33,12 @@ var PlowingDetails = function (_a) {
         plowingData.plowingInput.typeofPlowing = event.target.value;
     };
     var handlePlowEXPChange = function (event) {
-        plowingData.plowingInput.plowingEXP = event.target.value;
+        plowingData.plowingInput.plowingExp = event.target.value;
+    };
+    var handleDateChange = function (date) {
+        setStartDate(date || new Date());
+        plowingData.plowingInput.plowingDate = date;
+        //date => { setStartDate(date || new Date()) } 
     };
     var _c = react_2.useState([]), PartLandData = _c[0], setPartLandData = _c[1];
     if (PartitionLandData.PLitems.length > 0 && PartLandData.length === 0) {
@@ -61,7 +67,7 @@ var PlowingDetails = function (_a) {
         React.createElement(react_1.IonContent, { className: ".reg-login" },
             React.createElement("div", { className: "bg-image" },
                 React.createElement("div", { className: "reg-head" },
-                    React.createElement("h1", null, "Plowing Details")),
+                    React.createElement("h1", null, "Add Plowing ")),
                 React.createElement("form", { className: "form" },
                     React.createElement(react_1.IonRow, null,
                         React.createElement(react_1.IonCol, null,
@@ -79,14 +85,13 @@ var PlowingDetails = function (_a) {
                                 "Type of Plowing ",
                                 React.createElement("input", { type: "text", placeholder: "Plowing type", className: "input-text", onChange: handleTypeofPlowChange, required: true }),
                                 "Date  ",
-                                React.createElement(react_datepicker_1.default, { selected: startDate, onChange: function (date) { setStartDate(date || new Date()); }, className: "input-text" }),
+                                React.createElement(react_datepicker_1.default, { dateFormat: "dd/MM/yyyy", selected: startDate, onChange: function (date) { return handleDateChange(date); }, className: "input-text" }),
                                 "Plowing Expenses ",
                                 React.createElement("input", { type: "text", placeholder: "Plowing Expenses", className: "input-text", onChange: handlePlowEXPChange, required: true }))))))),
         React.createElement("footer", { className: "footcolor" },
             React.createElement("div", null,
                 React.createElement("button", { className: "ok-btn", onClick: onPlowingSubmit }, " OK ")),
-            React.createElement("div", null,
-                React.createElement("button", { className: "cancel-btn" }, " CANCEL ")))));
+            React.createElement(Footer_1.default, null))));
 };
 var mapStateToProps = function (state) {
     var plowingData = state.plowingData, PartitionLandData = state.PartitionLandData, LandDetailData = state.LandDetailData;

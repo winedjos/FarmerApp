@@ -82,7 +82,7 @@ const SeedingDetails: React.SFC<ISeedProps> = ({ dispatch, seedData, PartitionLa
       <IonContent className=".reg-login">
         <div className="bg-image">
           <div className="reg-head">
-            <h1>Seeding Details</h1>
+            <h1>Add Seeding </h1>
           </div>
           <form className="form">
             <IonRow>
@@ -112,9 +112,7 @@ const SeedingDetails: React.SFC<ISeedProps> = ({ dispatch, seedData, PartitionLa
           <button className="ok-btn" onClick={onSeedSubmit}> OK </button>
 
         </div>
-        <div>
-          <button className="cancel-btn"> CANCEL </button>
-        </div>
+        <Footer />
       </footer>
     </IonPage>
   );

@@ -17,13 +17,13 @@ const initialPestControlData = {
     landDetailsId: 0,
     partitionLandDetailsId: 0,
     ID: 0,
-    date: "",
+    pestControlDate: "",
     nameofthePestSide: "",
     cost: "",
     purpose: "",
     labourCost: "",
   },
-
+  isLoading: true,
 }
 
 const pestControlData = (state = initialPestControlData, action: any) => {
@@ -32,17 +32,21 @@ const pestControlData = (state = initialPestControlData, action: any) => {
       return {
         ...state,
         isFormSubmit: false,
-        pestControlInput: action.input
+        pestControlInput: action.input,
+        isLoading: true,
       };
     case STORE_PESTCONTROL_COMPLETED:
       return {
         ...state,
         isFormSubmit: true,
+        isLoading: false,
         // status: action.payload.status     
       };
     case STORE_PESTCONTROL_FAILED:
       return {
         ...state,
+        isFormSubmit: false,
+        isLoading: true,
       };
     case GET_PESTCONTROL_STARTED:
       return {

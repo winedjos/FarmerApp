@@ -8,6 +8,8 @@ var react_redux_1 = require("react-redux");
 var react_router_1 = require("react-router");
 var history_1 = require("history");
 var store_1 = require("./store");
+//import { IonicImageLoader } from 'ionic-image-loader';
+//IonicImageLoader.forRoot();
 var history = history_1.createBrowserHistory();
 ReactDOM.render(React.createElement(react_redux_1.Provider, { store: store_1.default },
     React.createElement(react_router_1.Router, { history: history },

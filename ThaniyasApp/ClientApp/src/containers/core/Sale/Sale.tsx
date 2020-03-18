@@ -1,19 +1,23 @@
-﻿import { IonItem, IonContent, IonPage, IonList, IonPopover, IonSelectOption, IonLabel, IonSelect } from '@ionic/react';
+﻿import { IonItem, IonContent, IonPage, IonList, IonAlert, IonSelectOption, IonLabel, IonSelect } from '@ionic/react';
 import React, { useState } from 'react';
 //import './Reg.scss';
 import Header from '../../common/Header';
 import Footer from '../../common/Footer';
-import { getSaleList } from '../../../store/actions/Sales';
+import { getSaleList,deleteSale } from '../../../store/actions/Sales';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import { RouteComponentProps, withRouter } from 'react-router';
+
+interface Props extends RouteComponentProps { }
 
 interface ISaleProps {
   dispatch: Dispatch<any>;
   saleData: any;
+  route: RouteComponentProps;
 }
 
 
-const Sale: React.SFC<ISaleProps> = ({ dispatch, saleData}) => {
+const Sale: React.SFC<ISaleProps & RouteComponentProps> = ({ dispatch, saleData, history}) => {
   React.useEffect(() => {
     dispatch(getSaleList());
   }, []);
@@ -21,10 +25,15 @@ const Sale: React.SFC<ISaleProps> = ({ dispatch, saleData}) => {
   const [Sale, setSale] = useState()
   const onEditSaleClick = (id:any) => {
     setSale(id);
+    history.push("/saleEditPage/" + id);
   }
 
-  const onDeleteSeedClick = () => {
-    alert("DELETE");
+  const [showAlert1, setShowAlert1] = useState(false);
+  const [saleDel, setSaleDel] = useState();
+  const onDeleteSeedClick = (id: any) => {
+    setShowAlert1(true);
+    setSaleDel(id);
+    dispatch(deleteSale(id));
   }
 
   const [SaleData, setSaleData] = useState([]);
@@ -37,11 +46,8 @@ const Sale: React.SFC<ISaleProps> = ({ dispatch, saleData}) => {
   SaleItems.forEach((SaleItems: any) => SaleList.push(
     <IonItem key={SaleItems.id}>
       <IonLabel> {SaleItems.buyerName} </IonLabel>
-      <a href={"/saleEditPage/" + SaleItems.id} >
         <img src="assets/Edit.png" height="15" width="15" className="edit-icon" onClick={() => onEditSaleClick(SaleItems.id)}></img>
-      </a>
-
-      <img src="assets/Delete.png" height="23" width="23" className="del-icon" onClick={() => onDeleteSeedClick} ></img>
+      <img src="assets/Delete.png" height="23" width="23" className="del-icon" onClick={() => onDeleteSeedClick(SaleItems.id)} ></img>
     </IonItem>));
   return (
     <IonPage>
@@ -49,21 +55,31 @@ const Sale: React.SFC<ISaleProps> = ({ dispatch, saleData}) => {
       <IonContent className=".reg-login">
         <div className="bg-image">
           <div className="reg-head">
-            <h1>Sale </h1>
+            <h1>Sale List </h1>
           </div>
 
           <form className="form">
             <IonItem className="MLand-Lbl">
               <label className="lbl"> Sale Details </label>
-              <a href="saleDetails" className="add-btn">  ADD  </a>
+              <a onClick={() => {
+
+                history.push("/saleDetails")
+              }}
+
+                className="add-btn">  ADD  </a>
             </IonItem>
             <IonList>
               {SaleList}
             </IonList>
           </form>
+          <IonAlert
+            isOpen={showAlert1}
+            onDidDismiss={() => setShowAlert1(false)}            
+            message={'Successfully Deleted'}
+            buttons={['OK']}
+          />
         </div>
-      </IonContent>
-      <Footer />
+      </IonContent>     
     </IonPage>
   );
 };
@@ -76,4 +92,8 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-export default connect(mapStateToProps)(Sale);
+const Child = withRouter(Sale as any);
+export default connect(mapStateToProps)(Child);
+
+
+

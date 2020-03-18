@@ -41,8 +41,14 @@ const PlowingDetails: React.SFC<IPlowProps> = ({ dispatch, plowingData, Partitio
     plowingData.plowingInput.typeofPlowing = event.target.value;
   };
   const handlePlowEXPChange = (event: any) => {
-    plowingData.plowingInput.plowingEXP = event.target.value;
+    plowingData.plowingInput.plowingExp = event.target.value;
   };
+
+  const handleDateChange = (date: any) => {  
+    setStartDate(date || new Date());
+    plowingData.plowingInput.plowingDate = date;
+    //date => { setStartDate(date || new Date()) } 
+  }
 
   const [PartLandData, setPartLandData] = useState([]);
 
@@ -74,7 +80,7 @@ const PlowingDetails: React.SFC<IPlowProps> = ({ dispatch, plowingData, Partitio
       <IonContent className=".reg-login">
         <div className="bg-image">
           <div className="reg-head">
-            <h1>Plowing Details</h1>
+            <h1>Add Plowing </h1>
           </div>
           <form className="form">
             <IonRow>
@@ -89,7 +95,7 @@ const PlowingDetails: React.SFC<IPlowProps> = ({ dispatch, plowingData, Partitio
                     {PLitems.map((data: any) => { return <IonSelectOption value={data.id} key={data.id} title={data.landDirection} selected={PartitionLandData.PLitems.landDetails}> {data.landDirection} </IonSelectOption> })}
                   </IonSelect>
                   Type of Plowing <input type="text" placeholder="Plowing type" className="input-text" onChange={handleTypeofPlowChange} required />
-                  Date  <DatePicker selected={startDate} onChange={date => { setStartDate(date || new Date()) }} className="input-text" />
+                  Date  <DatePicker dateFormat="dd/MM/yyyy" selected={startDate} onChange={(date: Date) => handleDateChange(date)} className="input-text" />  
                   Plowing Expenses <input type="text" placeholder="Plowing Expenses" className="input-text" onChange={handlePlowEXPChange} required />
                 </IonText>
               </IonCol>
@@ -102,9 +108,7 @@ const PlowingDetails: React.SFC<IPlowProps> = ({ dispatch, plowingData, Partitio
           <button className="ok-btn" onClick={onPlowingSubmit}> OK </button>
 
         </div>
-        <div>
-          <button className="cancel-btn"> CANCEL </button>
-        </div>
+        <Footer />
       </footer>
     </IonPage>
   );

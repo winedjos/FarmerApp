@@ -29,8 +29,7 @@ const WeedRemoveDetails: React.SFC<IWeedRemoveProps> = ({ dispatch, weedRemoveDa
   }, [])
   const [startDate, setStartDate] = useState(new Date());
 
-  const handleDateChange = (date: any) => {
-    alert("Date");
+  const handleDateChange = (date: any) => {   
     setStartDate(date || new Date());
     weedRemoveData.weedRemoveInput.date = date;
      //date => { setStartDate(date || new Date()) } 
@@ -88,7 +87,7 @@ const WeedRemoveDetails: React.SFC<IWeedRemoveProps> = ({ dispatch, weedRemoveDa
       <IonContent className=".reg-login">
         <div className="bg-image">
           <div className="reg-head">
-            <h1>Add Weed Remove Details</h1>
+            <h1>Add Weed Remove </h1>
           </div>
           <form className="form">
             <IonRow>
@@ -117,9 +116,7 @@ const WeedRemoveDetails: React.SFC<IWeedRemoveProps> = ({ dispatch, weedRemoveDa
           <button className="ok-btn" onClick={onWeedRemoveSubmit}> OK </button>
 
         </div>
-        <div>
-          <button className="cancel-btn"> CANCEL </button>
-        </div>
+         <Footer />
       </footer>
     </IonPage>
   );

@@ -17,11 +17,11 @@ const initialPlowingData = {
     landDetailsId: 0,
     partitionLandDetailsId: 0,
     ID: 0,
-    date: "",
+    plowingDate: "",
     typeofPlowing: "",
-    plowingEXP: "",   
+    plowingExp: "",   
   },
-
+  isFormSubmit: true,
 }
 
 const plowingData = (state = initialPlowingData, action: any) => {
@@ -29,18 +29,19 @@ const plowingData = (state = initialPlowingData, action: any) => {
     case STORE_PLOWINGS_STARTED:
       return {
         ...state,
-        isFormSubmit: false,
+        isFormSubmit: true,
         plowingInput: action.input
       };
     case STORE_PLOWINGS_COMPLETED:
       return {
         ...state,
-        isFormSubmit: true,
+        isFormSubmit: false,
         // status: action.payload.status     
       };
     case STORE_PLOWINGS_FAILED:
       return {
         ...state,
+        isFormSubmit: true,
       };
     case GET_PLOWINGS_STARTED:
       return {

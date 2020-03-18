@@ -21,7 +21,8 @@ const initialPartitionLandData = {
     landDetailsId: 0,
     ID: 0
   },
-
+  isLandId: true,
+  isFormSubmit: true,
 }
 
 const PartitionLandData = (state = initialPartitionLandData, action: any) => {
@@ -89,16 +90,19 @@ const PartitionLandData = (state = initialPartitionLandData, action: any) => {
       return {
         ...state,
         partitionLandInput: action.payload,
+        isLandId : true
       };
     case GET_PARTITIONLANDBYID_COMPLETED:
       return {
         ...state,
-        PLitem: action.payload
+        PLitem: action.payload,
+         isLandId: false
       };
     case GET_PARTITIONLANDBYID_FAILED:
       return {
         ...state,
-        error: action.error
+        error: action.error,
+         isLandId: true
       };
     
     default:

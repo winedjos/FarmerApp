@@ -9,6 +9,7 @@ import pestControlData from './PestControl/PestControl';
 import PartitionLandData from './PartitionLand/PartitionLand';
 import LandDetailData from './LandDetail/LandDetail';
 import stateListData from './StateList/SateList';
+import loginData from './Login/Login';
 
 const reducers = combineReducers({
   regData,
@@ -20,6 +21,7 @@ const reducers = combineReducers({
   pestControlData,
   PartitionLandData,
   LandDetailData,
+  loginData,
   stateListData
 })
 

@@ -17,13 +17,13 @@ const initialSaleData = {
     landDetailsId: 0,
     partitionLandDetailsId: 0,
     ID: 0,
-    date: "",
+    saleDate: "",
     quantity: "",
     price: "",
     buyerName: "",
     buyerMobileNumber: "",
   },
-
+  isFormSubmit: true,
 }
 
 const saleData = (state = initialSaleData, action: any) => {
@@ -31,18 +31,19 @@ const saleData = (state = initialSaleData, action: any) => {
     case STORE_SALES_STARTED:
       return {
         ...state,
-        isFormSubmit: false,
+        isFormSubmit: true,
         saleInput: action.input
       };
     case STORE_SALES_COMPLETED:
       return {
         ...state,
-        isFormSubmit: true,
+        isFormSubmit: false,
         // status: action.payload.status     
       };
     case STORE_SALES_FAILED:
       return {
         ...state,
+        isFormSubmit: true,
       };
     case GET_SALES_STARTED:
       return {

@@ -8,6 +8,7 @@ import { useDispatch, connect } from 'react-redux';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment';
+import Footer from '../../common/Footer';
 
 
 interface IWeedRemoveAddEditProps {
@@ -59,9 +60,9 @@ class WeedRemoveEditPage extends React.Component<IWeedRemoveAddEditProps, IWeedR
   }
 
   componentWillReceiveProps(newProps: any) {
-    //if (!newProps.weedRemoveData.isFormSubmit) {
-    //  window.location.href = '/weedRemoves';
-    //}
+    if (!newProps.weedRemoveData.isFormSubmit) {
+      window.location.href = '/weedRemoves';
+    }
     if (newProps.weedRemoveData.WeedItems) {
       this.setState({
         landDetailsId: newProps.weedRemoveData.WeedItems.selectedLandDetailId,
@@ -87,6 +88,18 @@ class WeedRemoveEditPage extends React.Component<IWeedRemoveAddEditProps, IWeedR
     });
   }
 
+  handleLandChange = (event: any) => {
+    this.setState({
+      landDetailsId: event.target.value
+    });
+  }
+
+  handlePLChange = (event: any) => {
+    this.setState({
+      partitionLandDetailsId: event.target.value
+    });
+  }
+
    handleChange(event: any) {
     const { name, value } = event.target;
     if (this.state) {
@@ -96,6 +109,11 @@ class WeedRemoveEditPage extends React.Component<IWeedRemoveAddEditProps, IWeedR
       });
     }
   }
+
+//   <div>
+//  <button className="cancel-btn"> CANCEL </button>
+//</div>
+
   render() {
 
     return (
@@ -111,13 +129,14 @@ class WeedRemoveEditPage extends React.Component<IWeedRemoveAddEditProps, IWeedR
                 <IonRow>
                   <IonCol>
                     <IonText className="reg-fields">
+                      <label> Land Name </label>
                       {this.props.weedRemoveData.WeedItems.landDetailName && (
-                        <IonSelect className="dropclr">
+                        <IonSelect className="dropclr" onIonChange={this.handleLandChange}>
                           {this.props.weedRemoveData.WeedItems.landDetailName.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.name} selected={data.id == this.props.weedRemoveData.WeedItems.selectedLandDetailId} > {data.name} </IonSelectOption>) })}
                         </IonSelect>)}
                       <label> Partition Land Name </label>
                       {this.props.weedRemoveData.WeedItems.partLandDetailName && (
-                        <IonSelect className="dropclr">
+                        <IonSelect className="dropclr" onIonChange={this.handlePLChange}>
                           {this.props.weedRemoveData.WeedItems.partLandDetailName.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.landDirection} selected={data.id == this.props.weedRemoveData.WeedItems.selectedPartLandDetailId} > {data.landDirection} </IonSelectOption>) })}
                         </IonSelect>)}
                       <IonRow> Date </IonRow><IonRow> <DatePicker selected={moment(this.state.date).toDate()} dateFormat="dd/MM/yyyy" onChange={(date) => this.setDate(date)} className="input-text" /> </IonRow>                     
@@ -133,11 +152,9 @@ class WeedRemoveEditPage extends React.Component<IWeedRemoveAddEditProps, IWeedR
         </IonContent>
         <footer className="footcolor" >
           <div>
-            <button className="ok-btn" onClick={this.handleOnsubmit}> OK </button>
+            <button className="ok-btn" onClick={this.handleOnsubmit}> SAVE </button>
           </div>
-          <div>
-            <button className="cancel-btn"> CANCEL </button>
-          </div>
+          <Footer />         
         </footer>
       </IonPage>
     );

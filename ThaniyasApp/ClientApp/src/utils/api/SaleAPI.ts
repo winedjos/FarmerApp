@@ -6,10 +6,29 @@ export class SaleAPI {
     var obj = JSON.stringify(input);
     var tObj = JSON.parse(obj);
     var url = '/api/Sale/add-Sale';
-    return Http.axios().post(url, tObj)
-      .catch((e) => {
-        return e.response;
-      }) as AxiosPromise<any>;
+    if (input.id && input.id !== 0) {
+      return Http.axios().post(url, obj,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "*",
+            "Access-Control-Allow-Headers": "*"
+          }
+        })
+        .then(response => {
+          return response;
+        }).catch((e: any) => {
+          console.log("Error in post" + e);
+          return e.response;
+        }) as AxiosPromise<any>;
+    }
+    else {
+      return Http.axios().post(url, tObj)
+        .catch((e) => {
+          return e.response;
+        }) as AxiosPromise<any>;
+    }
   }
 
   public static getSaleList() {

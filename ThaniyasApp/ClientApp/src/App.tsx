@@ -54,6 +54,8 @@ import SeedEditPage from './containers/core/Seeding/SeedEditPage';
 import LandDetailEditPage from './containers/core/ManageLand/LandDetailEditPage';
 import PestControlEditPage from './containers/core/PestControl/PestControlEditPage';
 import PlowingEditPage from './containers/core/Plowing/PlowingEditPage';
+import Login from './containers/core/Registration/Login';
+
 
 const App: React.FC = () => (
   <IonApp>
@@ -62,6 +64,7 @@ const App: React.FC = () => (
         <Route path="/registrations" component={Registrations} exact={true} />
         <Route path="/otpPage" component={OtpPage} exact={true} />
         <Route path="/homes" component={Homes} exact={true} />
+        <Route path="/login" component={Login} exact={true} />
         <Route path="/manageLands" component={ManageLands} exact={true} />
         <Route path="/landDetails" component={LandDetails} exact={true} />
         <Route path="/landDetailEditPage/:id" component={LandDetailEditPage} exact={true} />

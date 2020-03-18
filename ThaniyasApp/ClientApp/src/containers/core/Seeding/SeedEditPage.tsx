@@ -5,6 +5,7 @@ import Header from '../../common/Header';
 import { Dispatch } from 'redux';
 import { getSeedById, storeSeedData } from "../../../store/actions/Seedings";
 import { useDispatch, connect } from 'react-redux';
+import Footer from '../../common/Footer';
 
 
 interface ISeedAddEditProps {
@@ -79,6 +80,19 @@ class SeedEditPage extends React.Component<ISeedAddEditProps, ISeedAddEditState>
     this.props.storeSeedData1(this.state);
   }
 
+  handleLandChange = (event: any) => {
+    this.setState({
+      landDetailsId: event.target.value
+    });
+  }
+
+  handlePLChange = (event: any) => {
+    this.setState({
+      partitionLandDetailsId: event.target.value
+    });
+  }
+
+
   handleChange(event: any) {
     const { name, value } = event.target;
     if (this.state) {
@@ -97,7 +111,7 @@ class SeedEditPage extends React.Component<ISeedAddEditProps, ISeedAddEditState>
         <IonContent className=".reg-login">
           <div className="bg-image">
             <div className="reg-head">
-              <h1> Edit Manage Partition </h1>
+              <h1> Edit Seeding </h1>
             </div>
             {this.state.id && (
             <form className="form">
@@ -105,12 +119,12 @@ class SeedEditPage extends React.Component<ISeedAddEditProps, ISeedAddEditState>
                 <IonCol>
                     <IonText className="reg-fields">
                       {this.props.seedData.Seeditems.landDetailName && (
-                        <IonSelect className="dropclr">
+                        <IonSelect className="dropclr" onIonChange={this.handleLandChange}>
                           {this.props.seedData.Seeditems.landDetailName.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.name} selected={data.id == this.props.seedData.Seeditems.selectedLandDetailId} > {data.name} </IonSelectOption>) })}
                         </IonSelect>)}
                       <label> Partition Land Name </label>
                       {this.props.seedData.Seeditems.partLandDetailName && (
-                        <IonSelect className="dropclr">
+                        <IonSelect className="dropclr" onIonChange={this.handlePLChange}>
                           {this.props.seedData.Seeditems.partLandDetailName.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.landDirection} selected={data.id == this.props.seedData.Seeditems.selectedPartLandDetailId} > {data.landDirection} </IonSelectOption>) })}
                         </IonSelect>)}
                       Quantity <input type="text" name="quantity" className="input-text" onChange={this.handleChange} value={this.state.quantity} />
@@ -127,11 +141,9 @@ class SeedEditPage extends React.Component<ISeedAddEditProps, ISeedAddEditState>
         </IonContent>
         <footer className="footcolor" >
           <div>
-            <button className="ok-btn" onClick={this.handleOnsubmit}> OK </button>
+            <button className="ok-btn" onClick={this.handleOnsubmit}> SAVE </button>
           </div>
-          <div>
-            <button className="cancel-btn"> CANCEL </button>
-          </div>
+          <Footer />
         </footer>
       </IonPage>
     );

@@ -88,6 +88,18 @@ handleChange(event : any) {
   }
 }
 
+  handleLandChange = (event: any) => {
+    this.setState({
+      landDetailsId: event.target.value
+    });
+  }
+
+  handlePLChange = (event: any) => {
+    this.setState({
+      partitionLandDetailsId: event.target.value
+    });
+  }
+
   setDate(dateValue:any) {
     this.setState({
      ...this.state,
@@ -103,7 +115,7 @@ handleChange(event : any) {
       <IonContent className=".reg-login">
         <div className="bg-image">
           <div className="reg-head">
-            <h1>Harvesting Details</h1>
+            <h1>Edit Harvesting </h1>
           </div>
           {this.state.id > 0 && (
           <form className="form">
@@ -112,12 +124,12 @@ handleChange(event : any) {
                   <IonText className="reg-fields">
                     <label> Land Name </label>
                   {this.props.harvestData.HarvestItems.landDetailName && (
-                      <IonSelect className="dropclr">
+                      <IonSelect className="dropclr" onIonChange={this.handleLandChange}>
                         {this.props.harvestData.HarvestItems.landDetailName.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.name} selected={data.id == this.props.harvestData.HarvestItems.selectedLandDetailId} > {data.name} </IonSelectOption>) })}
                       </IonSelect>)}
                     <label> Partition Land Name </label>
                     {this.props.harvestData.HarvestItems.partLandDetailName && (
-                      <IonSelect className="dropclr">
+                      <IonSelect className="dropclr" onIonChange={this.handlePLChange}>
                         {this.props.harvestData.HarvestItems.partLandDetailName.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.landDirection} selected={data.id == this.props.harvestData.HarvestItems.selectedPartLandDetailId} > {data.landDirection} </IonSelectOption>) })}
                       </IonSelect>)}
                     <IonRow> Date </IonRow><IonRow> <DatePicker selected={moment(this.state.date).toDate()} dateFormat="dd/MM/yyyy" onChange={(date) => this.setDate(date)} className="input-text" /> </IonRow>
@@ -133,7 +145,7 @@ handleChange(event : any) {
       </IonContent>
       <footer className="footcolor" >
         <div>
-          <button className="ok-btn" onClick={this.handleOnsubmit}> OK </button>
+          <button className="ok-btn" onClick={this.handleOnsubmit}> SAVE </button>
         </div>
         <div>
           <button className="cancel-btn"> CANCEL </button>

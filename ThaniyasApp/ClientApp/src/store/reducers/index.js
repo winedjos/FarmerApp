@@ -11,6 +11,7 @@ var PestControl_1 = require("./PestControl/PestControl");
 var PartitionLand_1 = require("./PartitionLand/PartitionLand");
 var LandDetail_1 = require("./LandDetail/LandDetail");
 var SateList_1 = require("./StateList/SateList");
+var Login_1 = require("./Login/Login");
 var reducers = redux_1.combineReducers({
     regData: Registration_1.default,
     harvestData: Harvestings_1.default,
@@ -21,6 +22,7 @@ var reducers = redux_1.combineReducers({
     pestControlData: PestControl_1.default,
     PartitionLandData: PartitionLand_1.default,
     LandDetailData: LandDetail_1.default,
+    loginData: Login_1.default,
     stateListData: SateList_1.default
 });
 exports.default = reducers;

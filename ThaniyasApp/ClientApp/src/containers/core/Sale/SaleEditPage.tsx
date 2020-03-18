@@ -1,32 +1,37 @@
-﻿import { IonItem, IonContent, IonText, IonPage, IonRow, IonCol } from '@ionic/react';
+﻿import { IonItem, IonContent, IonText, IonPage, IonRow, IonCol, IonSelect,IonSelectOption } from '@ionic/react';
 import React, { useState } from 'react';
 //import './Reg.scss';
 import Header from '../../common/Header';
 import { Dispatch } from 'redux';
-import { getSaleById} from "../../../store/actions/Sales";
+import { getSaleById, storeSaleData } from "../../../store/actions/Sales";
 import { useDispatch, connect } from 'react-redux';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import moment from 'moment';
+import Footer from '../../common/Footer';
 
 interface ISaleAddEditProps {
   dispatch: Dispatch<any>;
   getSaleById1: any;
- // PartitionLandData: any;
+  storeSaleData1: any;
+  PartitionLandData: any;
   match: any;
   params: any;
   saleData: any;
- // LandDetailData: any;
+  LandDetailData: any;
 
 }
 
 interface ISaleAddEditState {
-  saleData: {
-   // date: any;
+  id: 0;
+  saleDate: any;
     quantity: any;
     price: any;
     buyerName: any;
-    buyerMbileNo: any;
-  //  selectedLandId: any;
-   // selectedPartLandId: any;
-  };
+  buyerMobileNumber: any;
+  landDetailsId: any;
+  partitionLandDetailsId: any;
+  
 }
 
 class SaleEditPage extends React.Component<ISaleAddEditProps, ISaleAddEditState> {
@@ -34,15 +39,15 @@ class SaleEditPage extends React.Component<ISaleAddEditProps, ISaleAddEditState>
     super(props);
 
     this.state = {
-      saleData: {
-        //date: null,
+     id:0,
+      saleDate: new Date(),
         quantity: null,
         price: null,
         buyerName: null,
-        buyerMbileNo: null,
-       // selectedLandId: 0,
-       // selectedPartLandId: 0
-      }
+      buyerMobileNumber: null,
+      landDetailsId: 0,
+      partitionLandDetailsId: 0,
+      
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -54,53 +59,90 @@ class SaleEditPage extends React.Component<ISaleAddEditProps, ISaleAddEditState>
   }
 
   handleChange(event:any) {
-    alert("Edit");
+  //  alert("Edit");
     const { name, value } = event.target;
     if (this.state) {
       this.setState({
-        saleData: {
-          ...this.state.saleData,
+       
+          ...this.state,
           [name]: value
-        }
+       
       });
     }
   }
 
+  componentWillReceiveProps(newProps: any) {
+    if (!newProps.saleData.isFormSubmit) {
+      window.location.href = '/sales';
+    }
+    if (newProps.saleData.SaleItems) {
+      this.setState({
+        landDetailsId: newProps.saleData.SaleItems.selectedLandDetailId,
+        partitionLandDetailsId: newProps.saleData.SaleItems.selectedPartLandDetailId,
+        buyerMobileNumber: newProps.saleData.SaleItems.buyerMobileNumber,
+        buyerName: newProps.saleData.SaleItems.buyerName,
+        price: newProps.saleData.SaleItems.price,
+        quantity: newProps.saleData.SaleItems.quantity,
+        id: newProps.saleData.SaleItems.id,
+        saleDate: newProps.saleData.SaleItems.date
+      })
+    }
+  }
+
+  setDate(dateValue: any) {
+    this.setState({
+      ...this.state,
+      saleDate: dateValue
+    });
+  }
+  handleLandChange = (event: any) => {
+    this.setState({
+      landDetailsId: event.target.value
+    });
+  }
+
+  handlePLChange = (event: any) => {
+    this.setState({
+      partitionLandDetailsId: event.target.value
+    });
+  }
+
   handleOnsubmit(event: any) {
-    alert("Sabve");
-    //  event.preventDefault();
+    //alert("Sabve");
+     event.preventDefault();
     //const { dispatch } = this.props;
-   // dispatch(savePartitionLand(this.state.PartitionLandData));
+    this.props.storeSaleData1(this.state);
   }
 
   render() {
-    if (!this.state.saleData.buyerName) {
-      this.state = {
-        saleData: {
-          quantity: this.props.saleData.SaleItems.quantity,
-          price: this.props.saleData.SaleItems.price,
-          buyerName: this.props.saleData.SaleItems.buyerName,
-          buyerMbileNo: this.props.saleData.SaleItems.buyerMobileNumber,
-        }
-      };
-    }
     return (
       <IonPage>
         <Header />
         <IonContent className=".reg-login">
           <div className="bg-image">
             <div className="reg-head">
-              <h1>Edit Sale Details</h1>
+              <h1>Edit Sale</h1>
             </div>
-            {this.props.saleData && (
+            {this.state.id && (
             <form className="form">
               <IonRow>
                 <IonCol>
-                  <IonText className="reg-fields">
-                    Quantity <input type="text" className="input-text" onChange={this.handleChange} value={this.state.saleData.quantity} required />
-                    Price <input type="text" className="input-text" onChange={this.handleChange} value={this.state.saleData.price} required />
-                    Buyer Name <input type="text" className="input-text" onChange={this.handleChange} value={this.state.saleData.buyerName} required />
-                      Buyer Mobile Number <input type="text" className="input-text" onChange={this.handleChange} value={this.state.saleData.buyerMbileNo} required />
+                    <IonText className="reg-fields">
+                      <label> Land Name </label>
+                      {this.props.saleData.SaleItems.landDetailName && (
+                        <IonSelect className="dropclr" onIonChange={this.handleLandChange}>
+                          {this.props.saleData.SaleItems.landDetailName.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.name} selected={data.id == this.props.saleData.SaleItems.selectedLandDetailId} > {data.name} </IonSelectOption>) })}
+                        </IonSelect>)}
+                      <label> Partition Land Name </label>
+                      {this.props.saleData.SaleItems.partLandDetailName && (
+                        <IonSelect className="dropclr" onIonChange={this.handlePLChange}>
+                          {this.props.saleData.SaleItems.partLandDetailName.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.landDirection} selected={data.id == this.props.saleData.SaleItems.selectedPartLandDetailId} > {data.landDirection} </IonSelectOption>) })}
+                        </IonSelect>)}
+                      <IonRow> Date </IonRow><IonRow> <DatePicker selected={moment(this.state.saleDate).toDate()} dateFormat="dd/MM/yyyy" onChange={(date) => this.setDate(date)} className="input-text" /> </IonRow>                     
+                      Quantity <input type="text" name="quantity" className="input-text" onChange={this.handleChange} value={this.state.quantity} required />
+                      Price <input type="text" name="price" className="input-text" onChange={this.handleChange} value={this.state.price} required />
+                      Buyer Name <input type="text" name="buyerName" className="input-text" onChange={this.handleChange} value={this.state.buyerName} required />
+                      Buyer Mobile Number <input type="text" name="buyerMobileNumber" className="input-text" onChange={this.handleChange} value={this.state.buyerMobileNumber} required />
                   </IonText>
                 </IonCol>
               </IonRow>
@@ -110,12 +152,10 @@ class SaleEditPage extends React.Component<ISaleAddEditProps, ISaleAddEditState>
         </IonContent>
         <footer className="footcolor" >
           <div>
-            <button className="ok-btn" onSubmit={this.handleOnsubmit}> OK </button>
+            <button className="ok-btn" onClick={this.handleOnsubmit}> SAVE </button>
 
           </div>
-          <div>
-            <button className="cancel-btn"> CANCEL </button>
-          </div>
+          <Footer />
         </footer>
       </IonPage>
     );
@@ -136,8 +176,10 @@ const mapDisptchToProps = (dispatch: any) => {
   return {
     getSaleById1: (id: any) => {
       dispatch(getSaleById(id));
+    },
+    storeSaleData1: (id: any) => {
+      dispatch(storeSaleData(id));
     }
-
   };
 };
 

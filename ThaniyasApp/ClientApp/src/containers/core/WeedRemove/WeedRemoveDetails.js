@@ -4,6 +4,7 @@ var react_1 = require("@ionic/react");
 var React = require("react");
 //import './Reg.scss';
 var Header_1 = require("../../common/Header");
+var Footer_1 = require("../../common/Footer");
 var react_datepicker_1 = require("react-datepicker");
 require("react-datepicker/dist/react-datepicker.css");
 var react_2 = require("react");
@@ -20,7 +21,6 @@ var WeedRemoveDetails = function (_a) {
     }, []);
     var _b = react_2.useState(new Date()), startDate = _b[0], setStartDate = _b[1];
     var handleDateChange = function (date) {
-        alert("Date");
         setStartDate(date || new Date());
         weedRemoveData.weedRemoveInput.date = date;
         //date => { setStartDate(date || new Date()) } 
@@ -70,7 +70,7 @@ var WeedRemoveDetails = function (_a) {
         React.createElement(react_1.IonContent, { className: ".reg-login" },
             React.createElement("div", { className: "bg-image" },
                 React.createElement("div", { className: "reg-head" },
-                    React.createElement("h1", null, "Add Weed Remove Details")),
+                    React.createElement("h1", null, "Add Weed Remove ")),
                 React.createElement("form", { className: "form" },
                     React.createElement(react_1.IonRow, null,
                         React.createElement(react_1.IonCol, null,
@@ -96,8 +96,7 @@ var WeedRemoveDetails = function (_a) {
         React.createElement("footer", { className: "footcolor" },
             React.createElement("div", null,
                 React.createElement("button", { className: "ok-btn", onClick: onWeedRemoveSubmit }, " OK ")),
-            React.createElement("div", null,
-                React.createElement("button", { className: "cancel-btn" }, " CANCEL ")))));
+            React.createElement(Footer_1.default, null))));
 };
 var mapStateToProps = function (state) {
     var weedRemoveData = state.weedRemoveData, PartitionLandData = state.PartitionLandData, LandDetailData = state.LandDetailData;

@@ -19,9 +19,12 @@ import { STORE_LANDDETAIL_STARTED, GET_LANDDETAIL_STARTED, GET_LANDDETAILBYID_ST
 import { storeLandDetailData, getLandDetailList, getLandByIdList, deleteLand } from './LandDetail/LandDetail';
 import { GET_STATELIST_STARTED } from '../actions/StateList';
 import { getStateList } from './StateList/StateList';
+import { FETCH_LOGIN_STARTED } from '../actions/Login';
+import { fetchLoginData } from './Login/Login';
 
 export default function* rootSaga() {
   yield all([
+    takeLatest(FETCH_LOGIN_STARTED, fetchLoginData),
     takeLatest(STORE_REG_STARTED, storeRegData),
     takeLatest(STORE_HARVESTINGS_STARTED, storeHarvestData),
     takeLatest(STORE_WEEDREMOVE_STARTED, storeWeedRemoveData),

@@ -21,10 +21,17 @@ var HarvestDetails = function (_a) {
     var onHarvestSubmit = function () {
         dispatch(Harvestings_1.storeHarvestData(harvestData.harvestInput));
     };
+    var handleDateChange = function (date) {
+        setStartDate(date || new Date());
+        harvestData.harvestInput.date = date;
+        //date => { setStartDate(date || new Date()) } 
+    };
     var _b = react_2.useState(new Date()), startDate = _b[0], setStartDate = _b[1];
+    // const [partitionData, setPartitionData] = useState([]);
     var handleLandChange = function (event) {
         harvestData.harvestInput.landDetailsId = event.target.value;
-        // dispatch(getLandDetailList())
+        // var items = PLitems.filter((item: any) => item.landDetailsId == event.target.value);
+        //dispatch(getPartitionLandById(Landitems.id)); 
     };
     var handlePLChange = function (event) {
         harvestData.harvestInput.partitionLandDetailsId = event.target.value;
@@ -60,12 +67,16 @@ var HarvestDetails = function (_a) {
             " ",
             Landitems.name,
             " "))); });
+    //<label> Partition Land Name </label>
+    //<IonSelect placeholder="Select One" className="dropclr" onIonChange={handlePLChange}>
+    //  {PLitems.filter((item:any) => item.landDetailsId == 1).map((data: any) => { return <IonSelectOption value={data.id} key={data.id} title={data.landDirection}> {data.landDirection} </IonSelectOption> })}
+    //</IonSelect>
     return (React.createElement(react_1.IonPage, null,
         React.createElement(Header_1.default, null),
         React.createElement(react_1.IonContent, { className: ".reg-login" },
             React.createElement("div", { className: "bg-image" },
                 React.createElement("div", { className: "reg-head" },
-                    React.createElement("h1", null, "Harvesting Details")),
+                    React.createElement("h1", null, "Add Harvesting ")),
                 React.createElement("form", { className: "form", onSubmit: onHarvestSubmit },
                     React.createElement(react_1.IonRow, null,
                         React.createElement(react_1.IonCol, null,
@@ -81,7 +92,7 @@ var HarvestDetails = function (_a) {
                                     data.landDirection,
                                     " "); })),
                                 "Date  ",
-                                React.createElement(react_datepicker_1.default, { selected: startDate, onChange: function (date) { setStartDate(date || new Date()); }, className: "input-text" }),
+                                React.createElement(react_datepicker_1.default, { dateFormat: "dd/MM/yyyy", selected: startDate, onChange: function (date) { return handleDateChange(date); }, className: "input-text" }),
                                 "Cost ",
                                 React.createElement("input", { type: "text", placeholder: "Harevest total Cost", className: "input-text", onChange: handleCostChange, required: true }),
                                 "NO of Labours ",

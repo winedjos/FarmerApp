@@ -1,4 +1,4 @@
-﻿import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSelect, IonSelectOption, IonText, IonList, IonItem, IonInput, IonCheckbox, IonLabel, IonButton, IonNote, IonBadge, IonRow, IonCol, IonGrid, IonImg } from '@ionic/react';
+﻿import { IonContent, IonHeader, IonPage, IonSpinner, IonToolbar, IonSelect, IonSelectOption, IonText, IonList, IonItem, IonInput, IonCheckbox, IonLabel, IonButton, IonNote, IonBadge, IonRow, IonCol, IonGrid, IonImg } from '@ionic/react';
 import React, { useState } from 'react';
 //import './Reg.scss';
 import Header from '../../common/Header';
@@ -63,8 +63,9 @@ const ManagePartitionDetails: React.SFC<IPartitionLandProps> = ({ dispatch, Part
                 <IonText className="reg-fields">
                   <IonItem>
                     <label> Land Name </label>
-                    <IonSelect placeholder="Select One" onIonChange={handleLandNameChange}>
-                      {Landitems.map((data: any) => { return <IonSelectOption value={data.id} key={data.id} title={data.name}> {data.name} </IonSelectOption> })}
+                   
+                    <IonSelect className="dropclr" placeholder="Select One" onIonChange={handleLandNameChange}>                       
+                      {Landitems.map((data: any) => { return <IonSelectOption  value={data.id} key={data.id} title={data.name}> {data.name} </IonSelectOption> })}
                     </IonSelect>                 
                   </IonItem>
                   Land Direction <input type="text" placeholder="Land direction" className="input-text" onChange={handleLandDiectionChange} required />                 
@@ -79,9 +80,7 @@ const ManagePartitionDetails: React.SFC<IPartitionLandProps> = ({ dispatch, Part
         <div>
           <button className="ok-btn" onClick={onPartitionLandSubmit}> OK </button>
         </div>
-        <div>
-          <button className="cancel-btn"> CANCEL </button>
-        </div>
+        <Footer />
       </footer>
     </IonPage>
   );

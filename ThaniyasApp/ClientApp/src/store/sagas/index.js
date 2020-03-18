@@ -48,10 +48,13 @@ var LandDetail_1 = require("../actions/LandDetail");
 var LandDetail_2 = require("./LandDetail/LandDetail");
 var StateList_1 = require("../actions/StateList");
 var StateList_2 = require("./StateList/StateList");
+var Login_1 = require("../actions/Login");
+var Login_2 = require("./Login/Login");
 function rootSaga() {
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, effects_1.all([
+                    effects_1.takeLatest(Login_1.FETCH_LOGIN_STARTED, Login_2.fetchLoginData),
                     effects_1.takeLatest(Registration_1.STORE_REG_STARTED, Registration_2.storeRegData),
                     effects_1.takeLatest(Harvestings_1.STORE_HARVESTINGS_STARTED, Harvsetings_1.storeHarvestData),
                     effects_1.takeLatest(WeedRemove_1.STORE_WEEDREMOVE_STARTED, WeedRemove_2.storeWeedRemoveData),

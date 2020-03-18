@@ -24,12 +24,13 @@ const Registration: React.SFC<IRegProps> = ({ dispatch, regData}) => {
   //}, []);
 
   const onHandleSubmit = () => {
-    dispatch(storeRegData(regData.regInput));
+     dispatch(storeRegData(regData.regInput));
+    //window.location.href = '/login';
   }
 
 
   const handleNameChange = (event: any) => {
-    regData.regInput.name = event.target.value;
+    regData.regInput.userName = event.target.value;
   };
 
   const handleMobileNumberChange = (event: any) => {
@@ -39,35 +40,67 @@ const Registration: React.SFC<IRegProps> = ({ dispatch, regData}) => {
   const handleEmailChange = (event: any) => {
     regData.regInput.email = event.target.value;
   };
-
+  const handlePWDChange = (event: any) => {
+    regData.regInput.password = event.target.value;
+  };
 
   //const handleSumbit = () => {
   //  window.location.href = "/homes";
   //}
-  return (
+
+  var isShowError = false;
+  const loggedInString = localStorage.getItem('AUTHDATA');
+  if (loggedInString) {
+    const loggedInData = JSON.parse(loggedInString);
+    if (loggedInData) {
+      if (loggedInData.status.statusValue) {
+        window.location.href = "/homes";
+      }
+    }
+  }
+
+  if (regData && regData.isFormSubmit &&  regData.status.statusValue) {
+    isShowError = false;
+    window.localStorage.setItem('AUTHDATA', JSON.stringify(regData));
+    window.location.href = "/homes";
+  }
+  else if (regData && regData.isFormSubmit && !regData.status.statusValue) {
+    isShowError = true;
+    window.localStorage.setItem('AUTHDATA', "");
+  }      
+
+   return (
     <IonPage>
       <Header />
       <IonContent className=".reg-login">
         <div className="bg-image">
           <div className="reg-head">
             <h1>Registration</h1>
-          </div>         
+          </div> 
+          {isShowError && (
+            <span>{regData.status.statusDisplay}</span>
+          )
+          }
           <form className="form" >
             <IonRow>
             <IonCol>
                 <IonText className="reg-fields">
-                  Name <input type="text" placeholder="Peter" className="input-text" onChange={handleNameChange} required />
+                  User Name <input type="text" placeholder="Peter" className="input-text" onChange={handleNameChange} required />
+                  Password <input type="password" placeholder="Password" className="input-text" onChange={handlePWDChange} required />
                   Mobile Number <input type="text" placeholder="12345 67890" className="input-text" onChange={handleMobileNumberChange} required />
-                  Email <input type="text" placeholder="peter@gmailx.com" className="input-text" onChange={handleEmailChange} required />
-                </IonText>
+                   Email <input type="text" placeholder="peter@gmailx.com" className="input-text" onChange={handleEmailChange} required />
+                   <label className="or-lbl">or</label> <br/>
+                   <a href="/login" className="login">
+                     Login </a>
+                 </IonText>                
               </IonCol>
-            </IonRow>
+             </IonRow>           
           </form>        
         </div>
       </IonContent>
-      <IonFooter className="footcolor" >
+      <div className="footcolor" >
         <button className="reg-btn" onClick={onHandleSubmit}> Submit </button>
-      </IonFooter>
+      </div>
     </IonPage>
   );
 };

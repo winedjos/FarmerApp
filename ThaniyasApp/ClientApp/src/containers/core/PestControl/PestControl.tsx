@@ -1,4 +1,4 @@
-﻿import { IonItem, IonContent, IonPage, IonList, IonPopover, IonSelectOption, IonLabel, IonSelect } from '@ionic/react';
+﻿import { IonItem, IonContent, IonPage, IonList, IonLoading, IonSelectOption, IonLabel, IonSelect } from '@ionic/react';
 import React, { useState } from 'react';
 //import './Reg.scss';
 import Header from '../../common/Header';
@@ -6,14 +6,17 @@ import Footer from '../../common/Footer';
 import { getPestControlList } from '../../../store/actions/PestControl';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import { RouteComponentProps, withRouter } from 'react-router';
+interface Props extends RouteComponentProps { }
 
 interface IPestControlProps {
   dispatch: Dispatch<any>;
-  pestControlData : any;
+  pestControlData: any;
+  route: RouteComponentProps;
 }
 
 
-const PestControl: React.SFC<IPestControlProps> = ({ dispatch, pestControlData }) => {
+const PestControl: React.SFC<IPestControlProps & RouteComponentProps> = ({ dispatch, pestControlData, history }) => {
   React.useEffect(() => {
     dispatch(getPestControlList());
   }, []);
@@ -22,11 +25,20 @@ const PestControl: React.SFC<IPestControlProps> = ({ dispatch, pestControlData }
   const [PestControl, setPestControl] = useState();
   const onEditSeedClick = (id:any) => {
     setPestControl(id);
+    history.push("/pestControlEditPage/" + id);
   }
 
   const onDeleteSeedClick = () => {
     alert("DELETE");
   }
+
+  const [showLoading, setShowLoading] = useState(true);
+
+  const handleAddPest = () => {
+    history.push("/pestControlDetails");
+    setShowLoading(true);
+  } 
+
 
   const [PestControlgData, setPestControlData] = useState([]);
 
@@ -38,10 +50,7 @@ const PestControl: React.SFC<IPestControlProps> = ({ dispatch, pestControlData }
   PetsControlItems.forEach((PetsControlItems: any) => PetsControlList.push(
     <IonItem key={PetsControlItems.id}>
       <IonLabel> {PetsControlItems.nameofthePestSide} </IonLabel>
-      <a href={"/pestControlEditPage/" + PetsControlItems.id} >
         <img src="assets/Edit.png" height="15" width="15" className="edit-icon" onClick={() => onEditSeedClick(PetsControlItems.id)}></img>
-      </a>
-
       <img src="assets/Delete.png" height="23" width="23" className="del-icon" onClick={() => onDeleteSeedClick} ></img>
     </IonItem>));
   return (
@@ -50,21 +59,26 @@ const PestControl: React.SFC<IPestControlProps> = ({ dispatch, pestControlData }
       <IonContent className=".reg-login">
         <div className="bg-image">
           <div className="reg-head">
-            <h1>Pest Control </h1>
+            <h1>Pest Control List</h1>
           </div>
 
           <form className="form">
             <IonItem className="MLand-Lbl">
               <label className="lbl"> Pest Control Details </label>
-              <a href="PestControlDetails" className="add-btn">  ADD  </a>
+              <a className="add-btn" onClick={() => history.push("/pestControlDetails")}>  ADD  </a>
             </IonItem>
             <IonList>
               {PetsControlList}
             </IonList>
           </form>
+          <IonLoading
+            isOpen={showLoading}
+            onDidDismiss={() => setShowLoading(false)}
+            message={'Please wait...'}
+            duration={5000}
+          />
         </div>
-      </IonContent>
-      <Footer />
+      </IonContent>      
     </IonPage>
   );
 };
@@ -77,4 +91,5 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-export default connect(mapStateToProps)(PestControl);
+const Child = withRouter(PestControl as any);
+export default connect(mapStateToProps)(Child);

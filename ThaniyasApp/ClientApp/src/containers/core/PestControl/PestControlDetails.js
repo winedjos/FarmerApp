@@ -4,6 +4,7 @@ var react_1 = require("@ionic/react");
 var React = require("react");
 //import './Reg.scss';
 var Header_1 = require("../../common/Header");
+var Footer_1 = require("../../common/Footer");
 var react_datepicker_1 = require("react-datepicker");
 require("react-datepicker/dist/react-datepicker.css");
 var react_2 = require("react");
@@ -22,8 +23,15 @@ var PestControlDetails = function (_a) {
     var onPestControlSubmit = function () {
         dispatch(PestControl_1.storePestControlData(pestControlData.pestControlInput));
     };
+    var handleDateChange = function (date) {
+        setStartDate(date || new Date());
+        pestControlData.pestControlInput.pestControlDate = date;
+        //date => { setStartDate(date || new Date()) } 
+    };
     var handleLandChange = function (event) {
         pestControlData.pestControlInput.landDetailsId = event.target.value;
+        // var items = PLitems.filter((item: any) => item.landDetailsId == event.target.value);
+        // dispatch(getPartitionLandById(Landitems.id)); 
     };
     var handlePLChange = function (event) {
         pestControlData.pestControlInput.partitionLandDetailsId = event.target.value;
@@ -62,12 +70,16 @@ var PestControlDetails = function (_a) {
             " ",
             Landitems.name,
             " "))); });
+    //<label> Partition Land Name </label>
+    //  <IonSelect placeholder="Select One" className="dropclr" onIonChange={handlePLChange}>
+    //    {PLitems.map((data: any) => { return <IonSelectOption value={data.id} key={data.id} title={data.landDirection} selected={PartitionLandData.PLitems.landDetails}> {data.landDirection} </IonSelectOption> })}
+    //  </IonSelect>
     return (React.createElement(react_1.IonPage, null,
         React.createElement(Header_1.default, null),
         React.createElement(react_1.IonContent, { className: ".reg-login" },
             React.createElement("div", { className: "bg-image" },
                 React.createElement("div", { className: "reg-head" },
-                    React.createElement("h1", null, "Pest Control Details")),
+                    React.createElement("h1", null, "Add Pest Control ")),
                 React.createElement("form", { className: "form" },
                     React.createElement(react_1.IonRow, null,
                         React.createElement(react_1.IonCol, null,
@@ -78,14 +90,14 @@ var PestControlDetails = function (_a) {
                                     data.name,
                                     " "); })),
                                 React.createElement("label", null, " Partition Land Name "),
-                                React.createElement(react_1.IonSelect, { placeholder: "Select One", className: "dropclr", onIonChange: handlePLChange }, PLitems.map(function (data) { return React.createElement(react_1.IonSelectOption, { value: data.id, key: data.id, title: data.landDirection, selected: PartitionLandData.PLitems.landDetails },
+                                React.createElement(react_1.IonSelect, { placeholder: "Select One", className: "dropclr", onIonChange: handlePLChange }, PLitems.filter(function (v) { return v.landDetailsId == pestControlData.pestControlInput.partitionLandDetailsId; }).map(function (data) { return React.createElement(react_1.IonSelectOption, { value: data.id, key: data.id, title: data.landDirection },
                                     " ",
                                     data.landDirection,
                                     " "); })),
+                                "Date  ",
+                                React.createElement(react_datepicker_1.default, { dateFormat: "dd/MM/yyyy", selected: startDate, onChange: function (date) { return handleDateChange(date); }, className: "input-text" }),
                                 "Name of the PestSide Name",
                                 React.createElement("input", { type: "text", placeholder: "PestSide Name", className: "input-text", onChange: handleNameofPestChange, required: true }),
-                                "Date  ",
-                                React.createElement(react_datepicker_1.default, { selected: startDate, onChange: function (date) { setStartDate(date || new Date()); }, className: "input-text" }),
                                 "Cost ",
                                 React.createElement("input", { type: "text", placeholder: "Pest Cost", className: "input-text", onChange: handleCostChange, required: true }),
                                 "Purpose ",
@@ -95,8 +107,7 @@ var PestControlDetails = function (_a) {
         React.createElement("footer", { className: "footcolor" },
             React.createElement("div", null,
                 React.createElement("button", { className: "ok-btn", onClick: onPestControlSubmit }, " OK ")),
-            React.createElement("div", null,
-                React.createElement("button", { className: "cancel-btn" }, " CANCEL ")))));
+            React.createElement(Footer_1.default, null))));
 };
 var mapStateToProps = function (state) {
     var pestControlData = state.pestControlData, PartitionLandData = state.PartitionLandData, LandDetailData = state.LandDetailData;

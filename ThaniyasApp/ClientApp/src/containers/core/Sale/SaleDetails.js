@@ -4,6 +4,7 @@ var react_1 = require("@ionic/react");
 var React = require("react");
 //import './Reg.scss';
 var Header_1 = require("../../common/Header");
+var Footer_1 = require("../../common/Footer");
 var react_datepicker_1 = require("react-datepicker");
 require("react-datepicker/dist/react-datepicker.css");
 var react_2 = require("react");
@@ -19,26 +20,31 @@ var SaleDetails = function (_a) {
         dispatch(LandDetail_1.getLandDetailList());
     }, []);
     var _b = react_2.useState(new Date()), startDate = _b[0], setStartDate = _b[1];
+    // Date < DatePicker selected = { startDate } onChange = { date => { setStartDate(date || new Date()) }} className = "input-text" />
     var onSaleSubmit = function () {
-        dispatch(Sales_1.storeSaleData(saleData.salesInput));
+        dispatch(Sales_1.storeSaleData(saleData.saleInput));
     };
-    var handleLandChange = function (event) {
-        saleData.salesInput.landDetailsId = event.target.value;
+    var handleDateChange = function (date) {
+        setStartDate(date || new Date());
+        saleData.saleInput.saleDate = date;
+    };
+    var handleLandNameChange = function (event) {
+        saleData.saleInput.landDetailsId = event.target.value;
     };
     var handlePLChange = function (event) {
-        saleData.salesInput.partitionLandDetailsId = event.target.value;
+        saleData.saleInput.partitionLandDetailsId = event.target.value;
     };
     var handleQuantityChange = function (event) {
-        saleData.salesInput.quantity = event.target.value;
+        saleData.saleInput.quantity = event.target.value;
     };
     var handlePriceChange = function (event) {
-        saleData.salesInput.price = event.target.value;
+        saleData.saleInput.price = event.target.value;
     };
     var handleBNChange = function (event) {
-        saleData.salesInput.buyerName = event.target.value;
+        saleData.saleInput.buyerName = event.target.value;
     };
     var handleMBChange = function (event) {
-        saleData.salesInput.buyerMobileNumber = event.target.value;
+        saleData.saleInput.buyerMobileNumber = event.target.value;
     };
     var _c = react_2.useState([]), PartLandData = _c[0], setPartLandData = _c[1];
     if (PartitionLandData.PLitems.length > 0 && PartLandData.length === 0) {
@@ -67,13 +73,13 @@ var SaleDetails = function (_a) {
         React.createElement(react_1.IonContent, { className: ".reg-login" },
             React.createElement("div", { className: "bg-image" },
                 React.createElement("div", { className: "reg-head" },
-                    React.createElement("h1", null, "Sale Details")),
+                    React.createElement("h1", null, "Add Sale")),
                 React.createElement("form", { className: "form" },
                     React.createElement(react_1.IonRow, null,
                         React.createElement(react_1.IonCol, null,
                             React.createElement(react_1.IonText, { className: "reg-fields" },
                                 React.createElement("label", null, " Land Name "),
-                                React.createElement(react_1.IonSelect, { placeholder: "Select One", className: "dropclr", onIonChange: handleLandChange }, Landitems.map(function (data) { return React.createElement(react_1.IonSelectOption, { value: data.id, key: data.id, title: data.name },
+                                React.createElement(react_1.IonSelect, { placeholder: "Select One", className: "dropclr", onIonChange: handleLandNameChange }, Landitems.map(function (data) { return React.createElement(react_1.IonSelectOption, { value: data.id, key: data.id, title: data.name },
                                     " ",
                                     data.name,
                                     " "); })),
@@ -83,7 +89,7 @@ var SaleDetails = function (_a) {
                                     data.landDirection,
                                     " "); })),
                                 "Date  ",
-                                React.createElement(react_datepicker_1.default, { selected: startDate, onChange: function (date) { setStartDate(date || new Date()); }, className: "input-text" }),
+                                React.createElement(react_datepicker_1.default, { dateFormat: "dd/MM/yyyy", selected: startDate, onChange: function (date) { return handleDateChange(date); }, className: "input-text" }),
                                 "Quantity ",
                                 React.createElement("input", { type: "text", placeholder: "Material Quantity", className: "input-text", onChange: handleQuantityChange, required: true }),
                                 "Price ",
@@ -95,8 +101,7 @@ var SaleDetails = function (_a) {
         React.createElement("footer", { className: "footcolor" },
             React.createElement("div", null,
                 React.createElement("button", { className: "ok-btn", onClick: onSaleSubmit }, " OK ")),
-            React.createElement("div", null,
-                React.createElement("button", { className: "cancel-btn" }, " CANCEL ")))));
+            React.createElement(Footer_1.default, null))));
 };
 var mapStateToProps = function (state) {
     var saleData = state.saleData, PartitionLandData = state.PartitionLandData, LandDetailData = state.LandDetailData;

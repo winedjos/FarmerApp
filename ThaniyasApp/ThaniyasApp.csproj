@@ -44,6 +44,7 @@
     <None Remove="ClientApp\src\containers\core\PestControl\PestControlEditPage.tsx" />
     <None Remove="ClientApp\src\containers\core\Plowing\Plowing.tsx" />
     <None Remove="ClientApp\src\containers\core\Plowing\PlowingEditPage.tsx" />
+    <None Remove="ClientApp\src\containers\core\Registration\Login.tsx" />
     <None Remove="ClientApp\src\containers\core\Report\Report.tsx" />
     <None Remove="ClientApp\src\containers\core\Sale\Sale.tsx" />
     <None Remove="ClientApp\src\containers\core\Sale\SaleDetails.tsx" />
@@ -72,6 +73,7 @@
     <None Remove="ClientApp\src\containers\pages\WeedRemoves\WeedRemoves.tsx" />
     <None Remove="ClientApp\src\store\actions\Harvestings.ts" />
     <None Remove="ClientApp\src\store\actions\LandDetail.ts" />
+    <None Remove="ClientApp\src\store\actions\Login.ts" />
     <None Remove="ClientApp\src\store\actions\PartitionLand.ts" />
     <None Remove="ClientApp\src\store\actions\PestControl.ts" />
     <None Remove="ClientApp\src\store\actions\Plowing.ts" />
@@ -83,6 +85,7 @@
     <None Remove="ClientApp\src\store\reducers\Harvestings\Harvestings.ts" />
     <None Remove="ClientApp\src\store\reducers\index.ts" />
     <None Remove="ClientApp\src\store\reducers\LandDetail\LandDetail.ts" />
+    <None Remove="ClientApp\src\store\reducers\Login\Login.ts" />
     <None Remove="ClientApp\src\store\reducers\PartitionLand\PartitionLand.ts" />
     <None Remove="ClientApp\src\store\reducers\PestControl\PestControl.ts" />
     <None Remove="ClientApp\src\store\reducers\Plowings\Plowing.ts" />
@@ -94,6 +97,7 @@
     <None Remove="ClientApp\src\store\sagas\Harvestings\Harvsetings.ts" />
     <None Remove="ClientApp\src\store\sagas\index.ts" />
     <None Remove="ClientApp\src\store\sagas\LandDetail\StateList.ts" />
+    <None Remove="ClientApp\src\store\sagas\Login\Login.ts" />
     <None Remove="ClientApp\src\store\sagas\PartitionLand\PartitionLand.ts" />
     <None Remove="ClientApp\src\store\sagas\PestControl\PestControl.ts" />
     <None Remove="ClientApp\src\store\sagas\Plowings\Plowing.ts" />
@@ -105,9 +109,11 @@
     <None Remove="ClientApp\src\store\WeedRemove.ts" />
     <None Remove="ClientApp\src\utils\api\HarvestingAPI.ts" />
     <None Remove="ClientApp\src\utils\api\LandDetailsAPI.ts" />
+    <None Remove="ClientApp\src\utils\api\LoginAPI.ts" />
     <None Remove="ClientApp\src\utils\api\PartitionLandAPI.ts" />
     <None Remove="ClientApp\src\utils\api\PestControlAPI.ts" />
     <None Remove="ClientApp\src\utils\api\PlowingAPI.ts" />
+    <None Remove="ClientApp\src\utils\api\RegistrationAPI.ts" />
     <None Remove="ClientApp\src\utils\api\SaleAPI.ts" />
     <None Remove="ClientApp\src\utils\api\SeedingAPI.ts" />
     <None Remove="ClientApp\src\utils\api\StateListAPI.ts" />

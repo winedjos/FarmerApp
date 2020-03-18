@@ -71,7 +71,7 @@ class ManagePartitionEditPage extends React.Component<IPartLandAddEditProps,IPar
     }
   }
 
-  handleChange(event : any) {
+  handleChange(event: any) {
     const { name, value } = event.target;
     if (this.state) {
       this.setState({
@@ -80,6 +80,14 @@ class ManagePartitionEditPage extends React.Component<IPartLandAddEditProps,IPar
       });
     }
   }
+
+ 
+    handleLandChange = (event : any) => {
+      this.setState({
+        landDetailsId: event.target.value
+      });
+    }
+ 
 
   render() {
      return (
@@ -92,9 +100,9 @@ class ManagePartitionEditPage extends React.Component<IPartLandAddEditProps,IPar
             </div>
             {this.state.id && (
               <form className="form">
-                {this.props.PartitionLandData.PLitem.landDetailName && (
-                  <IonSelect>
-                    {this.props.PartitionLandData.PLitem.landDetailName.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.name} selected={data.id == this.props.PartitionLandData.PLitem.selectedLandDetailId} > {data.name} </IonSelectOption>) })}
+                 {this.props.PartitionLandData.PLitem.landDetailName && (
+                   <IonSelect className="dropclr" onIonChange={this.handleLandChange}>
+                     {this.props.PartitionLandData.PLitem.landDetailName.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.name} selected={data.id == this.props.PartitionLandData.PLitem.selectedLandDetailId} > {data.name} </IonSelectOption>) })}
                   </IonSelect>)}
                 Land Direction<input type="text" className="input-text" name="landDirection" onChange={this.handleChange} value={this.state.landDirection} />
                 Area Size <input type="text" className="input-text" name="areaSize" onChange={this.handleChange} value={this.state.areaSize} />
@@ -104,11 +112,9 @@ class ManagePartitionEditPage extends React.Component<IPartLandAddEditProps,IPar
         </IonContent>
         <footer className="footcolor" >
           <div>
-            <button className="ok-btn" onClick={this.handleOnsubmit}> OK </button>
+            <button className="ok-btn" onClick={this.handleOnsubmit}>SAVE </button>
           </div>
-          <div>
-            <button className="cancel-btn"> CANCEL </button>
-          </div>
+           <Footer />
         </footer>
       </IonPage>
     );

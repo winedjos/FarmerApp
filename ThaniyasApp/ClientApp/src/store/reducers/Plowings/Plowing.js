@@ -23,20 +23,21 @@ var initialPlowingData = {
         landDetailsId: 0,
         partitionLandDetailsId: 0,
         ID: 0,
-        date: "",
+        plowingDate: "",
         typeofPlowing: "",
-        plowingEXP: "",
+        plowingExp: "",
     },
+    isFormSubmit: true,
 };
 var plowingData = function (state, action) {
     if (state === void 0) { state = initialPlowingData; }
     switch (action.type) {
         case Plowing_1.STORE_PLOWINGS_STARTED:
-            return __assign(__assign({}, state), { isFormSubmit: false, plowingInput: action.input });
+            return __assign(__assign({}, state), { isFormSubmit: true, plowingInput: action.input });
         case Plowing_1.STORE_PLOWINGS_COMPLETED:
-            return __assign(__assign({}, state), { isFormSubmit: true });
+            return __assign(__assign({}, state), { isFormSubmit: false });
         case Plowing_1.STORE_PLOWINGS_FAILED:
-            return __assign({}, state);
+            return __assign(__assign({}, state), { isFormSubmit: true });
         case Plowing_1.GET_PLOWINGS_STARTED:
             return __assign({}, state);
         case Plowing_1.GET_PLOWINGS_COMPLETED:
