@@ -24,7 +24,7 @@ export interface IAccounts {
 export const fetchLoginData = (loginInput: any) => {
   return {
     type: FETCH_LOGIN_STARTED,
-   // payload: status,
+    //payload: status,
     input: loginInput
   };
 };

@@ -121,6 +121,8 @@
     .drop {
         color: white;
         float: right;
+        width:10%;
+        margin-right:80px;
        // margin-top: 2%;
     }
 
@@ -157,7 +159,7 @@
 
     @media screen and (max-width: 600px) {
         .search {
-            margin-left: 35%;
+            margin-left: 45%;
             margin-bottom: 1.5%;
         }
     }
@@ -325,3 +327,38 @@ label{
     .or-lbl {
         margin-left: 50%;
     }
+.Logout {
+    float: right;
+    margin-top: -32px;
+    background-color: #859d7f;
+    padding: 5px 10px 5px 10px;
+    color: wheat;
+    display: inline-block;
+}
+
+.footer-md{
+    width:-100%;
+}
+/*.Logout:hover {
+    background-color: rgba(12, 60, 0, 0.5);
+    padding: 10px 10px;
+    color: white;
+    cursor: pointer;
+}*/
+.header .col {
+    background-color: lightgrey;
+}
+
+.col {
+    border: solid 1px grey;
+    border-bottom-style: none;
+    border-right-style: none;
+}
+
+.col:last-child {
+    border-right: solid 1px grey;
+}
+
+.row:last-child .col {
+    border-bottom: solid 1px grey;
+}

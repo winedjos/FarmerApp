@@ -17,6 +17,15 @@ const initialAccounts = {
     userName: "",
     password: "",
   }, 
+  userDetail: {
+    id: 0,
+    userName: "",    
+    email: "",   
+    joinedDate: new Date(),
+    isFirstTimeLogin: false,   
+    deleted: false
+  },
+
   sessionTimeout: 10,
  // isLoading: true,
   isFormSubmit: false,  
@@ -42,7 +51,8 @@ const loginData = (state = initialAccounts, action: any) => {
           // isLoading: false,
           isFormSubmit: true,
           //status: action.payload.status,
-          loginInput: action.input,       
+          //loginInput: action.input,
+          action: action.payload,
           sessionTimeout: action.sessionTimeout,
         // userDetail: action.payload.userDetail,
         };

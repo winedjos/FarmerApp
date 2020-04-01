@@ -23,7 +23,7 @@ const initialPestControlData = {
     purpose: "",
     labourCost: "",
   },
-  isLoading: true,
+ // isLoading: true,
 }
 
 const pestControlData = (state = initialPestControlData, action: any) => {
@@ -33,20 +33,20 @@ const pestControlData = (state = initialPestControlData, action: any) => {
         ...state,
         isFormSubmit: false,
         pestControlInput: action.input,
-        isLoading: true,
+       // isLoading: true,
       };
     case STORE_PESTCONTROL_COMPLETED:
       return {
         ...state,
         isFormSubmit: true,
-        isLoading: false,
+       // isLoading: false,
         // status: action.payload.status     
       };
     case STORE_PESTCONTROL_FAILED:
       return {
         ...state,
         isFormSubmit: false,
-        isLoading: true,
+       // isLoading: true,
       };
     case GET_PESTCONTROL_STARTED:
       return {

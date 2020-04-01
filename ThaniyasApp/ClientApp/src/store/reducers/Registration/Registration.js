@@ -24,6 +24,7 @@ var initialRegData = {
         mobileNumber: "",
         email: "",
     },
+    isFormSubmit: false,
 };
 var regData = function (state, action) {
     if (state === void 0) { state = initialRegData; }

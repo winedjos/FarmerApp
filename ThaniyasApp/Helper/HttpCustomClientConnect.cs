@@ -33,10 +33,10 @@ namespace ThaniyasApp.Helper
         {
             get; set;
         }
-        public static string LocalUrl
-        {
-            get; set;
-        }
+        //public static string LocalUrl
+        //{
+        //    get; set;
+        //}
         public static int SessionTimeout
         {
             get; set;
@@ -58,10 +58,10 @@ namespace ThaniyasApp.Helper
     public class HttpCustomGetClientConnect : HttpClient
     {
         #region GetConstructor
-        public HttpCustomGetClientConnect(string address, string localUrl)
+        public HttpCustomGetClientConnect(string address)
         {
             base.BaseAddress = new Uri(address);
-            base.BaseAddress = new Uri(localUrl);
+           // base.BaseAddress = new Uri(localUrl);
             base.DefaultRequestHeaders.Accept.Clear();
             base.DefaultRequestHeaders.Add("Access-Control-Allow-Origin", "*");
             base.DefaultRequestHeaders.Add("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT");

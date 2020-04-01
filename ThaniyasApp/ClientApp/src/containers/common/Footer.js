@@ -5,7 +5,7 @@ var React = require("react");
 var react_router_1 = require("react-router");
 var Footer = function (_a) {
     var history = _a.history;
-    return (React.createElement(react_1.IonFooter, null,
+    return (React.createElement(react_1.IonFooter, { className: "md footer-md hydrated" },
         React.createElement("div", null,
             React.createElement("button", { className: "cancel-btn", onClick: history.goBack }, " CANCEL "))));
 };

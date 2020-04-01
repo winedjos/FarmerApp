@@ -32,11 +32,11 @@ namespace ThaniyasApp.Controllers
         [HttpPost]
         public async Task<JsonResult> GetUserbyLogin([FromBody]Login input)
         {
-            apiUrl = Config.ApiUrl  + "http://localhost:56492/api/Login";
-            localUrl = Config.LocalUrl + "https://localhost:44346/api/Login";
+            apiUrl = Config.ApiUrl  + "http://localhost:56492/api/accounts";
+           // localUrl = Config.LocalUrl + "https://localhost:44346/api/Login";
 
             Object returnResults = new object();
-            object LocalreturnResults = new object();
+            //object LocalreturnResults = new object();
             try
             {
                 if (Config.debugMode && input.UserName == "admin" && input.Password == "admin")
@@ -57,25 +57,19 @@ namespace ThaniyasApp.Controllers
                 else
                 {
                     var stringContent = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(input), System.Text.Encoding.UTF8, "application/json");
-                    using (HttpCustomGetClientConnect client = new HttpCustomGetClientConnect(apiUrl, localUrl))
+                    using (HttpCustomGetClientConnect client = new HttpCustomGetClientConnect(apiUrl))
                     {
-                        HttpResponseMessage response = await client.PostAsync(apiUrl, stringContent);
-                        HttpResponseMessage Localresponse = await client.PostAsync(localUrl, stringContent);
-                        if (response.IsSuccessStatusCode && Localresponse.IsSuccessStatusCode)
+                        HttpResponseMessage response = await client.PostAsync(apiUrl, stringContent);                      
+                        if (response.IsSuccessStatusCode)                      
                         {
-                            var data = await response.Content.ReadAsStringAsync();
-                            var Localdata = await Localresponse.Content.ReadAsStringAsync();
-                            var result = Newtonsoft.Json.JsonConvert.DeserializeObject<LoginResults>(data);
-                            var Localresult = Newtonsoft.Json.JsonConvert.DeserializeObject<LoginResults>(Localdata);
-                            returnResults = Newtonsoft.Json.JsonConvert.DeserializeObject<LoginResults>(data);
-                            LocalreturnResults = Newtonsoft.Json.JsonConvert.DeserializeObject<LoginResults>(Localdata);
-                            await SigninWeb(input, result.userDetail);
-                            await SigninWeb(input, Localresult.userDetail);
+                            var data = await response.Content.ReadAsStringAsync();                        
+                            var result = Newtonsoft.Json.JsonConvert.DeserializeObject<LoginResults>(data);                          
+                            returnResults = Newtonsoft.Json.JsonConvert.DeserializeObject<LoginResults>(data);                          
+                            await SigninWeb(input, result.userDetail);                          
                         }
                         else
                         {
-                            returnResults = null;
-                            LocalreturnResults = null;
+                            returnResults = null;                          
                         }
                     }
                 }
@@ -84,9 +78,37 @@ namespace ThaniyasApp.Controllers
             {
                 Debug.Print(_ex.Message);
             }
-            return new JsonResult(new { result = returnResults, Localresult = LocalreturnResults, sessionTimeout = Config.SessionTimeout });
+            return new JsonResult(new { result = returnResults,  sessionTimeout = Config.SessionTimeout });
         }
 
+        [HttpGet]
+        public JsonResult CheckIsCurrentUserValid(string userName)
+        {
+            bool IsValid = false;
+            var returnResults = new Status { StatusValue = false, StatusCode = 300, StatusDisplay = "" };//default value
+            var userDetail = new UserViewModel();
+            if (HttpContext.Session.IsAvailable)
+            {
+                UserViewModel resultobj = HttpContext.Session.Get<UserViewModel>("UserDetails");
+                if (resultobj != null)
+                {
+                    if (resultobj.UserName == userName)
+                    {
+                        userDetail = resultobj;
+                        IsValid = true;
+                        returnResults = new Status { StatusValue = true, StatusCode = 200, StatusDisplay = "Logged in" };
+                    }
+                }
+            }
+            return new JsonResult(new { IsValid = IsValid, status = returnResults, userDetail = userDetail, sessionTimeout = Config.SessionTimeout });
+        }
+
+        public async Task<JsonResult> SignOutbyClient()
+        {
+            //await Signout();
+            var result = new Status { StatusCode = 200, StatusDisplay = "", StatusValue = true };
+            return new JsonResult(result);
+        }
         public async Task Signout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
@@ -99,7 +121,7 @@ namespace ThaniyasApp.Controllers
                 if (result != null)
                 {
                     //TODO: we have to change "resultobj.rolename" instead of "Admin" for role, waiting for full data information
-                    var claims = new[] { new Claim("name", result.UserName), new Claim(ClaimTypes.Role, "Admin") };
+                    var claims = new[] { new Claim("name", result.UserName)};
 
                     var claimsIdentity = new ClaimsIdentity(
                         claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -109,7 +131,7 @@ namespace ThaniyasApp.Controllers
 
                         ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(Config.SessionTimeout),
                         IsPersistent = true,
-                        RedirectUri = "/"
+                        RedirectUri = "/login"
                     };
 
                     await HttpContext.SignInAsync(

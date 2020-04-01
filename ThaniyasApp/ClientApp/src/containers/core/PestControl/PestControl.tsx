@@ -34,12 +34,6 @@ const PestControl: React.SFC<IPestControlProps & RouteComponentProps> = ({ dispa
 
   const [showLoading, setShowLoading] = useState(true);
 
-  const handleAddPest = () => {
-    history.push("/pestControlDetails");
-    setShowLoading(true);
-  } 
-
-
   const [PestControlgData, setPestControlData] = useState([]);
 
   if (pestControlData.PetsControlItems.length > 0 && PestControlgData.length === 0) {
@@ -65,18 +59,18 @@ const PestControl: React.SFC<IPestControlProps & RouteComponentProps> = ({ dispa
           <form className="form">
             <IonItem className="MLand-Lbl">
               <label className="lbl"> Pest Control Details </label>
-              <a className="add-btn" onClick={() => history.push("/pestControlDetails")}>  ADD  </a>
+              <a className="add-btn" onClick={() => (setShowLoading(true) == history.push("/pestControlDetails"))}>  ADD  </a>
+              <IonLoading
+                isOpen={showLoading}
+                onDidDismiss={() => setShowLoading(false)}
+                message={'Please wait...'}
+                duration={2000}
+              />
             </IonItem>
             <IonList>
               {PetsControlList}
             </IonList>
-          </form>
-          <IonLoading
-            isOpen={showLoading}
-            onDidDismiss={() => setShowLoading(false)}
-            message={'Please wait...'}
-            duration={5000}
-          />
+          </form>         
         </div>
       </IonContent>      
     </IonPage>

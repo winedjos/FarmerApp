@@ -5,21 +5,30 @@ import Header from '../../common/Header';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { getLandDetailList } from '../../../store/actions/LandDetail';
+import { RouteComponentProps, withRouter } from 'react-router';
+
+interface Props extends RouteComponentProps { }
 
 interface IReportProps {
   dispatch: Dispatch<any>;
   LandDetailData: any;
- // route: RouteComponentProps;
-  //LandDetailData: any;  
+  route: RouteComponentProps;
+   //LandDetailData: any;  
 }
 
-const Report: React.SFC<IReportProps> = ({ dispatch, LandDetailData }) => {
+const Report: React.SFC<IReportProps & RouteComponentProps> = ({ dispatch, LandDetailData, history }) => {
 
   React.useEffect(() => {
     dispatch(getLandDetailList());
   }, []);
   //<img src="assets/share.png" height="75" width="75"></img>
   const [LandData, setLandData] = useState([]);
+
+  const [viewReport, setviewReport] = useState();
+  const onViewReportClick = (id: any) => {
+    setviewReport(id);
+    history.push("/viewReports/" + id);
+  }
 
   if (LandDetailData.Landitems.length > 0 && LandData.length === 0) {
     setLandData(LandDetailData.Landitems);
@@ -31,36 +40,32 @@ const Report: React.SFC<IReportProps> = ({ dispatch, LandDetailData }) => {
   Landitems.forEach((Landitems: any) => itemLand.push(
     <IonItem key={Landitems.id}>
       <IonLabel> {Landitems.name} </IonLabel>
-      <div > <button> View </button></div>      
+      <div > <button onClick={() => onViewReportClick(Landitems.id)}> View </button></div>      
     </IonItem>));
 
   return (
     <IonPage>
       <Header />
+
+
       <IonContent className=".reg-login">
         <div className="bg-image">
           <div className="reg-head">
-            <h1>Report</h1>
+            <h1>Report </h1>
           </div>
+
           <form className="form">
-            <button className="view-btn"> View </button>
-            <img src="assets/share.png" className="share-icon"></img> 
-            <table className="table">
-              <tr>
-                <th>SNO</th>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Expenses</th>
-              </tr>
-            </table>
+           <button className="view-btn"> View All </button>
+            <img src="assets/share.png" className="share-icon"></img>   
             <IonList>
               <div className="scroll">
                 {itemLand}
               </div>
             </IonList>
           </form>
-        </div>
-      </IonContent>
+         </div>
+      </IonContent> 
+      
     </IonPage>
   );
 };
@@ -73,4 +78,7 @@ const mapStateToProps = (state: any) => {
     LandDetailData
   };
 };
-export default connect(mapStateToProps)(Report);
+
+const Child = withRouter(Report as any);
+export default connect(mapStateToProps)(Child);
+

@@ -18,4 +18,11 @@ export class LoginAPI {
         return e.response;
       }) as AxiosPromise<any>;
   }
+
+  public static fetchCheckLoggedUser(userName: string) {
+    return HttpLocal.axios().get('/Login/CheckIsCurrentUserValid?userName=' + userName)
+      .catch((e) => {
+        return e.response;
+      }) as AxiosPromise<any>;
+  }
 }

@@ -26,6 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\containers\common\AppFrame.tsx" />
+    <None Remove="ClientApp\src\containers\common\AppFrame\intex.ts" />
     <None Remove="ClientApp\src\containers\common\Footer.tsx" />
     <None Remove="ClientApp\src\containers\common\Header.tsx" />
     <None Remove="ClientApp\src\containers\core\Harvesting\HarvestDetails.tsx" />
@@ -46,6 +48,7 @@
     <None Remove="ClientApp\src\containers\core\Plowing\PlowingEditPage.tsx" />
     <None Remove="ClientApp\src\containers\core\Registration\Login.tsx" />
     <None Remove="ClientApp\src\containers\core\Report\Report.tsx" />
+    <None Remove="ClientApp\src\containers\core\Report\ViewReport.tsx" />
     <None Remove="ClientApp\src\containers\core\Sale\Sale.tsx" />
     <None Remove="ClientApp\src\containers\core\Sale\SaleDetails.tsx" />
     <None Remove="ClientApp\src\containers\core\Seeding\SaleEditPage.tsx" />

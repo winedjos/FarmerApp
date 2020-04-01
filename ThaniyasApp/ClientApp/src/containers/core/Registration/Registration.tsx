@@ -59,7 +59,7 @@ const Registration: React.SFC<IRegProps> = ({ dispatch, regData}) => {
     }
   }
 
-  if (regData && regData.isFormSubmit &&  regData.status.statusValue) {
+  if (regData && regData.isFormSubmit && regData.status.statusValue) {
     isShowError = false;
     window.localStorage.setItem('AUTHDATA', JSON.stringify(regData));
     window.location.href = "/homes";
@@ -67,11 +67,9 @@ const Registration: React.SFC<IRegProps> = ({ dispatch, regData}) => {
   else if (regData && regData.isFormSubmit && !regData.status.statusValue) {
     isShowError = true;
     window.localStorage.setItem('AUTHDATA', "");
-  }      
-
+  }
    return (
-    <IonPage>
-      <Header />
+    <IonPage>       
       <IonContent className=".reg-login">
         <div className="bg-image">
           <div className="reg-head">

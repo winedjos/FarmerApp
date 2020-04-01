@@ -1,4 +1,4 @@
-﻿import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSelect, IonSelectOption, IonText, IonList, IonItem, IonInput, IonCheckbox, IonLabel, IonButton, IonNote, IonBadge, IonRow, IonCol, IonGrid, IonImg } from '@ionic/react';
+﻿import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSelect, IonSelectOption, IonText, IonLoading, IonList, IonItem, IonInput, IonCheckbox, IonLabel, IonButton, IonNote, IonBadge, IonRow, IonCol, IonGrid, IonImg } from '@ionic/react';
 import * as React from 'react';
 //import './Reg.scss';
 import Header from '../../common/Header';
@@ -11,6 +11,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { getPartitionLandList, getPartitionLandById } from '../../../store/actions/PartitionLand';
 import { getLandDetailList } from '../../../store/actions/LandDetail';
+
 
 interface IPestControlProps {
   dispatch: Dispatch<any>;
@@ -38,12 +39,12 @@ const PestControlDetails: React.SFC<IPestControlProps> = ({ dispatch, pestContro
 
   const handleLandChange = (event: any) => {
     pestControlData.pestControlInput.landDetailsId = event.target.value;
-   // var items = PLitems.filter((item: any) => item.landDetailsId == event.target.value);
-   // dispatch(getPartitionLandById(Landitems.id)); 
+    var items = PLitems.filter((item: any) => item.landDetailsId == PartitionLandData.partitionLandInput.id);
+    //dispatch(getPartitionLandList);
+    return items;
   }
-  const handlePLChange = (event: any) => {
-   
-    pestControlData.pestControlInput.partitionLandDetailsId = event.target.value;
+  const handlePLChange = (event: any) => {      
+      pestControlData.pestControlInput.partitionLandDetailsId = event.target.value;   
   };
   const handleCostChange = (event: any) => {
     pestControlData.pestControlInput.cost = event.target.value;
@@ -66,9 +67,10 @@ const PestControlDetails: React.SFC<IPestControlProps> = ({ dispatch, pestContro
   const PLitems: any = (PartLandData || []);
   const PLitemLand: any = [];
   PLitems.forEach((PLitems: any) => PLitemLand.push(
-    <IonItem key={PLitems.id}>
-      <IonLabel> {PLitems.landDirection} </IonLabel>
-    </IonItem>));
+   
+    <IonItem key={PLitems.id }>
+     <IonLabel> {PLitems.landDirection} </IonLabel>
+      </IonItem>  ));
 
   const [LandData, setLandData] = useState([]);
 
@@ -86,6 +88,9 @@ const PestControlDetails: React.SFC<IPestControlProps> = ({ dispatch, pestContro
   //  <IonSelect placeholder="Select One" className="dropclr" onIonChange={handlePLChange}>
   //    {PLitems.map((data: any) => { return <IonSelectOption value={data.id} key={data.id} title={data.landDirection} selected={PartitionLandData.PLitems.landDetails}> {data.landDirection} </IonSelectOption> })}
   //  </IonSelect>
+  //<IonSelect placeholder="Select One" className="dropclr" onIonChange={handlePLChange}>
+  //  {PLitems.filter((v: any) => v.landDetailsId ==  pestControlData.pestControlInput.partitionLandDetailsId).map(function (data: any) { return <IonSelectOption value={data.id} key={data.id} title={data.landDirection} > {data.landDirection} </IonSelectOption> })}
+  //</IonSelect>  
 
   return (
     <IonPage>
@@ -101,12 +106,12 @@ const PestControlDetails: React.SFC<IPestControlProps> = ({ dispatch, pestContro
                 <IonText className="reg-fields">
                   <label> Land Name </label>
                   <IonSelect placeholder="Select One" className="dropclr" onIonChange={handleLandChange}>
-                    {Landitems.map((data: any) => { return <IonSelectOption value={data.id} key={data.id} title={data.name}> {data.name} </IonSelectOption> })}
+                    {Landitems.map((data: any) => { return <IonSelectOption value={data.id} key={data.id}  title={data.name}> {data.name} </IonSelectOption> })}
                   </IonSelect>
                   <label> Partition Land Name </label>
                   <IonSelect placeholder="Select One" className="dropclr" onIonChange={handlePLChange}>
-                    {PLitems.filter((v:any)=> v.landDetailsId == pestControlData.pestControlInput.partitionLandDetailsId ).map(function (data: any) { return <IonSelectOption value={data.id} key={data.id} title={data.landDirection}> {data.landDirection} </IonSelectOption> })}
-                  </IonSelect>                 
+                    {PLitems.map(function (data: any) { return <IonSelectOption value={data.id} key={data.id} title={data.landDirection} selected={PartitionLandData.PLitems.landDetails}> {data.landDirection} </IonSelectOption> })}
+                  </IonSelect>             
                   Date  <DatePicker dateFormat="dd/MM/yyyy" selected={startDate} onChange={(date: Date) => handleDateChange(date)} className="input-text" />  
                   Name of the PestSide Name<input type="text" placeholder="PestSide Name" className="input-text" onChange={handleNameofPestChange} required />                  
                   Cost <input type="text" placeholder="Pest Cost" className="input-text" onChange={handleCostChange} required />

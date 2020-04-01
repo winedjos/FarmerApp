@@ -76,13 +76,13 @@ const PlowingDetails: React.SFC<IPlowProps> = ({ dispatch, plowingData, Partitio
 
   return (
     <IonPage>
-      <Header />
+      <Header />      
       <IonContent className=".reg-login">
         <div className="bg-image">
           <div className="reg-head">
             <h1>Add Plowing </h1>
           </div>
-          <form className="form">
+          <form className="form" onSubmit={onPlowingSubmit}>
             <IonRow>
               <IonCol>
                 <IonText className="reg-fields">
@@ -97,19 +97,16 @@ const PlowingDetails: React.SFC<IPlowProps> = ({ dispatch, plowingData, Partitio
                   Type of Plowing <input type="text" placeholder="Plowing type" className="input-text" onChange={handleTypeofPlowChange} required />
                   Date  <DatePicker dateFormat="dd/MM/yyyy" selected={startDate} onChange={(date: Date) => handleDateChange(date)} className="input-text" />  
                   Plowing Expenses <input type="text" placeholder="Plowing Expenses" className="input-text" onChange={handlePlowEXPChange} required />
+                  <div className="footcolor" >                    
+                      <button className="ok-btn"> OK </button>                   
+                    <Footer />
+                  </div>
                 </IonText>
               </IonCol>
-            </IonRow>
+            </IonRow>       
           </form>
-        </div>
-      </IonContent>
-      <footer className="footcolor" >
-        <div>
-          <button className="ok-btn" onClick={onPlowingSubmit}> OK </button>
-
-        </div>
-        <Footer />
-      </footer>
+          </div>         
+      </IonContent>  
     </IonPage>
   );
 };

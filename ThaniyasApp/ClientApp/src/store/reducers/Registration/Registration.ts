@@ -13,7 +13,7 @@ const initialRegData = {
     mobileNumber: "",
     email:"",
   },
-
+  isFormSubmit: false,  
 }
 
 const regData = (state=initialRegData, action:any) => {

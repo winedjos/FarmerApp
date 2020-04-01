@@ -68,7 +68,7 @@ var PlowingDetails = function (_a) {
             React.createElement("div", { className: "bg-image" },
                 React.createElement("div", { className: "reg-head" },
                     React.createElement("h1", null, "Add Plowing ")),
-                React.createElement("form", { className: "form" },
+                React.createElement("form", { className: "form", onSubmit: onPlowingSubmit },
                     React.createElement(react_1.IonRow, null,
                         React.createElement(react_1.IonCol, null,
                             React.createElement(react_1.IonText, { className: "reg-fields" },
@@ -87,11 +87,10 @@ var PlowingDetails = function (_a) {
                                 "Date  ",
                                 React.createElement(react_datepicker_1.default, { dateFormat: "dd/MM/yyyy", selected: startDate, onChange: function (date) { return handleDateChange(date); }, className: "input-text" }),
                                 "Plowing Expenses ",
-                                React.createElement("input", { type: "text", placeholder: "Plowing Expenses", className: "input-text", onChange: handlePlowEXPChange, required: true }))))))),
-        React.createElement("footer", { className: "footcolor" },
-            React.createElement("div", null,
-                React.createElement("button", { className: "ok-btn", onClick: onPlowingSubmit }, " OK ")),
-            React.createElement(Footer_1.default, null))));
+                                React.createElement("input", { type: "text", placeholder: "Plowing Expenses", className: "input-text", onChange: handlePlowEXPChange, required: true }),
+                                React.createElement("div", { className: "footcolor" },
+                                    React.createElement("button", { className: "ok-btn" }, " OK "),
+                                    React.createElement(Footer_1.default, null))))))))));
 };
 var mapStateToProps = function (state) {
     var plowingData = state.plowingData, PartitionLandData = state.PartitionLandData, LandDetailData = state.LandDetailData;

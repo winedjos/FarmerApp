@@ -9,7 +9,7 @@ exports.FETCH_LOGOUT_FAILED = "FETCH_LOGOUT_FAILED";
 exports.fetchLoginData = function (loginInput) {
     return {
         type: exports.FETCH_LOGIN_STARTED,
-        // payload: status,
+        //payload: status,
         input: loginInput
     };
 };
