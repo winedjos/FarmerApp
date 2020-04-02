@@ -1,0 +1,364 @@
+﻿
+
+
+.form {
+    background: rgba(255,255,255,0.5);
+    width: 360px;
+    padding: 1.5% 3% 1.5% 3%;
+    margin: auto;
+    margin-top: 2%;
+    min-height: 60%;
+   // overflow: scroll;
+}
+@media screen and (max-width: 600px) {
+    .form {
+        width: 300px;
+        padding: 3% 3% 3% 3%;
+    }
+}
+.reg-head {
+    text-align: center;
+    color: white;
+    background-color: darkgreen;
+    margin:auto;
+    width:360px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+@media screen and (max-width: 600px) {
+    .reg-head {
+        width: 300px;
+    }
+}
+
+
+.input-text {
+       
+    padding: 10px;
+    margin: 1% 3% 3% 0;
+    border: none;
+    width: 100%;
+}
+
+    .reg-fields {
+        color: green;
+    }
+
+    .reg-btn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+       // margin-left: 20%;
+        width:27%;
+       // margin-top: 60%;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        //position: fixed;
+    }
+
+    .reg-btn:hover {
+        background-color: #45a049;
+    }
+
+.headcolor {
+    background-color: green;
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    color: white;
+}
+@media screen and (max-width: 600px) {
+    .headcolor {
+        background-color: green;
+        text-align: center;
+        color: white;
+    }
+}
+
+.footcolor {
+    background-color: rgba(12, 60, 0, 0.5);
+    //background-color: green;
+    text-align: center;
+    padding: 10px 10px 10px 0;
+    color: white;
+}
+@media screen and (max-width: 600px) {
+    .footcolor {
+        background-color: rgba(12, 60, 0, 0.5);
+        // background-color: green;
+        text-align: center;
+        color: white;
+        padding: 5px 10px 10px 5px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .reg-btn {
+       width:87%;
+    }
+   
+}
+
+/*div > main {
+    background-image: url('../../images/bg.jpg');    
+    background-attachment: fixed;
+    background-color: red;  
+}*/
+
+.bg-image {
+    // padding-bottom: 110px;
+    //z-index: -10;
+    height: 150vh;
+    background-size: cover;
+    padding-top: 20px;
+    background-image: url('../../images/bg.jpg');
+    background-attachment: fixed;
+    background-repeat: no-repeat, repeat;
+    /*--background-image: url('../../src/pages/images/naturaldrawing.jpg');*/
+}
+
+    .drop {
+        color: white;
+        float: right;
+        width:10%;
+        margin-right:80px;
+       // margin-top: 2%;
+    }
+
+    .arrow {
+        float: left;
+        margin-top: 1%;
+        cursor:pointer;   
+    }
+    .search {
+        margin-left: 75%;
+        margin-bottom: 0.5%;
+    }
+
+    @media screen and (max-width: 600px) {
+        .drop {
+            color: white;
+            float: right;
+            //margin-top: 2%;
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .arrow {
+            float: left;
+            margin-top: 2%;
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .logo {
+            margin-left: 1%;
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .search {
+            margin-left: 45%;
+            margin-bottom: 1.5%;
+        }
+    }
+
+.ok-btn {
+    background-color: #0b540e;
+    color: white;
+    padding: 14px 20px;
+    width: 27%;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.ok-btn:hover {
+    background-color: #859d7f;
+    color: darkgreen;
+}
+
+.cancel-btn {
+    background-color: #0b540e;
+    color: white;
+    padding: 14px 20px;
+    width: 27%;
+    border: none;
+    margin-top: 8px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.cancel-btn:hover {
+    background-color: #859d7f;
+    color:darkgreen;
+}
+
+@media screen and (max-width: 600px) {
+    .cancel-btn {
+        width: 100%;
+    }
+    .ok-btn {
+        width: 100%;
+    }
+    .footcolor {
+        padding: 5px 10px 10px 5px;
+    }
+}
+
+.view-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    // margin-left: 20%;
+    width: 30%;
+    margin-top: 2%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+   // position: fixed;
+}
+
+.view-btn:hover {
+    background-color: #45a049;
+}
+
+.table{
+    margin-top: 5%;
+    width: 100%;
+}
+.h-img{
+    text-align:center;
+}
+.h-img:hover {
+    background-color: rgba(46, 206, 7, 0.50);
+}
+
+a{
+    text-decoration:none;
+    color: darkgreen;
+}
+
+.share-icon{
+    float: right; 
+    height: 50px;
+    margin-top:5px;
+}
+
+.plus {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    // margin-left: 20%;
+    width: 30%;
+    //margin-top: 2%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    // position: fixed;
+}
+
+.MLand-Lbl{
+  margin-top: 5%;
+}
+
+.add-btn:hover {
+    background-color: rgba(12, 60, 0, 0.5);
+    padding: 10px 10px;
+    color: white;
+    cursor:pointer;
+}
+
+.edit-icon{
+    margin-left: 70px;
+    margin-right:10px;
+    cursor:pointer;
+}
+.del-icon{
+    cursor:pointer;
+}
+.view-icon {
+    margin-left: 10px;
+    margin-bottom: -8px;
+    cursor: pointer;
+}
+label{
+    cursor:pointer;
+    width:60%;
+}
+.lbl{
+    width:100%;
+}
+
+.dropclr{
+    background-color: white;
+}
+
+.scroll {
+    height: 300px;
+    //width:300px ;
+    overflow-y: scroll;
+    position: relative;
+}
+
+.react-datepicker-wrapper {
+  //  display: inline-block;
+    padding: 0;
+    border: 0;
+    }
+
+.login {
+    margin-left: 45%;
+    background-color: #859d7f;
+    margin-top: 10%;
+    display: inline-block;
+    color: wheat;
+    padding: 5px 10px 5px 10px;
+}
+
+.login:hover {
+    background-color: rgba(12, 60, 0, 0.5);
+    padding: 10px 10px;
+    color: white;
+    cursor: pointer;
+}
+
+    .or-lbl {
+        margin-left: 50%;
+    }
+.Logout {
+    float: right;
+    margin-top: -32px;
+    background-color: #859d7f;
+    padding: 5px 10px 5px 10px;
+    color: wheat;
+    display: inline-block;
+}
+
+.footer-md{
+    width:-100%;
+}
+/*.Logout:hover {
+    background-color: rgba(12, 60, 0, 0.5);
+    padding: 10px 10px;
+    color: white;
+    cursor: pointer;
+}*/
+.header .col {
+    background-color: lightgrey;
+}
+
+.col {
+    border: solid 1px grey;
+    border-bottom-style: none;
+    border-right-style: none;
+}
+
+.col:last-child {
+    border-right: solid 1px grey;
+}
+
+.row:last-child .col {
+    border-bottom: solid 1px grey;
+}
