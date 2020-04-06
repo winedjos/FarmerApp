@@ -42,7 +42,7 @@ class AppFrame extends React.Component<IAppFrameProps, IAppFrameState> {
       this.setState({ userName: loggedInData.userDetail.userName });
     //  this.setState({ isAdmin: loggedInData.userDetail.roleID === 1 });
       if (currentLocation.includes('users')) {
-        window.location.href = "/homes";
+        window.location.href = "/home";
       }
       else {
         this.setState({ isValid: true });

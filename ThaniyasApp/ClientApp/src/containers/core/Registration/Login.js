@@ -23,14 +23,14 @@ var Login = function (_a) {
         var loggedInData = JSON.parse(loggedInString);
         if (loggedInData) {
             if (loggedInData.status.statusValue) {
-                window.location.href = "/homes";
+                window.location.href = "/home";
             }
         }
     }
     if (loginData && loginData.isFormSubmit && loginData.action.status.statusValue) {
         isShowError = false;
         window.localStorage.setItem('AUTHDATA', JSON.stringify(loginData));
-        window.location.href = "/homes";
+        window.location.href = "/home";
     }
     else if (loginData && loginData.isFormSubmit && !loginData.status.statusValue) {
         isShowError = true;

@@ -45,7 +45,7 @@ const Registration: React.SFC<IRegProps> = ({ dispatch, regData}) => {
   };
 
   //const handleSumbit = () => {
-  //  window.location.href = "/homes";
+  //  window.location.href = "/home";
   //}
 
   var isShowError = false;
@@ -54,7 +54,7 @@ const Registration: React.SFC<IRegProps> = ({ dispatch, regData}) => {
     const loggedInData = JSON.parse(loggedInString);
     if (loggedInData) {
       if (loggedInData.status.statusValue) {
-        window.location.href = "/homes";
+        window.location.href = "/home";
       }
     }
   }
@@ -62,7 +62,7 @@ const Registration: React.SFC<IRegProps> = ({ dispatch, regData}) => {
   if (regData && regData.isFormSubmit && regData.status.statusValue) {
     isShowError = false;
     window.localStorage.setItem('AUTHDATA', JSON.stringify(regData));
-    window.location.href = "/homes";
+    window.location.href = "/home";
   }
   else if (regData && regData.isFormSubmit && !regData.status.statusValue) {
     isShowError = true;

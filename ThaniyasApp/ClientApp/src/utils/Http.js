@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
-var API_URL = "http://localhost:56492/";
-var Local_URL = "https://localhost:44346/";
+var API_URL = "";
+var Local_URL = "";
 if (process.env.REACT_APP_API_URL) {
     API_URL = process.env.REACT_APP_API_URL;
 }
