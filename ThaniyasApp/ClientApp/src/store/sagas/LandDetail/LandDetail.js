@@ -43,6 +43,7 @@ function storeLandDetailData(request) {
                 return [4 /*yield*/, effects_1.put({
                         type: LandDetail_1.STORE_LANDDETAIL_COMPLETED,
                         input: request.input,
+                        payload: data
                     })];
             case 2:
                 _a.sent();

@@ -1,37 +1,14 @@
 ﻿ 
 import { Http } from "../Http";
 import { AxiosPromise } from "axios";
+import { getUserQueryString, setUserForCRUD } from "../../store/selectors/Accounts";
 
 export class HarvestingAPI {
   public static addHarvesting(input: any) {
+    setUserForCRUD(input);
     var obj = JSON.stringify(input);
     var tObj = JSON.parse(obj);
-    var url = '/api/Harvesting/add-Harvestings'; 
-    if (input.id && input.id !== 0) {
-     // url = '/api/Harvesting/add-Harvestings/' + input.id + "?";
-      return Http.axios().post(url, obj,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "*",
-            "Access-Control-Allow-Headers": "*"
-          }
-        })
-        .then(response => {
-          return response;
-        }).catch((e: any) => {
-          console.log("Error in post" + e);
-          return e.response;
-        }) as AxiosPromise<any>;
-    }
-    else {
-      return Http.axios().post(url, tObj)
-        .catch((e) => {
-          return e.response;
-        }) as AxiosPromise<any>;
-    }
-
+    var url = '/api/Harvesting/add-Harvestings';     
     const resultMethod = Http.axios().post(url, obj,
       {
         headers: {
@@ -54,7 +31,7 @@ export class HarvestingAPI {
   }
 
   public static getHarvestList() {
-    return Http.axios().get('/api/Harvesting/harvesting-list')
+    return Http.axios().get('/api/Harvesting/harvesting-list' + "?" + getUserQueryString())
       .catch((e) => {
         return e.response;
       }) as AxiosPromise<any>;

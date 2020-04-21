@@ -1,8 +1,10 @@
 ﻿import { Http } from "../Http";
 import { AxiosPromise } from "axios";
+import { getUserQueryString, setUserForCRUD } from "../../store/selectors/Accounts";
 
 export class PestControlAPI {
   public static addPestControl(input: any) {
+    setUserForCRUD(input);
     var obj = JSON.stringify(input);
     var tObj = JSON.parse(obj);
     var url = '/api/PestControl/add-PestControl';    
@@ -25,7 +27,7 @@ export class PestControlAPI {
   }
 
   public static getPestControlList() {
-    return Http.axios().get('/api/PestControl/pestControl-list')
+    return Http.axios().get('/api/PestControl/pestControl-list' + "?" + getUserQueryString())
       .catch((e) => {
         return e.response;
       }) as AxiosPromise<any>;

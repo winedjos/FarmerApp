@@ -1,8 +1,10 @@
 ﻿import { Http } from "../Http";
 import { AxiosPromise } from "axios";
+import { getUserQueryString, setUserForCRUD } from "../../store/selectors/Accounts";
 
 export class SaleAPI {
   public static addSale(input: any) {
+    setUserForCRUD(input);
     var obj = JSON.stringify(input);
     var tObj = JSON.parse(obj);
     var url = '/api/Sale/add-Sale';
@@ -32,7 +34,7 @@ export class SaleAPI {
   }
 
   public static getSaleList() {
-    return Http.axios().get('/api/Sale/sale-list')
+    return Http.axios().get('/api/Sale/sale-list' + "?" + getUserQueryString())
       .catch((e) => {
         return e.response;
       }) as AxiosPromise<any>;

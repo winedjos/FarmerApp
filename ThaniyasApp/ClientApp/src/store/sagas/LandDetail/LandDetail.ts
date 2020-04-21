@@ -15,6 +15,7 @@ export function* storeLandDetailData(request: any) {
     yield put({
       type: STORE_LANDDETAIL_COMPLETED,
       input: request.input,
+      payload: data
     });
 
   } catch (e) {

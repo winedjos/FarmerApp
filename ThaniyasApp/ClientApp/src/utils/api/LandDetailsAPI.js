@@ -1,10 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Http_1 = require("../Http");
+var Accounts_1 = require("../../store/selectors/Accounts");
 var LandDetailsAPI = /** @class */ (function () {
     function LandDetailsAPI() {
     }
     LandDetailsAPI.addLandDetails = function (input) {
+        Accounts_1.setUserForCRUD(input);
         var obj = JSON.stringify(input);
         var tObj = JSON.parse(obj);
         var url = '/api/LandDetails/add-LandDetail';
@@ -33,7 +35,7 @@ var LandDetailsAPI = /** @class */ (function () {
         }
     };
     LandDetailsAPI.getLandDetailsList = function () {
-        return Http_1.Http.axios().get('/api/LandDetails/get-LandDetails')
+        return Http_1.Http.axios().get('/api/LandDetails/get-LandDetails' + "?" + Accounts_1.getUserQueryString())
             .then(function (response) {
             return response;
         }).catch(function (e) {

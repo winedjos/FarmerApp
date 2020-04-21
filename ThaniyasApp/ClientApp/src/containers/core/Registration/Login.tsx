@@ -38,7 +38,7 @@ const Login: React.SFC<ILoginProps> = ({ dispatch, loginData}) => {
     }
   }
 
-  if (loginData && loginData.isFormSubmit && loginData.action.status.statusValue) {
+  if (loginData && loginData.isFormSubmit && !loginData.isLoading && loginData.status.statusValue) {
     isShowError = false;
     window.localStorage.setItem('AUTHDATA', JSON.stringify(loginData));
     window.location.href = "/home";
@@ -61,7 +61,7 @@ const Login: React.SFC<ILoginProps> = ({ dispatch, loginData}) => {
                <IonText className="reg-fields">
                  User Name <input type="text" placeholder="User Name" onChange={handleUserNameChange} className="input-text" required />
                  Password <input type="password" placeholder="Password" onChange={handlePWDChange} className="input-text" required /> 
-                 <button className="reg-btn"> Login </button>
+                 <button className="reg-btn" onClick={onHandleSubmit}> Login </button>
                 </IonText>
               </IonCol>
            </IonRow>
@@ -73,7 +73,6 @@ const Login: React.SFC<ILoginProps> = ({ dispatch, loginData}) => {
         </div>
       </IonContent>
       <IonFooter className="footcolor" >
-        <button className="reg-btn" onClick={onHandleSubmit}> Login </button>
       </IonFooter>
     </IonPage>
   );

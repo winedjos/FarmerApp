@@ -48,13 +48,13 @@ const loginData = (state = initialAccounts, action: any) => {
         return {
 
           ...state,
-          // isLoading: false,
+           isLoading: false,
           isFormSubmit: true,
-          //status: action.payload.status,
-          //loginInput: action.input,
+          status: action.payload.status,
+          loginInput: action.input,
           action: action.payload,
           sessionTimeout: action.sessionTimeout,
-        // userDetail: action.payload.userDetail,
+          userDetail: action.payload.userDetail,
         };
     case FETCH_LOGIN_FAILED:
       return {

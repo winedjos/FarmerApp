@@ -7,12 +7,14 @@ import { Dispatch } from 'redux';
 import { getLandDetailById, storeLandDetailData } from "../../../store/actions/LandDetail";
 //import { getStatelList } from "../../../store/actions/StateList";
 import { useDispatch, connect } from 'react-redux';
+import { getStatelList } from '../../../store/actions/StateList';
 
 
 interface ILandAddEditProps {
   dispatch: Dispatch<any>;
   getLandDetailById1: any;
   storeLandDetailData1: any;
+  getStates: any;
   LandDetailData: any;  
   stateListData: any;
   match: any;
@@ -51,7 +53,11 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps, ILandAddEdit
   }
 
   componentWillMount() {
-    this.props.getLandDetailById1(this.props.match.params.id);
+    var id = this.props.match.params.id;
+    this.props.getStates();
+    if (id !== 0) {
+      this.props.getLandDetailById1(this.props.match.params.id);
+    }
   }
 
   componentWillReceiveProps(newProps: any) {
@@ -111,11 +117,13 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps, ILandAddEdit
                   <IonCol>
                     <IonText className="reg-fields">
                       <IonLabel>State</IonLabel>
-                      <IonItem >   
-                        <IonLabel>State</IonLabel>
-                        {this.props.LandDetailData.LandItem.states && (
+                      <IonItem >                                                   
+                        {this.props.stateListData.stateitems.length > 0  && (
                           <IonSelect placeholder="Select One" className="dropclr" onIonChange={this.handleStateChange}>
-                            {this.props.LandDetailData.LandItem.states.map((data: any) => { return <IonSelectOption value={data.id} onChange={this.handleChange} key={data.id} title={data.stateName} selected={data.id == this.props.LandDetailData.LandItem.selectedStateListId}> {data.stateName} </IonSelectOption> })}
+                            {this.props.stateListData.stateitems.map((data: any) => {
+                              return <IonSelectOption value={data.id} onChange={this.handleChange} key={data.id} title={data.stateName}
+                                selected={data.id == this.props.LandDetailData.LandItem.StateId}> {data.stateName} </IonSelectOption>
+                            })}
                           </IonSelect>
                         )}
                   </IonItem> 
@@ -155,6 +163,10 @@ const mapDisptchToProps = (dispatch: any) => {
   return {
     getLandDetailById1: (id: any) => {
       dispatch(getLandDetailById(id));
+      dispatch(getStatelList());
+    },
+    getStates: (id: any) => {
+      dispatch(getStatelList());
     },
     storeLandDetailData1: (id: any) => {
       dispatch(storeLandDetailData(id));

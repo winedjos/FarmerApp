@@ -27,7 +27,7 @@ var Login = function (_a) {
             }
         }
     }
-    if (loginData && loginData.isFormSubmit && loginData.action.status.statusValue) {
+    if (loginData && loginData.isFormSubmit && !loginData.isLoading && loginData.status.statusValue) {
         isShowError = false;
         window.localStorage.setItem('AUTHDATA', JSON.stringify(loginData));
         window.location.href = "/home";
@@ -49,10 +49,9 @@ var Login = function (_a) {
                                 React.createElement("input", { type: "text", placeholder: "User Name", onChange: handleUserNameChange, className: "input-text", required: true }),
                                 "Password ",
                                 React.createElement("input", { type: "password", placeholder: "Password", onChange: handlePWDChange, className: "input-text", required: true }),
-                                React.createElement("button", { className: "reg-btn" }, " Login ")))),
+                                React.createElement("button", { className: "reg-btn", onClick: onHandleSubmit }, " Login ")))),
                     isShowError && (React.createElement("span", null, loginData.action.status.statusDisplay))))),
-        React.createElement(react_1.IonFooter, { className: "footcolor" },
-            React.createElement("button", { className: "reg-btn", onClick: onHandleSubmit }, " Login "))));
+        React.createElement(react_1.IonFooter, { className: "footcolor" })));
 };
 var mapStateToProps = function (state) {
     var loginData = state.loginData;
