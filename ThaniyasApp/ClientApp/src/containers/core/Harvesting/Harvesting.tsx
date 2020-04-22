@@ -7,6 +7,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { getHarvestList, deleteHarvest } from '../../../store/actions/Harvestings';
 import { RouteComponentProps, withRouter } from 'react-router';
+import Confirm from '../../common/Confirm';
 
 interface Props extends RouteComponentProps { }
 
@@ -29,11 +30,21 @@ const Harvesting: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatc
   }
 
   const [showAlert1, setShowAlert1] = useState(false);
-  const [weedRemoveDel, setWeedRemoveDel] = useState();
+  const [idDel, setDel] = useState();  
+  
+  const [showConfirm, setShowConfirm] = useState(false);
   const onDeleteHarvestClick = (id: any) => {
+    setDel(id);
+    setShowConfirm(true);
+  }
+  const [deleteProcess, setDeleteProcess] = useState(false);
+  function processDelete() {
+    setDeleteProcess(true);
+    dispatch(deleteHarvest(idDel));
+  }
+  if (deleteProcess && !harvestData.isFormSubmit) {
+    setDeleteProcess(false);
     setShowAlert1(true);
-    setWeedRemoveDel(id);
-    dispatch(deleteHarvest(id));
   }
 
   const [HarvestData, setHarvestData] = useState([]);
@@ -66,7 +77,7 @@ const Harvesting: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatc
               <label className="lbl"> Harvest Details </label>
               <a onClick={() => {
 
-                history.push("/harvestDetails")
+                history.push("/harvestingEditPage/0")
               }}
 
                 className="add-btn">  ADD  </a>
@@ -81,6 +92,7 @@ const Harvesting: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatc
             message={'Successfully Deleted'}
             buttons={['OK']}
           />
+          <Confirm showConfirm={showConfirm} setShowConfirm={setShowConfirm} processDelete={processDelete} message="<strong>Are you sure do you want to delete it?</strong>!!!" />   
         </div>
       </IonContent>     
     </IonPage>

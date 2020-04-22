@@ -1,12 +1,13 @@
-﻿import { IonItem, IonContent, IonPage, IonList, IonLoading, IonSelectOption, IonLabel, IonSelect } from '@ionic/react';
+﻿import { IonItem, IonContent, IonPage, IonList, IonLoading, IonSelectOption, IonLabel, IonSelect, IonAlert } from '@ionic/react';
 import React, { useState } from 'react';
 //import './Reg.scss';
 import Header from '../../common/Header';
 import Footer from '../../common/Footer';
-import { getPestControlList } from '../../../store/actions/PestControl';
+import { getPestControlList, deletePestControl } from '../../../store/actions/PestControl';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
+import Confirm from '../../common/Confirm';
 interface Props extends RouteComponentProps { }
 
 interface IPestControlProps {
@@ -27,9 +28,20 @@ const PestControl: React.SFC<IPestControlProps & RouteComponentProps> = ({ dispa
     setPestControl(id);
     history.push("/pestControlEditPage/" + id);
   }
-
-  const onDeleteSeedClick = () => {
-    alert("DELETE");
+  const [showAlert1, setShowAlert1] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const onDeleteSeedClick = (id: any) => {
+    setPestControl(id);
+    setShowConfirm(true);
+  }
+  const [deleteProcess, setDeleteProcess] = useState(false);
+  function processDelete() {
+    setDeleteProcess(true);
+    dispatch(deletePestControl(PestControl));
+  }
+  if (deleteProcess && !pestControlData.isFormSubmit) {
+    setDeleteProcess(false);
+    setShowAlert1(true);
   }
 
   const [showLoading, setShowLoading] = useState(true);
@@ -59,7 +71,7 @@ const PestControl: React.SFC<IPestControlProps & RouteComponentProps> = ({ dispa
           <form className="form">
             <IonItem className="MLand-Lbl">
               <label className="lbl"> Pest Control Details </label>
-              <a className="add-btn" onClick={() => (setShowLoading(true) == history.push("/pestControlDetails"))}>  ADD  </a>
+              <a className="add-btn" onClick={() => (setShowLoading(true) == history.push("/pestControlEditPage/" + 0))}>  ADD  </a>
               <IonLoading
                 isOpen={showLoading}
                 onDidDismiss={() => setShowLoading(false)}
@@ -71,6 +83,13 @@ const PestControl: React.SFC<IPestControlProps & RouteComponentProps> = ({ dispa
               {PetsControlList}
             </IonList>
           </form>         
+          <IonAlert
+            isOpen={showAlert1}
+            onDidDismiss={() => setShowAlert1(false)}
+            message={'Successfully Deleted'}
+            buttons={['OK']}
+          />
+          <Confirm showConfirm={showConfirm} setShowConfirm={setShowConfirm} processDelete={processDelete} message="<strong>Are you sure do you want to delete it?</strong>!!!" />   
         </div>
       </IonContent>      
     </IonPage>

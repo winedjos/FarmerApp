@@ -37,6 +37,7 @@ export class LandDetailsAPI {
   public static getLandDetailsList() {
     return Http.axios().get('/api/LandDetails/get-LandDetails' + "?" + getUserQueryString())
       .then(response => {
+        console.log(response);
         return response;
       }).catch((e: any) => {
         console.log("Error in post" + e);

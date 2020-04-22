@@ -23,83 +23,140 @@ interface IPlowingAddEditProps {
 }
 
 interface IPlowingAddEditState {
-  id: 0;
-  landDetailsId: any;
-  partitionLandDetailsId: any;
-  typeofPlowing: any;
-  plowingExp: any;
-  plowingDate: any;
+  input: any;
+  isFormSubmited: boolean;
+  isEdit: boolean;
+  selectedLand: any;
+  partitionList: any;
 }
 
 class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddEditState> {
   constructor(props: any) {
     super(props);
 
-    this.state = {    
-      id: 0,
-      landDetailsId: 0,
-      partitionLandDetailsId: 0,
-      plowingDate :new Date(),
-      typeofPlowing: null,
-      plowingExp: null, 
+    this.state = {
+      input: this.inputInit,
+      isFormSubmited: false,
+      isEdit: false,
+      selectedLand: {},
+      partitionList:[]
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleOnsubmit = this.handleOnsubmit.bind(this);
   }
 
+  inputInit = {
+    id: 0,
+    landDetailsId: 0,
+    partitionLandDetailsId: 0,
+    plowingDate: new Date(),
+    typeofPlowing: "",
+    plowingExp: "", 
+
+  };
+
   componentWillMount() {
-    this.props.getPlowingById1(this.props.match.params.id);
+    var id = this.props.match.params.id;
+    if (id && id !== null && id !== 0 && id !== "0") {
+      //this.props.getPlowingById1(this.props.match.params.id);
+      this.setState({ isEdit: true });
+    }
+    else {
+      this.setState({ isEdit: false });
+    }
+    
   }
 
   componentWillReceiveProps(newProps: any) {
     if (!newProps.plowingData.isFormSubmit) {
       window.location.href = '/plowings';
     }
-    if (newProps.plowingData.PlowingItems) {
-      this.setState({
-        landDetailsId: newProps.plowingData.PlowingItems.selectedLandDetailId,
-        partitionLandDetailsId: newProps.plowingData.PlowingItems.selectedPartLandDetailId,
-        typeofPlowing: newProps.plowingData.PlowingItems.typeofPlowing,
-        plowingExp: newProps.plowingData.PlowingItems.plowingExp,       
-        id: newProps.plowingData.PlowingItems.id,
-        plowingDate: newProps.plowingData.PlowingItems.plowingDate
-      })
+    if (!this.state.isEdit) {
+      this.setState({ input: this.inputInit });
     }
+    else if (this.state.isEdit && newProps.plowingData.PlowingItems) {
+      var item = newProps.plowingData.PlowingItems.find((x: { id: number; }) => x.id === parseInt(this.props.match.params.id));
+      var land = this.getLand(item.partitionLandDetail.landDetailId);
+      
+      this.setState({
+        input: {
+
+          ...item,
+          landDetailsId: item.partitionLandDetail.landDetailId,
+          partitionLandDetailsId: item.partitionLandDetailId,
+        },
+        selectedLand: land,
+        partitionList: land.partitionLandDetails
+        //input.StateId: newProps.LandDetailData.LandItem.selectedStateListId,
+        // state: newProps.LandDetailData.Landitems.state
+      });
+    }    
   }
 
   setDate(dateValue: any) {
-    this.setState({
-      ...this.state,
-      plowingDate: dateValue
-    });
+    if (this.state) {
+      const { input } = this.state;
+      this.setState({
+        input: {
+          ...input,
+          plowingDate: dateValue
+        }
+
+      });
+    }    
   }
 
   handleOnsubmit(event: any) {
    
     event.preventDefault();
-    this.props.storePlowingData1(this.state);
+    this.props.storePlowingData1(this.state.input);
   }
-
+  getLand(id: any) {
+    if (this.props.LandDetailData.Landitems.length > 0) {
+      var item = this.props.LandDetailData.Landitems.find((x: { id: any; }) => x.id === id);
+      //setLandData(LandDetailData.Landitems);
+      return item;
+    }
+    return null;
+  }
   handleLandChange = (event: any) => {
-    this.setState({
-      landDetailsId: event.target.value
-    });
+    var selectedLand = this.getLand(event.target.value);
+    if (this.state) {
+      const { input } = this.state;
+      this.setState({
+        input: {
+          ...input,
+          landDetailsId: event.target.value
+        },
+        selectedLand: selectedLand,
+        partitionList: selectedLand.partitionLandDetails
+      });
+    }    
   }
 
   handlePLChange = (event: any) => {
-    this.setState({
-      partitionLandDetailsId: event.target.value
-    });
+    if (this.state) {
+      const { input } = this.state;
+      this.setState({
+        input: {
+          ...input,
+          partitionLandDetailsId: event.target.value
+        }
+      });
+    }    
   }
 
 
   handleChange(event: any) {
     const { name, value } = event.target;
     if (this.state) {
-      this.setState({       
-          ...this.state,
-          [name]: value       
+      const { input } = this.state;
+      this.setState({
+        input: {
+          ...input,
+          [name]: value
+        }
       });
     }
   }
@@ -110,27 +167,30 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
         <Header />
         <IonContent className=".reg-login">
           <div className="bg-image">
-            <div className="reg-head">
-              <h1> Edit Plowing </h1>
+            <div className="reg-head">              
+              {!this.state.isEdit && (
+                <h1>  Add Plowing </h1>
+              )}
+              {this.state.isEdit && (
+                <h1>  Edit Plowing </h1>
+              )}
             </div>
-            {this.state.id && (
+            {this.state.input !== null && this.state.input  && (
             <form className="form">
               <IonRow>
                 <IonCol>
                   <IonText className="reg-fields">
-                    <label> Land Name </label>
-                    {this.props.plowingData.PlowingItems.landDetailName && (
-                        <IonSelect className="dropclr" onIonChange={this.handleLandChange}>
-                        {this.props.plowingData.PlowingItems.landDetailName.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.name} selected={data.id == this.props.plowingData.PlowingItems.selectedLandDetailId} > {data.name} </IonSelectOption>) })}
-                      </IonSelect>)}
-                    <label> Partition Land Name </label>
-                    {this.props.plowingData.PlowingItems.partLandDetailName && (
-                        <IonSelect className="dropclr" onIonChange={this.handlePLChange}>
-                        {this.props.plowingData.PlowingItems.partLandDetailName.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.landDirection} selected={data.id == this.props.plowingData.PlowingItems.selectedPartLandDetailId} > {data.landDirection} </IonSelectOption>) })}
-                      </IonSelect>)}
-                      <IonRow> Date </IonRow><IonRow> <DatePicker selected={moment(this.state.plowingDate).toDate()} dateFormat="dd/MM/yyyy" onChange={(date) => this.setDate(date)} className="input-text" /> </IonRow>
-                      Type of Plowing <input type="text" name="typeofPlowing" className="input-text" onChange={this.handleChange} value={this.state.typeofPlowing} required />
-                      Plowing Expenses <input type="text" name="plowingExp" className="input-text" onChange={this.handleChange} value={this.state.plowingExp} required />
+                    <label> Land Name </label>                    
+                      <IonSelect className="dropclr" onIonChange={this.handleLandChange}>
+                        {this.props.LandDetailData.Landitems.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.name} selected={data.id == this.state.input.landDetailsId} > {data.name} </IonSelectOption>) })}
+                      </IonSelect>
+                    <label> Partition Land Name </label>                    
+                      <IonSelect className="dropclr" onIonChange={this.handlePLChange}>
+                        {this.state.partitionList.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.landDirection} selected={data.id == this.state.input.partitionLandDetailId} > {data.landDirection} </IonSelectOption>) })}
+                        </IonSelect>
+                      <IonRow> Date </IonRow><IonRow> <DatePicker selected={moment(this.state.input.plowingDate).toDate()} dateFormat="dd/MM/yyyy" onChange={(date) => this.setDate(date)} className="input-text" /> </IonRow>
+                      Type of Plowing <input type="text" name="typeofPlowing" className="input-text" onChange={this.handleChange} value={this.state.input.typeofPlowing} required />
+                      Plowing Expenses <input type="text" name="plowingExp" className="input-text" onChange={this.handleChange} value={this.state.input.plowingExp} required />
                   </IonText>
                 </IonCol>
               </IonRow>
@@ -151,10 +211,10 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
 };
 
 const mapStateToProps = (state: any) => {
-  const { plowingData } = state;
+  const { plowingData, LandDetailData } = state;
 
   return {
-    plowingData
+    plowingData, LandDetailData
   };
 };
 

@@ -37,6 +37,7 @@ var LandDetailsAPI = /** @class */ (function () {
     LandDetailsAPI.getLandDetailsList = function () {
         return Http_1.Http.axios().get('/api/LandDetails/get-LandDetails' + "?" + Accounts_1.getUserQueryString())
             .then(function (response) {
+            console.log(response);
             return response;
         }).catch(function (e) {
             console.log("Error in post" + e);

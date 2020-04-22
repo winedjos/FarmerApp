@@ -7,6 +7,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { getWeedRemoveList, deleteWeedRemove } from '../../../store/actions/WeedRemove';
 import { RouteComponentProps, withRouter } from 'react-router';
+import Confirm from '../../common/Confirm';
 
 interface Props extends RouteComponentProps { }
 
@@ -33,10 +34,20 @@ const WeedRemove: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatc
   //}
   const [showAlert1, setShowAlert1] = useState(false);
   const [weedRemoveDel, setWeedRemoveDel] = useState();
+  
+  const [showConfirm, setShowConfirm] = useState(false);
   const onDeleteWeedRemoveClick = (id: any) => {
-    setShowAlert1(true);
     setWeedRemoveDel(id);
-    dispatch(deleteWeedRemove(id));
+    setShowConfirm(true);
+  }
+  const [deleteProcess, setDeleteProcess] = useState(false);
+  function processDelete() {
+    setDeleteProcess(true);
+    dispatch(deleteWeedRemove(weedRemoveDel));
+  }
+  if (deleteProcess && !weedRemoveData.isFormSubmit) {
+    setDeleteProcess(false);
+    setShowAlert1(true);
   }
 
   const [WeedRemove, setWeedRemove] = useState();
@@ -75,7 +86,7 @@ const WeedRemove: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatc
               <label className="lbl"> Weed Remove Details </label>
               <a onClick={() => {
 
-                history.push("/weedRemoveDetails")
+                history.push("/weedRemoveEditPage/0")
               }}
 
                 className="add-btn">  ADD  </a>
@@ -92,6 +103,7 @@ const WeedRemove: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatc
             message={'Successfully Deleted'}
             buttons={['OK']}
           />
+          <Confirm showConfirm={showConfirm} setShowConfirm={setShowConfirm} processDelete={processDelete} message="<strong>Are you sure do you want to delete it?</strong>!!!" />   
         </div>
       </IonContent>      
     </IonPage>
