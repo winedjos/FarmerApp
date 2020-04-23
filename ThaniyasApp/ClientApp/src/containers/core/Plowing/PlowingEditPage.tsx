@@ -9,6 +9,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment';
 import Footer from '../../common/Footer';
+import { validatePlowingDetails } from '../../common/FormValidationRules';
 
 interface IPlowingAddEditProps {
   dispatch: Dispatch<any>;
@@ -28,6 +29,8 @@ interface IPlowingAddEditState {
   isEdit: boolean;
   selectedLand: any;
   partitionList: any;
+  isSubmitting: boolean;
+  errors: any;
 }
 
 class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddEditState> {
@@ -39,7 +42,9 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
       isFormSubmited: false,
       isEdit: false,
       selectedLand: {},
-      partitionList:[]
+      partitionList: [],
+      isSubmitting: false,
+      errors: {}
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -107,10 +112,21 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
     }    
   }
 
+
   handleOnsubmit(event: any) {
-   
     event.preventDefault();
-    this.props.storePlowingData1(this.state.input);
+    var errors = validatePlowingDetails(this.state.input);
+    this.setState({ isSubmitting: true, errors: errors });
+    this.processSave(this.state.input, errors, true);
+
+  }
+
+  processSave(values: any, errors: any, isSubmit: boolean) {
+    console.log(values);
+    if (Object.keys(errors).length === 0 && isSubmit) {
+      this.setState({ isFormSubmited: true });
+      this.props.storePlowingData1(this.state.input);
+    }
   }
   getLand(id: any) {
     if (this.props.LandDetailData.Landitems.length > 0) {
@@ -121,6 +137,7 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
     return null;
   }
   handleLandChange = (event: any) => {
+    var errors = validatePlowingDetails(this.state.input);
     var selectedLand = this.getLand(event.target.value);
     if (this.state) {
       const { input } = this.state;
@@ -131,11 +148,13 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
         },
         selectedLand: selectedLand,
         partitionList: selectedLand.partitionLandDetails
+        , errors: errors
       });
     }    
   }
 
   handlePLChange = (event: any) => {
+    var errors = validatePlowingDetails(this.state.input);
     if (this.state) {
       const { input } = this.state;
       this.setState({
@@ -143,6 +162,7 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
           ...input,
           partitionLandDetailsId: event.target.value
         }
+        , errors: errors
       });
     }    
   }
@@ -150,13 +170,15 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
 
   handleChange(event: any) {
     const { name, value } = event.target;
+    var errors = validatePlowingDetails(this.state.input);
     if (this.state) {
       const { input } = this.state;
       this.setState({
         input: {
           ...input,
           [name]: value
-        }
+        },
+        errors: errors
       });
     }
   }
@@ -181,16 +203,31 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
                 <IonCol>
                   <IonText className="reg-fields">
                     <label> Land Name </label>                    
-                      <IonSelect className="dropclr" onIonChange={this.handleLandChange}>
+                      <IonSelect className="dropclr" onIonChange={this.handleLandChange} value={this.state.input.landDetailsId}>
                         {this.props.LandDetailData.Landitems.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.name} selected={data.id == this.state.input.landDetailsId} > {data.name} </IonSelectOption>) })}
                       </IonSelect>
+                      {this.state.errors.landDetailsId && (
+                        <p className="help is-danger">{this.state.errors.landDetailsId}</p>
+                      )}
                     <label> Partition Land Name </label>                    
-                      <IonSelect className="dropclr" onIonChange={this.handlePLChange}>
+                      <IonSelect className="dropclr" onIonChange={this.handlePLChange} value={this.state.input.partitionLandDetailId}>
                         {this.state.partitionList.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.landDirection} selected={data.id == this.state.input.partitionLandDetailId} > {data.landDirection} </IonSelectOption>) })}
-                        </IonSelect>
+                      </IonSelect>
+                      {this.state.errors.partitionLandDetailId && (
+                        <p className="help is-danger">{this.state.errors.partitionLandDetailId}</p>
+                      )}
                       <IonRow> Date </IonRow><IonRow> <DatePicker selected={moment(this.state.input.plowingDate).toDate()} dateFormat="dd/MM/yyyy" onChange={(date) => this.setDate(date)} className="input-text" /> </IonRow>
+                      {this.state.errors.plowingDate && (
+                        <p className="help is-danger">{this.state.errors.plowingDate}</p>
+                      )}
                       Type of Plowing <input type="text" name="typeofPlowing" className="input-text" onChange={this.handleChange} value={this.state.input.typeofPlowing} required />
+                      {this.state.errors.typeofPlowing && (
+                        <p className="help is-danger">{this.state.errors.typeofPlowing}</p>
+                      )}
                       Plowing Expenses <input type="text" name="plowingExp" className="input-text" onChange={this.handleChange} value={this.state.input.plowingExp} required />
+                      {this.state.errors.plowingExp && (
+                        <p className="help is-danger">{this.state.errors.plowingExp}</p>
+                      )}
                   </IonText>
                 </IonCol>
               </IonRow>

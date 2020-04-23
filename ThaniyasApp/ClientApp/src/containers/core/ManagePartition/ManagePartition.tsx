@@ -74,7 +74,7 @@ const ManagePartition: React.SFC<IPartitionProps & RouteComponentProps> = ({ dis
             <IonItem className="MLand-Lbl">
               <label className="lbl"> Manage Partition Details </label>
               <a onClick={() => {               
-                  history.push("/managePartitionDetails")
+                history.push("/managePartitionEdit/0")
               
               }}
 
