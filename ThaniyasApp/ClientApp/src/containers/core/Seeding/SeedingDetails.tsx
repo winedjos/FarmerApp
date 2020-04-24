@@ -30,10 +30,10 @@ const SeedingDetails: React.SFC<ISeedProps> = ({ dispatch, seedData, PartitionLa
   }
 
   const handleLandChange = (event: any) => {
-    seedData.seedInput.landDetailsId = event.target.value;
+    seedData.seedInput.landDetailId = event.target.value;
   }
   const handlePLChange = (event: any) => {
-    seedData.seedInput.partitionLandDetailsId = event.target.value;
+    seedData.seedInput.partitionLandDetailId = event.target.value;
   };
   const handleQuantityChange = (event: any) => {
     seedData.seedInput.quantity = event.target.value;
@@ -45,7 +45,7 @@ const SeedingDetails: React.SFC<ISeedProps> = ({ dispatch, seedData, PartitionLa
     seedData.seedInput.seedCost = event.target.value;
   };
   const handleNOLChange = (event: any) => {
-    seedData.seedInput.nOofLabours = event.target.value;
+    seedData.seedInput.noOfLabours = event.target.value;
   };
   const handleLCChange = (event: any) => {
     seedData.seedInput.labourCost = event.target.value;

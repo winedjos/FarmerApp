@@ -33,10 +33,23 @@ exports.validateLandDetails = function (values) {
     //}
     return errors;
 };
+exports.validatePartiation = function (values) {
+    var errors = {};
+    if (checkIsNullorEmpty(values.landDetailId)) {
+        errors.landDetailId = 'Please selecte the land';
+    }
+    if (checkIsNullorEmpty(values.landDirection)) {
+        errors.landDirection = 'Please fill the value of landDirection';
+    }
+    if (checkIsNullorEmpty(values.areaSize)) {
+        errors.areaSize = 'Please fill the value of areaSize';
+    }
+    return errors;
+};
 exports.validatePlowingDetails = function (values) {
     var errors = {};
-    if (checkIsNullorEmpty(values.landDetailsId)) {
-        errors.landDetailsId = 'Please selecte the land';
+    if (checkIsNullorEmpty(values.landDetailId)) {
+        errors.landDetailId = 'Please selecte the land';
     }
     if (checkIsNullorEmpty(values.partitionLandDetailId)) {
         errors.partitionLandDetailId = 'Please selecte the partiation';
@@ -52,16 +65,125 @@ exports.validatePlowingDetails = function (values) {
     }
     return errors;
 };
-exports.validatePartiation = function (values) {
+exports.validatePestControl = function (values) {
     var errors = {};
-    if (checkIsNullorEmpty(values.landDetailsId)) {
-        errors.landDetailsId = 'Please selecte the land';
+    if (checkIsNullorEmpty(values.landDetailId)) {
+        errors.landDetailId = 'Please selecte the land';
     }
-    if (checkIsNullorEmpty(values.landDirection)) {
-        errors.landDirection = 'Please fill the value of landDirection';
+    if (checkIsNullorEmpty(values.partitionLandDetailId)) {
+        errors.partitionLandDetailId = 'Please selecte the partiation';
     }
-    if (checkIsNullorEmpty(values.areaSize)) {
-        errors.areaSize = 'Please fill the value of areaSize';
+    if (checkIsNullorEmpty(values.pestControlDate)) {
+        errors.pestControlDate = 'Please fill the value of pestControlDate ';
+    }
+    if (checkIsNullorEmpty(values.nameofthePestSide)) {
+        errors.nameofthePestSide = 'Please fill the value of nameofthePestSide ';
+    }
+    if (checkIsNullorEmpty(values.cost)) {
+        errors.cost = 'Please fill the value of Cost ';
+    }
+    if (checkIsNullorEmpty(values.purpose)) {
+        errors.purpose = 'Please fill the value of purpose';
+    }
+    if (checkIsNullorEmpty(values.labourCost)) {
+        errors.labourCost = 'Please fill the value of labourCost';
+    }
+    return errors;
+};
+exports.validateHarvesting = function (values) {
+    var errors = {};
+    if (checkIsNullorEmpty(values.landDetailId)) {
+        errors.landDetailId = 'Please selecte the land';
+    }
+    if (checkIsNullorEmpty(values.partitionLandDetailId)) {
+        errors.partitionLandDetailId = 'Please selecte the partiation';
+    }
+    if (checkIsNullorEmpty(values.date)) {
+        errors.date = 'Please fill the value of date ';
+    }
+    if (checkIsNullorEmpty(values.cost)) {
+        errors.cost = 'Please fill the value of Cost ';
+    }
+    if (checkIsNullorEmpty(values.noOfLabours)) {
+        errors.noOfLabours = 'Please fill the value of number of Labours';
+    }
+    if (checkIsNullorEmpty(values.labourCost)) {
+        errors.labourCost = 'Please fill the value of labourCost';
+    }
+    return errors;
+};
+exports.validateSale = function (values) {
+    var errors = {};
+    if (checkIsNullorEmpty(values.landDetailId)) {
+        errors.landDetailId = 'Please selecte the land';
+    }
+    if (checkIsNullorEmpty(values.partitionLandDetailId)) {
+        errors.partitionLandDetailId = 'Please selecte the partiation';
+    }
+    if (checkIsNullorEmpty(values.quantity)) {
+        errors.quantity = 'Please selecte the quantity';
+    }
+    if (checkIsNullorEmpty(values.saleDate)) {
+        errors.saleDate = 'Please fill the value of saleDate ';
+    }
+    if (checkIsNullorEmpty(values.price)) {
+        errors.price = 'Please fill the value of price ';
+    }
+    if (checkIsNullorEmpty(values.buyerName)) {
+        errors.buyerName = 'Please fill the value of buyer Name';
+    }
+    if (checkIsNullorEmpty(values.buyerMobileNumber)) {
+        errors.buyerMobileNumber = 'Please fill the value of buyerMobileNumber';
+    }
+    return errors;
+};
+exports.validateSeeding = function (values) {
+    var errors = {};
+    if (checkIsNullorEmpty(values.landDetailId)) {
+        errors.landDetailId = 'Please selecte the land';
+    }
+    if (checkIsNullorEmpty(values.partitionLandDetailId)) {
+        errors.partitionLandDetailId = 'Please selecte the partiation';
+    }
+    if (checkIsNullorEmpty(values.quantity)) {
+        errors.quantity = 'Please fill the value of quantity ';
+    }
+    if (checkIsNullorEmpty(values.seedName)) {
+        errors.seedName = 'Please fill the value of seedName ';
+    }
+    if (checkIsNullorEmpty(values.date)) {
+        errors.date = 'Please fill the value of date ';
+    }
+    if (checkIsNullorEmpty(values.seedCost)) {
+        errors.seedCost = 'Please fill the value of Cost ';
+    }
+    if (checkIsNullorEmpty(values.noOfLabours)) {
+        errors.noOfLabours = 'Please fill the value of number of Labours';
+    }
+    if (checkIsNullorEmpty(values.labourCost)) {
+        errors.labourCost = 'Please fill the value of labourCost';
+    }
+    return errors;
+};
+exports.validateWeedRemove = function (values) {
+    var errors = {};
+    if (checkIsNullorEmpty(values.landDetailId)) {
+        errors.landDetailId = 'Please selecte the land';
+    }
+    if (checkIsNullorEmpty(values.partitionLandDetailId)) {
+        errors.partitionLandDetailId = 'Please selecte the partiation';
+    }
+    if (checkIsNullorEmpty(values.date)) {
+        errors.date = 'Please fill the value of date ';
+    }
+    if (checkIsNullorEmpty(values.cost)) {
+        errors.cost = 'Please fill the value of Cost ';
+    }
+    if (checkIsNullorEmpty(values.noOfLabours)) {
+        errors.noOfLabours = 'Please fill the value of number of Labours';
+    }
+    if (checkIsNullorEmpty(values.labourCost)) {
+        errors.labourCost = 'Please fill the value of labourCost';
     }
     return errors;
 };

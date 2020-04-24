@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { getSeedList, deleteSeed } from '../../../store/actions/Seedings';
 import { RouteComponentProps, withRouter } from 'react-router';
 import Confirm from '../../common/Confirm';
+import { getLandDetailList } from '../../../store/actions/LandDetail';
 
 interface Props extends RouteComponentProps { }
 
@@ -22,6 +23,7 @@ const Seeding: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatch, 
 
   React.useEffect(() => {
     dispatch(getSeedList());
+    dispatch(getLandDetailList());
   }, []);
   const [showPopover, setShowPopover] = useState(false);
   // <IonButton onClick={() => setShowModal(false)}>Close Modal</IonButton>

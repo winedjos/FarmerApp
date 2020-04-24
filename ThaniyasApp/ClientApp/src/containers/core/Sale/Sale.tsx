@@ -8,6 +8,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
 import Confirm from '../../common/Confirm';
+import { getLandDetailList } from '../../../store/actions/LandDetail';
 
 interface Props extends RouteComponentProps { }
 
@@ -21,6 +22,7 @@ interface ISaleProps {
 const Sale: React.SFC<ISaleProps & RouteComponentProps> = ({ dispatch, saleData, history}) => {
   React.useEffect(() => {
     dispatch(getSaleList());
+    dispatch(getLandDetailList());
   }, []);
   const [showPopover, setShowPopover] = useState(false);
   const [Sale, setSale] = useState()

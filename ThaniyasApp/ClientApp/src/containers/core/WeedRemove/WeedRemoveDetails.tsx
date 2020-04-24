@@ -39,16 +39,16 @@ const WeedRemoveDetails: React.SFC<IWeedRemoveProps> = ({ dispatch, weedRemoveDa
   }
 
   const handleLandChange = (event: any) => {
-    weedRemoveData.weedRemoveInput.landDetailsId = event.target.value;
+    weedRemoveData.weedRemoveInput.landDetailId = event.target.value;
   }
   const handlePLChange = (event: any) => {
-    weedRemoveData.weedRemoveInput.partitionLandDetailsId = event.target.value;
+    weedRemoveData.weedRemoveInput.partitionLandDetailId = event.target.value;
   };
   const handleCostChange = (event: any) => {
     weedRemoveData.weedRemoveInput.cost = event.target.value;
   };
   const handleNOLChange = (event: any) => {
-    weedRemoveData.weedRemoveInput.nOofLabours = event.target.value;
+    weedRemoveData.weedRemoveInput.noOfLabours = event.target.value;
   };
   const handleLCChange = (event: any) => {
     weedRemoveData.weedRemoveInput.labourCost = event.target.value;

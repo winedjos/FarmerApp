@@ -32,10 +32,10 @@ const PlowingDetails: React.SFC<IPlowProps> = ({ dispatch, plowingData, Partitio
   }
 
   const handleLandChange = (event: any) => {
-    plowingData.plowingInput.landDetailsId = event.target.value;
+    plowingData.plowingInput.landDetailId = event.target.value;
   }
   const handlePLChange = (event: any) => {
-    plowingData.plowingInput.partitionLandDetailsId = event.target.value;
+    plowingData.plowingInput.partitionLandDetailId = event.target.value;
   };
   const handleTypeofPlowChange = (event: any) => {
     plowingData.plowingInput.typeofPlowing = event.target.value;

@@ -8,6 +8,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router';
 import Confirm from '../../common/Confirm';
+import { getLandDetailList } from '../../../store/actions/LandDetail';
 interface Props extends RouteComponentProps { }
 
 interface IPestControlProps {
@@ -20,17 +21,18 @@ interface IPestControlProps {
 const PestControl: React.SFC<IPestControlProps & RouteComponentProps> = ({ dispatch, pestControlData, history }) => {
   React.useEffect(() => {
     dispatch(getPestControlList());
+    dispatch(getLandDetailList());
   }, []);
 
   const [showPopover, setShowPopover] = useState(false);
   const [PestControl, setPestControl] = useState();
-  const onEditSeedClick = (id:any) => {
+  const onEditClick = (id:any) => {
     setPestControl(id);
     history.push("/pestControlEditPage/" + id);
   }
   const [showAlert1, setShowAlert1] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
-  const onDeleteSeedClick = (id: any) => {
+  const onDeleteClick = (id: any) => {
     setPestControl(id);
     setShowConfirm(true);
   }
@@ -56,8 +58,8 @@ const PestControl: React.SFC<IPestControlProps & RouteComponentProps> = ({ dispa
   PetsControlItems.forEach((PetsControlItems: any) => PetsControlList.push(
     <IonItem key={PetsControlItems.id}>
       <IonLabel> {PetsControlItems.nameofthePestSide} </IonLabel>
-        <img src="assets/Edit.png" height="15" width="15" className="edit-icon" onClick={() => onEditSeedClick(PetsControlItems.id)}></img>
-      <img src="assets/Delete.png" height="23" width="23" className="del-icon" onClick={() => onDeleteSeedClick} ></img>
+        <img src="assets/Edit.png" height="15" width="15" className="edit-icon" onClick={() => onEditClick(PetsControlItems.id)}></img>
+      <img src="assets/Delete.png" height="23" width="23" className="del-icon" onClick={() => onDeleteClick(PetsControlItems.id)} ></img>
     </IonItem>));
   return (
     <IonPage>

@@ -35,7 +35,7 @@ const ManagePartitionDetails: React.SFC<IPartitionLandProps> = ({ dispatch, Part
     PartitionLandData.partitionLandInput.areaSize = event.target.value;
   };
   const handleLandNameChange = (event: any) => {
-    PartitionLandData.partitionLandInput.landDetailsId = event.target.value;
+    PartitionLandData.partitionLandInput.landDetailId = event.target.value;
   };
   const [LandData, setLandData] = useState([]);
 

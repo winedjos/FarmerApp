@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { getWeedRemoveList, deleteWeedRemove } from '../../../store/actions/WeedRemove';
 import { RouteComponentProps, withRouter } from 'react-router';
 import Confirm from '../../common/Confirm';
+import { getLandDetailList } from '../../../store/actions/LandDetail';
 
 interface Props extends RouteComponentProps { }
 
@@ -21,6 +22,7 @@ const WeedRemove: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatc
 
   React.useEffect(() => {
     dispatch(getWeedRemoveList());
+    dispatch(getLandDetailList());
   }, []);
   const [showPopover1, setShowPopover1] = useState(false);
   // <IonButton onClick={() => setShowModal(false)}>Close Modal</IonButton>
@@ -65,7 +67,7 @@ const WeedRemove: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatc
   const WeeditemLandList: any = [];
   WeedItems.forEach((WeedItems: any) => WeeditemLandList.push(
     <IonItem key={WeedItems.id}>
-      <IonLabel> {WeedItems.nOofLabours} </IonLabel>
+      <IonLabel> {WeedItems.noOfLabours} </IonLabel>
      
         <img src="assets/Edit.png" height="15" width="15" className="edit-icon" onClick={() => onEditWeedRemoveClick(WeedItems.id)}></img>
      

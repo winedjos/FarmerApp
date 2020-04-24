@@ -53,8 +53,8 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
 
   inputInit = {
     id: 0,
-    landDetailsId: 0,
-    partitionLandDetailsId: 0,
+    landDetailId: 0,
+    partitionLandDetailId: 0,
     plowingDate: new Date(),
     typeofPlowing: "",
     plowingExp: "", 
@@ -88,8 +88,8 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
         input: {
 
           ...item,
-          landDetailsId: item.partitionLandDetail.landDetailId,
-          partitionLandDetailsId: item.partitionLandDetailId,
+          landDetailId: item.partitionLandDetail.landDetailId,
+          partitionLandDetailId: item.partitionLandDetailId,
         },
         selectedLand: land,
         partitionList: land.partitionLandDetails
@@ -125,7 +125,7 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
     console.log(values);
     if (Object.keys(errors).length === 0 && isSubmit) {
       this.setState({ isFormSubmited: true });
-      this.props.storePlowingData1(this.state.input);
+      this.props.storePlowingData1(values);
     }
   }
   getLand(id: any) {
@@ -144,7 +144,7 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
       this.setState({
         input: {
           ...input,
-          landDetailsId: event.target.value
+          landDetailId: event.target.value
         },
         selectedLand: selectedLand,
         partitionList: selectedLand.partitionLandDetails
@@ -160,7 +160,7 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
       this.setState({
         input: {
           ...input,
-          partitionLandDetailsId: event.target.value
+          partitionLandDetailId: event.target.value
         }
         , errors: errors
       });
@@ -203,11 +203,11 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
                 <IonCol>
                   <IonText className="reg-fields">
                     <label> Land Name </label>                    
-                      <IonSelect className="dropclr" onIonChange={this.handleLandChange} value={this.state.input.landDetailsId}>
-                        {this.props.LandDetailData.Landitems.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.name} selected={data.id == this.state.input.landDetailsId} > {data.name} </IonSelectOption>) })}
+                      <IonSelect className="dropclr" onIonChange={this.handleLandChange} value={this.state.input.landDetailId}>
+                        {this.props.LandDetailData.Landitems.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.name} selected={data.id == this.state.input.landDetailId} > {data.name} </IonSelectOption>) })}
                       </IonSelect>
-                      {this.state.errors.landDetailsId && (
-                        <p className="help is-danger">{this.state.errors.landDetailsId}</p>
+                      {this.state.errors.landDetailId && (
+                        <p className="help is-danger">{this.state.errors.landDetailId}</p>
                       )}
                     <label> Partition Land Name </label>                    
                       <IonSelect className="dropclr" onIonChange={this.handlePLChange} value={this.state.input.partitionLandDetailId}>

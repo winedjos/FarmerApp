@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { getHarvestList, deleteHarvest } from '../../../store/actions/Harvestings';
 import { RouteComponentProps, withRouter } from 'react-router';
 import Confirm from '../../common/Confirm';
+import { getLandDetailList } from '../../../store/actions/LandDetail';
 
 interface Props extends RouteComponentProps { }
 
@@ -21,12 +22,14 @@ interface IWeedRemoveProps {
 const Harvesting: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatch, harvestData, history }) => {
   React.useEffect(() => {
     dispatch(getHarvestList());
+    dispatch(getLandDetailList());
   }, []);
   const [showPopover, setShowPopover] = useState(false);
   const [Harvest, setHarvest] = useState();
   const onEditHarvestClick = (id:any) => {
     setHarvest(id);
     history.push("/harvestingEditPage/" + id);
+    history.push("/harvestingEditPage/" + id)
   }
 
   const [showAlert1, setShowAlert1] = useState(false);
@@ -56,10 +59,8 @@ const Harvesting: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatc
   const HarvestList: any = [];
   HarvestItems.forEach((HarvestItems: any) => HarvestList.push(
     <IonItem key={HarvestItems.id}>
-      <IonLabel> {HarvestItems.cost} </IonLabel>
-      <a href={"/harvestingEditPage/" + HarvestItems.id} >
-        <img src="assets/Edit.png" height="15" width="15" className="edit-icon" onClick={() => onEditHarvestClick(HarvestItems.id)}></img>
-      </a>
+      <IonLabel> {HarvestItems.cost} </IonLabel>      
+        <img src="assets/Edit.png" height="15" width="15" className="edit-icon" onClick={() => onEditHarvestClick(HarvestItems.id)}></img>      
 
       <img src="assets/Delete.png" height="23" width="23" className="del-icon" onClick={() => onDeleteHarvestClick(HarvestItems.id)} ></img>
     </IonItem>));

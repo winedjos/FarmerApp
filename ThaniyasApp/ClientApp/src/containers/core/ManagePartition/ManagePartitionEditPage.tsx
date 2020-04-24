@@ -62,7 +62,7 @@ class ManagePartitionEditPage extends React.Component<IPartLandAddEditProps,IPar
   inputInit = {
     landDirection: "",
     areaSize: 0,
-    landDetailsId: 0,
+    landDetailId: 0,
     id: 0,
     isFormSubmited: false
 
@@ -80,7 +80,7 @@ class ManagePartitionEditPage extends React.Component<IPartLandAddEditProps,IPar
     console.log(values);
     if (Object.keys(errors).length === 0 && isSubmit) {
       this.setState({ isFormSubmited: true });
-      this.props.storePartitionLandData1(this.state.input);
+      this.props.storePartitionLandData1(values);
     }
   }
   getLand(id: any) {
@@ -99,17 +99,16 @@ class ManagePartitionEditPage extends React.Component<IPartLandAddEditProps,IPar
     if (!this.state.isEdit) {
       this.setState({ input: this.inputInit });
     }
-    if (newProps.PartitionLandData.PLitem) {
+    else if (newProps.PartitionLandData.PLitem) {
 
       var item = newProps.PartitionLandData.PLitems.find((x: { id: number; }) => x.id === parseInt(this.props.match.params.id));
-      var land = this.getLand(item.partitionLandDetail.landDetailId);
+      var land = this.getLand(item.landDetailId);
 
       this.setState({
         input: {
 
           ...item,
-          landDetailsId: item.partitionLandDetail.landDetailId,
-          partitionLandDetailsId: item.partitionLandDetailId,
+          landDetailId: item.landDetailId,
         },
         selectedLand: land
       });      
@@ -140,7 +139,7 @@ class ManagePartitionEditPage extends React.Component<IPartLandAddEditProps,IPar
         this.setState({
           input: {
             ...input,
-            landDetailsId: event.target.value
+            landDetailId: event.target.value
           },
           selectedLand: selectedLand
           , errors: errors
@@ -165,12 +164,12 @@ class ManagePartitionEditPage extends React.Component<IPartLandAddEditProps,IPar
                )}
             </div>            
               <form className="form">
-                 {this.props.PartitionLandData.PLitem.landDetailName && (
-                 <IonSelect className="dropclr" onIonChange={this.handleLandChange} value={this.state.input.landDetailsId}>
-                   {this.props.LandDetailData.Landitems.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.name} selected={data.id == this.state.input.landDetailsId} > {data.name} </IonSelectOption>) })}
+               {this.props.LandDetailData.Landitems && (
+                 <IonSelect className="dropclr" onIonChange={this.handleLandChange} value={this.state.input.landDetailId}>
+                   {this.props.LandDetailData.Landitems.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.name} selected={data.id == this.state.input.landDetailId} > {data.name} </IonSelectOption>) })}
                  </IonSelect>)}
-               {this.state.errors.landDetailsId && (
-                 <p className="help is-danger">{this.state.errors.landDetailsId}</p>
+               {this.state.errors.landDetailId && (
+                 <p className="help is-danger">{this.state.errors.landDetailId}</p>
                )}
                 Land Direction<input type="text" className="input-text" name="landDirection" onChange={this.handleChange} value={this.state.input.landDirection} />
                {this.state.errors.landDirection && (

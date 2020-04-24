@@ -38,13 +38,13 @@ const PestControlDetails: React.SFC<IPestControlProps> = ({ dispatch, pestContro
   }
 
   const handleLandChange = (event: any) => {
-    pestControlData.pestControlInput.landDetailsId = event.target.value;
-    var items = PLitems.filter((item: any) => item.landDetailsId == PartitionLandData.partitionLandInput.id);
+    pestControlData.pestControlInput.landDetailId = event.target.value;
+    var items = PLitems.filter((item: any) => item.landDetailId == PartitionLandData.partitionLandInput.id);
     //dispatch(getPartitionLandList);
     return items;
   }
   const handlePLChange = (event: any) => {      
-      pestControlData.pestControlInput.partitionLandDetailsId = event.target.value;   
+      pestControlData.pestControlInput.partitionLandDetailId = event.target.value;   
   };
   const handleCostChange = (event: any) => {
     pestControlData.pestControlInput.cost = event.target.value;
@@ -89,7 +89,7 @@ const PestControlDetails: React.SFC<IPestControlProps> = ({ dispatch, pestContro
   //    {PLitems.map((data: any) => { return <IonSelectOption value={data.id} key={data.id} title={data.landDirection} selected={PartitionLandData.PLitems.landDetails}> {data.landDirection} </IonSelectOption> })}
   //  </IonSelect>
   //<IonSelect placeholder="Select One" className="dropclr" onIonChange={handlePLChange}>
-  //  {PLitems.filter((v: any) => v.landDetailsId ==  pestControlData.pestControlInput.partitionLandDetailsId).map(function (data: any) { return <IonSelectOption value={data.id} key={data.id} title={data.landDirection} > {data.landDirection} </IonSelectOption> })}
+  //  {PLitems.filter((v: any) => v.landDetailId ==  pestControlData.pestControlInput.partitionLandDetailId).map(function (data: any) { return <IonSelectOption value={data.id} key={data.id} title={data.landDirection} > {data.landDirection} </IonSelectOption> })}
   //</IonSelect>  
 
   return (
