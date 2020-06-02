@@ -10,6 +10,7 @@ import { RouteComponentProps, withRouter } from 'react-router';
 //import { storeLandDetailData } from '../../../store/actions/LandDetail';
 import { getPartitionLandList, deletePartitionLand } from '../../../store/actions/PartitionLand';
 import { getLandDetailList } from '../../../store/actions/LandDetail';
+import Confirm from '../../common/Confirm';
 //import { CANCEL } from 'redux-saga';
 //import PartitionLandData from '../../../store/reducers/PartitionLand/PartitionLand';
 //import PartitionLandData from '../../../store/reducers/PartitionLand/PartitionLand';
@@ -32,8 +33,9 @@ const ManagePartition: React.SFC<IPartitionProps & RouteComponentProps> = ({ dis
   }, []);
 
   const [showAlert1, setShowAlert1] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
   const [partitionLand, setPartitionLand] = useState();
+  const [deleteProcess, setDeleteProcess] = useState(false);
   const onEditPartitionClick = (id: any) => {
     setPartitionLand(id);
     history.push("/managePartitionEdit/" + id);
@@ -42,11 +44,18 @@ const ManagePartition: React.SFC<IPartitionProps & RouteComponentProps> = ({ dis
   const [partInput, setPartrInput] = useState();
   const onDeletePartitionClick = (id:any) => {
     setPartrInput(id);
-    setShowAlert(true); 
+    setShowConfirm(true); 
   }
 
   const [PLdata, setPLData] = useState([]);
-
+  function processDelete() {
+    setDeleteProcess(true);
+    dispatch(deletePartitionLand(partInput));
+  }
+  if (deleteProcess && !PartitionLandData.isFormSubmit) {
+    setDeleteProcess(false);
+    setShowAlert1(true);
+  }
   if (PartitionLandData.PLitems.length > 0 && PLdata.length === 0) {
     setPLData(PartitionLandData.PLitems);
   }
@@ -74,7 +83,7 @@ const ManagePartition: React.SFC<IPartitionProps & RouteComponentProps> = ({ dis
           </div>
           <form className="form">
             <IonItem className="MLand-Lbl">
-              <label className="lbl"> Manage Partition Details </label>
+              <label className="lbl">Partition Details </label>
               <a onClick={() => {               
                 history.push("/managePartitionEdit/0")
               
@@ -90,7 +99,15 @@ const ManagePartition: React.SFC<IPartitionProps & RouteComponentProps> = ({ dis
                 </IonList>
            
           </form>
-          <IonAlert isOpen={showAlert}
+
+          <IonAlert
+            isOpen={showAlert1}
+            onDidDismiss={() => setShowAlert1(false)}           
+            message={'Successfully Deleted'}
+            buttons={['OK']}
+          />
+          <Confirm showConfirm={showConfirm} setShowConfirm={setShowConfirm} processDelete={processDelete}  message="<strong>Are you sure do you want to delete it?</strong>!!!" />          
+          {/* <IonAlert isOpen={showAlert}
             onDidDismiss={() => setShowAlert(false)}
             message={'Are you sure want to delete..?'}            
             buttons={[
@@ -113,7 +130,7 @@ const ManagePartition: React.SFC<IPartitionProps & RouteComponentProps> = ({ dis
                 }
               }
             ]}
-          />
+          /> */}
          
         </div> 
       </IonContent>     

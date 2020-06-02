@@ -196,10 +196,10 @@ class HarvestingEditPage extends React.Component<IHarvestAddEditProps, IHarvestL
         <div className="bg-image">
           <div className="reg-head">
             {!this.state.isEdit && (
-              <h1>  Add Pest Control </h1>
+              <h1>  Add Harvesting </h1>
             )}
             {this.state.isEdit && (
-              <h1>  Edit Pest Control </h1>
+              <h1>  Edit Harvesting </h1>
             )}
           </div>
           <form className="form">

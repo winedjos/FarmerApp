@@ -7,6 +7,8 @@ import { storeRegData } from '../../../store/actions/Registration';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { fetchLoginData } from '../../../store/actions/Login';
+import { Plugins } from '@capacitor/core';
+import "@codetrix-studio/capacitor-google-auth";
 
 interface ILoginProps {
   dispatch: Dispatch<any>
@@ -16,9 +18,7 @@ interface ILoginProps {
 const Login: React.SFC<ILoginProps> = ({ dispatch, loginData}) => {
 
   const onHandleSubmit = (e: any) => {
-    alert("btn clicked b-e");
     e.preventDefault();
-    alert("btn clicked A-e");
     dispatch(fetchLoginData(loginData.loginInput));
   };
 
@@ -38,6 +38,30 @@ const Login: React.SFC<ILoginProps> = ({ dispatch, loginData}) => {
         window.location.href = "/home";
       }
     }
+  }
+
+  async function signIn(): Promise<void> {
+    //const { history } = this.props;
+    try{
+      var a=0;
+    const result = await Plugins.GoogleAuth.signIn();
+    console.info('result', result);
+    if (result) {
+      console.log(result);
+      result["isgooglelogin"]=true;
+      dispatch(fetchLoginData(result));
+      // history.push({
+      //   pathname: '/home',
+      //   state: { name: result.name || result.displayName, image: result.imageUrl, email: result.email }
+      // });
+    }
+    else{      
+    }
+  }
+  catch(e){
+  console.error(e);  
+  }
+
   }
 
   if (loginData && loginData.isFormSubmit && !loginData.isLoading && loginData.status.statusValue) {
@@ -64,6 +88,22 @@ const Login: React.SFC<ILoginProps> = ({ dispatch, loginData}) => {
                  User Name <input type="text" placeholder="User Name" onChange={handleUserNameChange} className="input-text" required />
                  Password <input type="password" placeholder="Password" onChange={handlePWDChange} className="input-text" required /> 
                  <button className="reg-btn" onClick={onHandleSubmit}> Login </button>
+                </IonText>
+              </IonCol>
+           </IonRow>
+
+           <IonRow>
+              <IonCol>
+               <IonText className="reg-fields">
+                 Or 
+                </IonText>
+              </IonCol>
+           </IonRow>
+
+           <IonRow>
+              <IonCol>
+               <IonText className="reg-fields">                 
+                 <button className="reg-btn" onClick={signIn}> Login by Google </button>
                 </IonText>
               </IonCol>
            </IonRow>

@@ -164,6 +164,7 @@ class ManagePartitionEditPage extends React.Component<IPartLandAddEditProps,IPar
                )}
             </div>            
               <form className="form">
+              <label> Land Name </label>
                {this.props.LandDetailData.Landitems && (
                  <IonSelect className="dropclr" onIonChange={this.handleLandChange} value={this.state.input.landDetailId}>
                    {this.props.LandDetailData.Landitems.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.name} selected={data.id == this.state.input.landDetailId} > {data.name} </IonSelectOption>) })}
@@ -175,7 +176,7 @@ class ManagePartitionEditPage extends React.Component<IPartLandAddEditProps,IPar
                {this.state.errors.landDirection && (
                  <p className="help is-danger">{this.state.errors.landDirection}</p>
                )}
-                Area Size <input type="text" className="input-text" name="areaSize" onChange={this.handleChange} value={this.state.input.areaSize} />
+                Area Size <input type="text" className="input-text"  name="areaSize" onChange={this.handleChange} value={this.state.input.areaSize} />
                {this.state.errors.areaSize && (
                  <p className="help is-danger">{this.state.errors.areaSize}</p>
                )}
