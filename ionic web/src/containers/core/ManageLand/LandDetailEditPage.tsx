@@ -132,8 +132,12 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
   }
 
   handleStateChange = (event: any) => {
+    const { input } = this.state;
     this.setState({
-      input: { StateId: event.target.value }
+      input:       
+      { 
+        ...input,
+        StateId: event.target.value }
     });
   }
 
@@ -164,7 +168,7 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
                         {this.props.stateListData.stateitems.length > 0 && (
                           <IonSelect placeholder="Select One" className="dropclr" onIonChange={this.handleStateChange} value={this.state.input.StateId}>
                             {this.props.stateListData.stateitems.map((data: any) => {
-                              return <IonSelectOption value={data.id} onChange={this.handleChange} key={data.id} title={data.stateName}
+                              return <IonSelectOption value={data.id}  key={data.id} title={data.stateName}
                                 selected={data.id == this.state.input.StateId}> {data.stateName} </IonSelectOption>
                             })}
                           </IonSelect>

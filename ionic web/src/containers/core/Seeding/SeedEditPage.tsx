@@ -153,7 +153,8 @@ class SeedEditPage extends React.Component<ISeedAddEditProps, ISeedAddEditState>
       this.setState({
         input: {
           ...input,
-          landDetailId: event.target.value
+          landDetailId: event.target.value,
+          partitionLandDetailId:0
         },
         selectedLand: selectedLand,
         partitionList: selectedLand.partitionLandDetails

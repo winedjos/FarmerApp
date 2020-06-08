@@ -139,7 +139,8 @@ class ManagePartitionEditPage extends React.Component<IPartLandAddEditProps,IPar
         this.setState({
           input: {
             ...input,
-            landDetailId: event.target.value
+            landDetailId: event.target.value,
+            partitionLandDetailId:0
           },
           selectedLand: selectedLand
           , errors: errors

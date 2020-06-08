@@ -148,7 +148,8 @@ class HarvestingEditPage extends React.Component<IHarvestAddEditProps, IHarvestL
       this.setState({
         input: {
           ...input,
-          landDetailId: event.target.value
+          landDetailId: event.target.value,
+          partitionLandDetailId:0
         },
         selectedLand: selectedLand,
         partitionList: selectedLand.partitionLandDetails
