@@ -23,6 +23,7 @@ const initialHarvestData = {
     noOfLabours: "",
     labourCost: "",
   },
+  isLoading:true,
 
 }
 
@@ -50,15 +51,19 @@ const harvestData = (state = initialHarvestData, action: any) => {
     case GET_HARVESTINGS_STARTED:
       return {
         ...state,
+        HarvestItems:[],
+        isLoading:true,
       };
     case GET_HARVESTINGS_COMPLETED:
       return {
         ...state,
         HarvestItems: action.payload,
+        isLoading:false,
       };
     case GET_HARVESTINGS_FAILED:
       return {
         ...state,
+        isLoading:false,
         error: action.error
       };
     case DELETE_HARVESTINGS_STARTED:

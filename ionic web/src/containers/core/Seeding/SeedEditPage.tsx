@@ -1,4 +1,4 @@
-﻿import { IonItem, IonContent, IonPage, IonRow,IonCol,IonText, IonList, IonNote, IonPopover, IonSelectOption, IonLabel, IonSelect } from '@ionic/react';
+﻿import { IonItem, IonContent, IonPage, IonRow,IonCol,IonText, IonList, IonNote, IonPopover, IonSelectOption, IonLabel, IonSelect, IonLoading } from '@ionic/react';
 import React, { useState } from 'react';
 //import './Reg.scss';
 import Header from '../../common/Header';
@@ -207,6 +207,11 @@ class SeedEditPage extends React.Component<ISeedAddEditProps, ISeedAddEditState>
                 <h1>  Edit Seeding </h1>
               )}
             </div>
+            <IonLoading
+                isOpen={this.state.isFormSubmited}
+                onDidDismiss={() => this.setState({ isFormSubmited: false })}
+                message={'Please wait...'}               
+              />
             <form className="form">
               <IonRow>
                 <IonCol>

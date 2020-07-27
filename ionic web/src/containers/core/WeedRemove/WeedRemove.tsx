@@ -1,4 +1,4 @@
-﻿import { IonItem, IonContent, IonPage, IonAlert, IonSelectOption, IonLabel, IonSelect, IonList } from '@ionic/react';
+﻿import { IonItem, IonContent, IonPage, IonAlert, IonSelectOption, IonLabel, IonSelect, IonList, IonLoading } from '@ionic/react';
 import React, { useState } from 'react';
 //import './Reg.scss';
 import Header from '../../common/Header';
@@ -23,6 +23,7 @@ const WeedRemove: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatc
   React.useEffect(() => {
     dispatch(getWeedRemoveList());
     dispatch(getLandDetailList());
+    setShowLoading(true);
   }, []);
   const [showPopover1, setShowPopover1] = useState(false);
   // <IonButton onClick={() => setShowModal(false)}>Close Modal</IonButton>
@@ -34,6 +35,7 @@ const WeedRemove: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatc
   //setShowModal(false);
   //<button onClick={() => onaddClick}> add  </button>
   //}
+  const [showLoading, setShowLoading] = useState(false);
   const [showAlert1, setShowAlert1] = useState(false);
   const [weedRemoveDel, setWeedRemoveDel] = useState();
   
@@ -59,16 +61,23 @@ const WeedRemove: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatc
   }
 
   const [WeedData, setWeedRemoveData] = useState([]);
-
-  if (weedRemoveData.WeedItems.length > 0 && WeedData.length === 0) {
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  if (weedRemoveData.isLoading===false && isDataLoaded === false) {
     setWeedRemoveData(weedRemoveData.WeedItems);
+    setIsDataLoaded(true);
+    setShowLoading(false);
   }
+
+  //{deleted == true && (
+   // {WeeditemLandList}
+   // )}
+
   const WeedItems: any = (WeedData || []);
   const WeeditemLandList: any = [];
   WeedItems.forEach((WeedItems: any) => WeeditemLandList.push(
     <IonItem key={WeedItems.id}>
-      <IonLabel> {WeedItems.noOfLabours} </IonLabel>
-     
+      <IonLabel>  {WeedItems.partitionLandDetail.landDetail.name} <br></br> {WeedItems.partitionLandDetail.landDirection} <br></br> {WeedItems.cost} </IonLabel>  
+
         <img src="assets/Edit.png" height="15" width="15" className="edit-icon" onClick={() => onEditWeedRemoveClick(WeedItems.id)}></img>
      
       <img src="assets/Delete.png" height="23" width="23" className="del-icon" onClick={() => onDeleteWeedRemoveClick(WeedItems.id)} ></img>
@@ -82,7 +91,11 @@ const WeedRemove: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatc
           <div className="reg-head">
             <h1>Weed Remove List </h1>
           </div>
-
+          <IonLoading
+                isOpen={showLoading}
+                onDidDismiss={() => setShowLoading(false)}
+                message={'Please wait...'}               
+              />
           <form className="form">
             <IonItem className="MLand-Lbl">
               <label className="lbl"> Weed Remove Details </label>
@@ -93,9 +106,15 @@ const WeedRemove: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatc
 
                 className="add-btn">  ADD  </a>
             </IonItem>
+           
             <IonList>
+            <div className="scroll">
+           
               {WeeditemLandList}
+             
+              </div>
             </IonList>
+           
           </form>
           <IonAlert
             isOpen={showAlert1}

@@ -26,9 +26,11 @@ interface ILandDetailProps {
 const ManageLand: React.FunctionComponent<ILandDetailProps & RouteComponentProps> = ({ dispatch, LandDetailData, history }) => {
   useEffect(() => {   
     dispatch(getLandDetailList());
+    setShowLoading(true);
   }, []);
   //var history = createBrowserHistory();
   const [deleteProcess, setDeleteProcess] = useState(false);
+  const [showLoading, setShowLoading] = useState(false);
   // <IonButton onClick={() => setShowModal(false)}>Close Modal</IonButton>
   //const onaddClick = () => {
     //alert("Edit");
@@ -55,16 +57,22 @@ const ManageLand: React.FunctionComponent<ILandDetailProps & RouteComponentProps
 
   function processDelete() {
     setDeleteProcess(true);
-    dispatch(deleteLand(LandInput));
+    dispatch(deleteLand(LandInput));    
   }
   if (deleteProcess && !LandDetailData.isFormSubmit) {
-    setDeleteProcess(false);
-    setShowAlert1(true);
+    setDeleteProcess(false);    
+    setShowAlert1(true);   
+    setTimeout(() => {
+      
+    },1000) ;
+     
   }
   const [LandData, setLandData] = useState([]);
-
-  if (LandDetailData.Landitems.length > 0 && LandData.length === 0) {
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  if (LandDetailData.isLoading===false && isDataLoaded === false) {
     setLandData(LandDetailData.Landitems);
+    setIsDataLoaded(true);
+    setShowLoading(false);
   }
 
   
@@ -86,6 +94,11 @@ const ManageLand: React.FunctionComponent<ILandDetailProps & RouteComponentProps
           <div className="reg-head">
             <h1>Manage Land </h1>
           </div>
+          <IonLoading
+                isOpen={showLoading}
+                onDidDismiss={() => setShowLoading(false)}
+                message={'Please wait...'}               
+              />
           <form className="form">
             <IonItem className="MLand-Lbl">
               <label className="lbl"> Land Details </label>

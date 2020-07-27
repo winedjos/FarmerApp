@@ -1,4 +1,4 @@
-﻿import { IonItem, IonContent, IonPage, IonRow, IonCol, IonText, IonList, IonNote, IonPopover, IonSelectOption, IonLabel, IonSelect } from '@ionic/react';
+﻿import { IonItem, IonContent, IonPage, IonRow, IonCol, IonText, IonList, IonNote, IonPopover, IonSelectOption, IonLabel, IonSelect, IonLoading } from '@ionic/react';
 import React, { useState } from 'react';
 //import './Reg.scss';
 import Header from '../../common/Header';
@@ -198,6 +198,11 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
                 <h1>  Edit Plowing </h1>
               )}
             </div>
+            <IonLoading
+                isOpen={this.state.isFormSubmited}
+                onDidDismiss={() => this.setState({ isFormSubmited: false })}
+                message={'Please wait...'}               
+              />
             {this.state.input !== null && this.state.input  && (
             <form className="form">
               <IonRow>

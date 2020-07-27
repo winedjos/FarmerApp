@@ -1,4 +1,4 @@
-﻿import { IonItem, IonContent, IonText, IonPage, IonRow, IonCol, IonSelect,IonSelectOption } from '@ionic/react';
+﻿import { IonItem, IonContent, IonText, IonPage, IonRow, IonCol, IonSelect,IonSelectOption, IonLoading } from '@ionic/react';
 import React, { useState } from 'react';
 //import './Reg.scss';
 import Header from '../../common/Header';
@@ -204,12 +204,18 @@ class SaleEditPage extends React.Component<ISaleAddEditProps, ISaleAddEditState>
               {this.state.isEdit && (
                 <h1>  Edit Sale </h1>
               )}
-            </div>            
+            </div>   
+            <IonLoading
+                isOpen={this.state.isFormSubmited}
+                onDidDismiss={() => this.setState({ isFormSubmited: false })}
+                message={'Please wait...'}               
+              />         
             <form className="form">
               <IonRow>
                 <IonCol>
                     <IonText className="reg-fields">
-                    <label> Land Name </label>
+                    <label> Land  NameName
+                       </label>
                     {this.props.LandDetailData.Landitems && (
                       <IonSelect className="dropclr" onIonChange={this.handleLandChange} value={this.state.input.landDetailId}>
                         {this.props.LandDetailData.Landitems.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.name} selected={data.id == this.state.input.landDetailId} > {data.name} </IonSelectOption>) })}

@@ -1,10 +1,11 @@
-﻿import { IonItem, IonContent, IonPage, IonList, IonNote, IonPopover, IonSelectOption, IonLabel, IonSelect } from '@ionic/react';
+﻿import { IonItem, IonContent, IonPage, IonList, IonNote, IonPopover, IonSelectOption, IonLabel, IonSelect, IonLoading, IonRow, IonCol, IonText } from '@ionic/react';
 import React, { useState } from 'react';
 //import './Reg.scss';
 import Header from '../../common/Header';
 import Footer from '../../common/Footer';
 import { Dispatch } from 'redux';
 import { getPartitionLandById, storePartitionLandData } from "../../../store/actions/PartitionLand";
+import { getLandDetailList } from '../../../store/actions/LandDetail';
 import { useDispatch, connect } from 'react-redux';
 import { resolveAny } from 'dns';
 import { URLSearchParams } from 'url';
@@ -20,7 +21,7 @@ interface IPartLandAddEditProps {
   match: any;
   params: any;
   LandDetailData: any;
-
+  getLandDetailList:any;
 }
 
 interface IPartLandAddEditState {
@@ -149,6 +150,13 @@ class ManagePartitionEditPage extends React.Component<IPartLandAddEditProps,IPar
     }
  
 
+   // {this.props.LandDetailData.areaSize && (
+     // <div>
+    //  Area Size <input type="text" className="input-text"  name="areaSize" onChange={this.handleChange} value={this.state.input.areaSize}  /></div> ) }
+    //{this.state.errors.areaSize && (
+   //   <p className="help is-danger">{this.state.errors.areaSize}</p>
+   // )}
+
   render() {
      return (
       <IonPage>
@@ -158,29 +166,42 @@ class ManagePartitionEditPage extends React.Component<IPartLandAddEditProps,IPar
             <div className="reg-head">
                
                {!this.state.isEdit && (
-                 <h1> Add Manage Partition </h1>
+                 <h1> Add Partition </h1>
                )}
                {this.state.isEdit && (
-                 <h1> Edit Manage Partition </h1>
+                 <h1> Edit Partition </h1>
                )}
-            </div>            
+            </div>     
+            <IonLoading
+                isOpen={this.state.isFormSubmited}
+                onDidDismiss={() => this.setState({ isFormSubmited: false })}
+                message={'Please wait...'}               
+              />       
               <form className="form">
-              <label> Land Name </label>
-               {this.props.LandDetailData.Landitems && (
-                 <IonSelect className="dropclr" onIonChange={this.handleLandChange} value={this.state.input.landDetailId}>
-                   {this.props.LandDetailData.Landitems.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.name} selected={data.id == this.state.input.landDetailId} > {data.name} </IonSelectOption>) })}
-                 </IonSelect>)}
-               {this.state.errors.landDetailId && (
-                 <p className="help is-danger">{this.state.errors.landDetailId}</p>
-               )}
-                Land Direction<input type="text" className="input-text" name="landDirection" onChange={this.handleChange} value={this.state.input.landDirection} />
-               {this.state.errors.landDirection && (
-                 <p className="help is-danger">{this.state.errors.landDirection}</p>
-               )}
-                Area Size <input type="text" className="input-text"  name="areaSize" onChange={this.handleChange} value={this.state.input.areaSize} />
-               {this.state.errors.areaSize && (
-                 <p className="help is-danger">{this.state.errors.areaSize}</p>
-               )}
+              <IonRow>
+                  <IonCol>
+                    <IonText className="reg-fields">
+                        <label> Land Name </label>
+                        {this.props.LandDetailData.Landitems && (
+                          <IonSelect className="dropclr" onIonChange={this.handleLandChange} value={this.state.input.landDetailId}>
+                            {this.props.LandDetailData.Landitems.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.name} selected={data.id == this.state.input.landDetailId} > {data.name} </IonSelectOption>) })}
+                          </IonSelect>)}
+                        {this.state.errors.landDetailId && (
+                          <p className="help is-danger">{this.state.errors.landDetailId}</p>
+                        )}
+                          Land Direction<input type="text" className="input-text" name="landDirection" onChange={this.handleChange} value={this.state.input.landDirection} />
+                        {this.state.errors.landDirection && (
+                          <p className="help is-danger">{this.state.errors.landDirection}</p>
+                        )}
+                      
+                        
+                           Area Size <input type="text" className="input-text"  name="areaSize" onChange={this.handleChange} value={this.state.input.areaSize}  /> 
+                        {this.state.errors.areaSize && (
+                          <p className="help is-danger">{this.state.errors.areaSize}</p>
+                         )}
+                      </IonText>
+                  </IonCol>
+                </IonRow>
                 </form>            
           </div>
         </IonContent>

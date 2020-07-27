@@ -9,6 +9,10 @@
 
 // To learn more about the benefits of this model and instructions on how to
 // opt-in, read https://bit.ly/CRA-PWA
+import { Plugins } from '@capacitor/core';
+import { BackButtonEvent } from '@ionic/core';
+import { RouteComponentProps, withRouter } from 'react-router';
+const { App } = Plugins;
 
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
@@ -134,11 +138,26 @@ function checkValidServiceWorker(swUrl: string, config?: Config) {
     });
 }
 
-export function unregister() {
+export function unregister(history:any) {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready.then(registration => {
       registration.unregister();
     });
   }
+
+  const routerEl = document.querySelector('ion-router');
+  document.addEventListener('ionBackButton', (ev:any) => {
+    ev.detail.register(10, () => {
+      const previousPath =window.document.referrer;//location.state.from.pathname
+      console.log("Hardware button");
+      console.log(previousPath);
+    if (previousPath.indexOf('Edit') > -1){
+      window.location.href = "/home";      
+  } else {    
+    history.goBack();
+  }
+    });
+    
+  });  
 }
 

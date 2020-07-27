@@ -20,10 +20,12 @@ const initialLandDetailData = {
     city: "",
     village: "",
     pattaNumber: "",
+    surveyNumber: "",
     areaSize: "",
     name: "",
   },
   isFormSubmit: true,
+  isLoading:true,
 }
 
 const LandDetailData = (state = initialLandDetailData, action: any) => {
@@ -48,15 +50,19 @@ const LandDetailData = (state = initialLandDetailData, action: any) => {
     case GET_LANDDETAIL_STARTED:
       return {
         ...state,
+        isLoading:true,
+        Landitems:[]
       };
     case GET_LANDDETAIL_COMPLETED:
       return {
         ...state,
+        isLoading:false,
         Landitems: action.payload
       };
     case GET_LANDDETAIL_FAILED:
       return {
         ...state,
+        isLoading:false,
         error: action.error
       };
     case DELETE_LANDDETAIL_STARTED:

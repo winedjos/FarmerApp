@@ -22,6 +22,7 @@ const PestControl: React.SFC<IPestControlProps & RouteComponentProps> = ({ dispa
   React.useEffect(() => {
     dispatch(getPestControlList());
     dispatch(getLandDetailList());
+    setShowLoading(true);
   }, []);
 
   const [showPopover, setShowPopover] = useState(false);
@@ -46,12 +47,14 @@ const PestControl: React.SFC<IPestControlProps & RouteComponentProps> = ({ dispa
     setShowAlert1(true);
   }
 
-  const [showLoading, setShowLoading] = useState(true);
+  const [showLoading, setShowLoading] = useState(false);
 
   const [PestControlgData, setPestControlData] = useState([]);
-
-  if (pestControlData.PetsControlItems.length > 0 && PestControlgData.length === 0) {
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  if (pestControlData.isLoading===false && isDataLoaded === false) {
     setPestControlData(pestControlData.PetsControlItems);
+    setIsDataLoaded(true);
+    setShowLoading(false);
   }
   const PetsControlItems: any = (PestControlgData || []);
   const PetsControlList: any = [];
@@ -73,21 +76,22 @@ const PestControl: React.SFC<IPestControlProps & RouteComponentProps> = ({ dispa
           <form className="form">
             <IonItem className="MLand-Lbl">
               <label className="lbl"> Pest Control Details </label>
-              <a className="add-btn" onClick={() => (setShowLoading(true) == history.push("/pestControlEditPage/" + 0))}>  ADD  </a>
+              <a className="add-btn" onClick={() => { history.push("/pestControlEditPage/" + 0);}}>  ADD  </a>
               <IonLoading
                 isOpen={showLoading}
                 onDidDismiss={() => setShowLoading(false)}
-                message={'Please wait...'}
-                duration={2000}
+                message={'Please wait...'}               
               />
             </IonItem>
             <IonList>
+            <div className="scroll">
               {PetsControlList}
+              </div>
             </IonList>
           </form>         
           <IonAlert
             isOpen={showAlert1}
-            onDidDismiss={() => setShowAlert1(false)}
+            onDidDismiss={() => {setShowAlert1(false);setShowLoading(false);}}
             message={'Successfully Deleted'}
             buttons={['OK']}
           />

@@ -24,7 +24,7 @@ const initialSeedData = {
     noOfLabours: "",
     labourCost: "",
   },
-
+  isLoading:true,
 }
 
 const seedData = (state = initialSeedData, action: any) => {
@@ -48,16 +48,20 @@ const seedData = (state = initialSeedData, action: any) => {
     case GET_SEEDING_STARTED:
       return {
         ...state,
+        Seeditems:[],
+        isLoading:true,
       };
     case GET_SEEDING_COMPLETED:
       return {
         ...state,
-        Seeditems: action.payload
+        Seeditems: action.payload,
+        isLoading:false,
       };
     case GET_SEEDING_FAILED:
       return {
         ...state,
-        error: action.error
+        error: action.error,
+        isLoading:false,
       };
     case DELETE_SEEDING_STARTED:
       return {

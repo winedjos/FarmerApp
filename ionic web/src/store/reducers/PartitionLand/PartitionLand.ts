@@ -23,6 +23,7 @@ const initialPartitionLandData = {
   },
   isLandId: true,
   isFormSubmit: true,
+  isLoading:true,
 }
 
 const PartitionLandData = (state = initialPartitionLandData, action: any) => {
@@ -49,17 +50,21 @@ const PartitionLandData = (state = initialPartitionLandData, action: any) => {
       };
     case GET_PARTITIONLAND_STARTED:
       return {
-        ...state,   
+        ...state, 
+        PLitems:[],
+        isLoading:true,  
       };
     case GET_PARTITIONLAND_COMPLETED:
       return {
         ...state,      
-        PLitems: action.payload
+        PLitems: action.payload,
+        isLoading:false,
       };
     case GET_PARTITIONLAND_FAILED:
       return {
         ...state,      
-        error: action.error
+        error: action.error,
+        isLoading:false,
       };
        case DELETE_PARTITIONLAND_STARTED:
       return {

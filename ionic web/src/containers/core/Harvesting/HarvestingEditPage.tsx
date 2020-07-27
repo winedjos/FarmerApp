@@ -1,4 +1,4 @@
-﻿import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSelect, IonSelectOption, IonText, IonList, IonItem, IonInput, IonCheckbox, IonLabel, IonButton, IonNote, IonBadge, IonRow, IonCol, IonGrid, IonImg } from '@ionic/react';
+﻿import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSelect, IonSelectOption, IonText, IonList, IonItem, IonInput, IonCheckbox, IonLabel, IonButton, IonNote, IonBadge, IonRow, IonCol, IonGrid, IonImg, IonLoading } from '@ionic/react';
 import React, { useState } from 'react';
 //import './Reg.scss';
 import Header from '../../common/Header';
@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { getHarvestById, storeHarvestData } from "../../../store/actions/Harvestings";
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import Footer from '../../common/Footer';
 import moment from 'moment';
 import { getLandDetailList } from '../../../store/actions/LandDetail';
 import { validateHarvesting } from '../../common/FormValidationRules';
@@ -85,6 +86,7 @@ class HarvestingEditPage extends React.Component<IHarvestAddEditProps, IHarvestL
   componentWillReceiveProps(newProps: any) {
 
     if (!newProps.harvestData.isFormSubmit) {
+      this.setState({ isFormSubmited: false });
       window.location.href = '/harvestings';
     }
     if (!this.state.isEdit) {
@@ -203,6 +205,10 @@ class HarvestingEditPage extends React.Component<IHarvestAddEditProps, IHarvestL
               <h1>  Edit Harvesting </h1>
             )}
           </div>
+          <IonLoading
+                isOpen={this.state.isFormSubmited}
+                message={'Please wait...'}               
+              />
           <form className="form">
             <IonRow>
               <IonCol>
@@ -248,9 +254,7 @@ class HarvestingEditPage extends React.Component<IHarvestAddEditProps, IHarvestL
         <div>
           <button className="ok-btn" onClick={this.handleOnsubmit}> SAVE </button>
         </div>
-        <div>
-          <button className="cancel-btn"> CANCEL </button>
-        </div>
+        <Footer />
       </footer>
     </IonPage>
   );

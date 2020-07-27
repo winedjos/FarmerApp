@@ -1,4 +1,4 @@
-﻿import { IonItem, IonContent, IonPage, IonList, IonAlert, IonSelectOption, IonLabel, IonSelect } from '@ionic/react';
+﻿import { IonItem, IonContent, IonPage, IonList, IonAlert, IonSelectOption, IonLabel, IonSelect, IonLoading } from '@ionic/react';
 import React, { useState } from 'react';
 //import './Reg.scss';
 import Header from '../../common/Header';
@@ -23,9 +23,11 @@ const Harvesting: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatc
   React.useEffect(() => {
     dispatch(getHarvestList());
     dispatch(getLandDetailList());
+    setShowLoading(true);
   }, []);
   const [showPopover, setShowPopover] = useState(false);
   const [Harvest, setHarvest] = useState();
+  const [showLoading, setShowLoading] = useState(false);
   const onEditHarvestClick = (id:any) => {
     setHarvest(id);
     history.push("/harvestingEditPage/" + id);
@@ -52,14 +54,17 @@ const Harvesting: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatc
 
   const [HarvestData, setHarvestData] = useState([]);
 
-  if (harvestData.HarvestItems.length > 0 && HarvestData.length === 0) {
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  if (harvestData.isLoading===false && isDataLoaded === false) {
     setHarvestData(harvestData.HarvestItems);
+    setIsDataLoaded(true);
+    setShowLoading(false);
   }
   const HarvestItems: any = (HarvestData || []);
   const HarvestList: any = [];
   HarvestItems.forEach((HarvestItems: any) => HarvestList.push(
     <IonItem key={HarvestItems.id}>
-      <IonLabel> {HarvestItems.cost} </IonLabel>      
+      <IonLabel> {HarvestItems.partitionLandDetail.landDetail.name}<br></br> {HarvestItems.partitionLandDetail.landDirection} <br></br> {HarvestItems.cost} </IonLabel>      
         <img src="assets/Edit.png" height="15" width="15" className="edit-icon" onClick={() => onEditHarvestClick(HarvestItems.id)}></img>      
 
       <img src="assets/Delete.png" height="23" width="23" className="del-icon" onClick={() => onDeleteHarvestClick(HarvestItems.id)} ></img>
@@ -72,7 +77,11 @@ const Harvesting: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatc
           <div className="reg-head">
             <h1>Harvesting Detail List</h1>
           </div>
-
+          <IonLoading
+                isOpen={showLoading}
+                onDidDismiss={() => setShowLoading(false)}
+                message={'Please wait...'}               
+              />
           <form className="form">
             <IonItem className="MLand-Lbl">
               <label className="lbl"> Harvest Details </label>
@@ -84,7 +93,9 @@ const Harvesting: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatc
                 className="add-btn">  ADD  </a>
             </IonItem>
             <IonList>
+            <div className="scroll">
               {HarvestList}
+              </div>
             </IonList>
           </form>
           <IonAlert

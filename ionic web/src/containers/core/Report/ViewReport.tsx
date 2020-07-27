@@ -55,7 +55,7 @@ class ViewReport extends React.Component<IViewReportProps, ISeedAddEditState> {
         <IonContent className=".reg-login">
           <div className="bg-image">
             <div className="reg-head">
-              <h1>View Report </h1>
+              <h1>View Reports </h1>
             </div>
             {this.state.id > 0 && (
               <form className="form">

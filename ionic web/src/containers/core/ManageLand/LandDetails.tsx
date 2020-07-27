@@ -20,6 +20,7 @@ export const LandDetails: React.SFC<ILandDetailProps> = ({ dispatch, LandDetailD
 
   React.useEffect(() => {
     dispatch(getStatelList());
+    
   }, [dispatch]);
 
   const onLandDetailSubmit = () => {
@@ -38,6 +39,9 @@ export const LandDetails: React.SFC<ILandDetailProps> = ({ dispatch, LandDetailD
   };
   const handlePattaNoChange = (event: any) => {
     LandDetailData.landDetailInput.pattaNumber = event.target.value;
+  };
+  const handleSurveyNoChange = (event: any) => {
+    LandDetailData.landDetailInput.surveyNumber = event.target.value;
   };
   const handleAreaSizeChange = (event: any) => {
     LandDetailData.landDetailInput.areaSize = event.target.value;
@@ -83,6 +87,7 @@ export const LandDetails: React.SFC<ILandDetailProps> = ({ dispatch, LandDetailD
                   City <input type="text" placeholder="City" className="input-text" onChange={handleCityChange} required />
                   Village <input type="text" placeholder="Village Name" className="input-text" onChange={handleVillageChange} required />
                   Patta Number <input type="text" placeholder="Land Patta Number" className="input-text" onChange={handlePattaNoChange} required />
+                  Survey Number <input type="text" placeholder="Land Survey Number" className="input-text" onChange={handleSurveyNoChange} required />
                   Area Size <input type="text" placeholder="Size of Land" className="input-text" onChange={handleAreaSizeChange} required />
                   Land Name <input type="text" placeholder="Land Name" className="input-text" onChange={handleLandNameChange} required />
               </IonText>

@@ -22,6 +22,7 @@ const initialPlowingData = {
     plowingExp: "",   
   },
   isFormSubmit: true,
+  isLoading:true,
 }
 
 const plowingData = (state = initialPlowingData, action: any) => {
@@ -46,16 +47,20 @@ const plowingData = (state = initialPlowingData, action: any) => {
     case GET_PLOWINGS_STARTED:
       return {
         ...state,
+        PlowingItems:[],
+        isLoading:true,
       };
     case GET_PLOWINGS_COMPLETED:
       return {
         ...state,
         PlowingItems: action.payload,
+        isLoading:false,
       };
     case GET_PLOWINGS_FAILED:
       return {
         ...state,
-        error: action.error
+        error: action.error,
+        isLoading:false,
       };
     case DELETE_PLOWINGS_STARTED:
       return {

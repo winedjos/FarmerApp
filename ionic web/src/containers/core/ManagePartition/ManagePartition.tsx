@@ -1,4 +1,4 @@
-﻿import { IonItem, IonContent, IonPage, IonList, IonAlert,  IonVirtualScroll, IonNote, IonPopover, IonSelectOption, IonLabel, IonSelect } from '@ionic/react';
+﻿import { IonItem, IonContent, IonPage, IonList, IonAlert,  IonVirtualScroll, IonNote, IonPopover, IonSelectOption, IonLabel, IonSelect, IonLoading } from '@ionic/react';
 import React, { useState } from 'react';
 //import './Reg.scss';
 import Header from '../../common/Header';
@@ -30,8 +30,9 @@ const ManagePartition: React.SFC<IPartitionProps & RouteComponentProps> = ({ dis
   React.useEffect(() => {
     dispatch(getPartitionLandList());
     dispatch(getLandDetailList());
+    setShowLoading(true);
   }, []);
-
+  const [showLoading, setShowLoading] = useState(false);
   const [showAlert1, setShowAlert1] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [partitionLand, setPartitionLand] = useState();
@@ -56,8 +57,11 @@ const ManagePartition: React.SFC<IPartitionProps & RouteComponentProps> = ({ dis
     setDeleteProcess(false);
     setShowAlert1(true);
   }
-  if (PartitionLandData.PLitems.length > 0 && PLdata.length === 0) {
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  if (PartitionLandData.isLoading===false && isDataLoaded === false) {
     setPLData(PartitionLandData.PLitems);
+    setIsDataLoaded(true);
+    setShowLoading(false);
   }
 
   const PLitems: any = (PLdata || []);
@@ -81,6 +85,11 @@ const ManagePartition: React.SFC<IPartitionProps & RouteComponentProps> = ({ dis
           <div className="reg-head">
             <h1>Manage Partition </h1>
           </div>
+          <IonLoading
+                isOpen={showLoading}
+                onDidDismiss={() => setShowLoading(false)}
+                message={'Please wait...'}               
+              />
           <form className="form">
             <IonItem className="MLand-Lbl">
               <label className="lbl">Partition Details </label>

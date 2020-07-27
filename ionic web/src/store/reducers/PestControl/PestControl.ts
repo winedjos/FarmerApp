@@ -52,16 +52,20 @@ const pestControlData = (state = initialPestControlData, action: any) => {
     case GET_PESTCONTROL_STARTED:
       return {
         ...state,
+        PetsControlItems:[],
+        isLoading:true,
       };
     case GET_PESTCONTROL_COMPLETED:
       return {
         ...state,
         PetsControlItems: action.payload,
+        isLoading:false,
       };
     case GET_PESTCONTROL_FAILED:
       return {
         ...state,
-        error: action.error
+        error: action.error,
+        isLoading:false,
       };
     case DELETE_PESTCONTROL_STARTED:
       return {

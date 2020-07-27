@@ -1,4 +1,4 @@
-﻿import { IonItem, IonContent, IonPage, IonList, IonAlert, IonSelectOption, IonLabel, IonSelect } from '@ionic/react';
+﻿import { IonItem, IonContent, IonPage, IonList, IonAlert, IonSelectOption, IonLabel, IonSelect, IonLoading } from '@ionic/react';
 import React, { useState } from 'react';
 //import './Reg.scss';
 import Header from '../../common/Header';
@@ -23,6 +23,7 @@ const Sale: React.SFC<ISaleProps & RouteComponentProps> = ({ dispatch, saleData,
   React.useEffect(() => {
     dispatch(getSaleList());
     dispatch(getLandDetailList());
+    setShowLoading(true);
   }, []);
   const [showPopover, setShowPopover] = useState(false);
   const [Sale, setSale] = useState()
@@ -30,7 +31,7 @@ const Sale: React.SFC<ISaleProps & RouteComponentProps> = ({ dispatch, saleData,
     setSale(id);
     history.push("/saleEditPage/" + id);
   }
-
+  const [showLoading, setShowLoading] = useState(false);
   const [showAlert1, setShowAlert1] = useState(false);
   const [saleDel, setSaleDel] = useState();  
   const [showConfirm, setShowConfirm] = useState(false);
@@ -49,9 +50,11 @@ const Sale: React.SFC<ISaleProps & RouteComponentProps> = ({ dispatch, saleData,
   }
 
   const [SaleData, setSaleData] = useState([]);
-
-  if (saleData.SaleItems.length > 0 && SaleData.length === 0) {
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  if (saleData.isLoading===false && isDataLoaded === false) {
     setSaleData(saleData.SaleItems);
+    setIsDataLoaded(true);
+    setShowLoading(false);
   }
   const SaleItems: any = (SaleData || []);
   const SaleList: any = [];
@@ -69,7 +72,11 @@ const Sale: React.SFC<ISaleProps & RouteComponentProps> = ({ dispatch, saleData,
           <div className="reg-head">
             <h1>Sale List </h1>
           </div>
-
+          <IonLoading
+                isOpen={showLoading}
+                onDidDismiss={() => setShowLoading(false)}
+                message={'Please wait...'}               
+              />
           <form className="form">
             <IonItem className="MLand-Lbl">
               <label className="lbl"> Sale Details </label>
@@ -81,7 +88,9 @@ const Sale: React.SFC<ISaleProps & RouteComponentProps> = ({ dispatch, saleData,
                 className="add-btn">  ADD  </a>
             </IonItem>
             <IonList>
+            <div className="scroll">
               {SaleList}
+              </div>
             </IonList>
           </form>
           <IonAlert

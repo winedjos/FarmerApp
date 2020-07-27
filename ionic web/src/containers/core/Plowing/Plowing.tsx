@@ -1,4 +1,4 @@
-﻿import { IonItem, IonContent, IonPage, IonList, IonAlert, IonSelectOption, IonLabel, IonSelect } from '@ionic/react';
+﻿import { IonItem, IonContent, IonPage, IonList, IonAlert, IonSelectOption, IonLabel, IonSelect, IonLoading } from '@ionic/react';
 import React, { useState } from 'react';
 //import './Reg.scss';
 import Header from '../../common/Header';
@@ -26,10 +26,11 @@ const Plowing: React.SFC<IPlowingProps & RouteComponentProps> = ({ dispatch, plo
     dispatch(getPlowingList());
     dispatch(getPartitionLandList());
     dispatch(getLandDetailList());
+    setShowLoading(true);
   }, []);
 
   const [showPopover, setShowPopover] = useState(false);
-
+  const [showLoading, setShowLoading] = useState(false);
   const [Plowing, setPlowing] = useState();
   const onEditPlowingClick = (id:any) => {
     setPlowing(id);
@@ -54,9 +55,11 @@ const Plowing: React.SFC<IPlowingProps & RouteComponentProps> = ({ dispatch, plo
   }
 
   const [PlowingData, setPlowingData] = useState([]);
-
-  if (plowingData.PlowingItems.length > 0 && PlowingData.length === 0) {
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  if (plowingData.isLoading===false && isDataLoaded === false) {
     setPlowingData(plowingData.PlowingItems);
+    setIsDataLoaded(true);
+    setShowLoading(false);
   }
   const PlowingItems: any = (PlowingData || []);
   const PlowingList: any = [];
@@ -75,6 +78,11 @@ const Plowing: React.SFC<IPlowingProps & RouteComponentProps> = ({ dispatch, plo
           <div className="reg-head">
             <h1>Plowing List </h1>
           </div>
+          <IonLoading
+                isOpen={showLoading}
+                onDidDismiss={() => setShowLoading(false)}
+                message={'Please wait...'}               
+              />
 
           <form className="form">
             <IonItem className="MLand-Lbl">
@@ -87,7 +95,9 @@ const Plowing: React.SFC<IPlowingProps & RouteComponentProps> = ({ dispatch, plo
                 className="add-btn">  ADD  </a>
             </IonItem>
             <IonList>
+            <div className="scroll">
               {PlowingList}
+              </div>
             </IonList>
           </form>
           <IonAlert

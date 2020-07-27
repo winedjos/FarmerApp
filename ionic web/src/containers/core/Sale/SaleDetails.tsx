@@ -3,7 +3,7 @@ import * as React from 'react';
 //import './Reg.scss';
 import Header from '../../common/Header';
 import Footer from '../../common/Footer';
-import DatePicker from "react-datepicker";
+import DatePicker, { setDefaultLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import { storeSaleData } from "../../../store/actions/Sales";
@@ -11,6 +11,14 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { getPartitionLandList } from '../../../store/actions/PartitionLand';
 import { getLandDetailList } from '../../../store/actions/LandDetail';
+//import mobiscroll from '@mobiscroll/react';
+//import { TooltipsModule } from 'ionic-tooltips';
+import { setPriority } from 'os';
+import { text } from 'ionicons/icons';
+//import '@mobiscroll/react/dist/css/mobiscroll.min.css';
+//import { setContext } from 'redux-saga/effects';
+import ReactTooltip from "react-tooltip"
+
 
 interface ISaleProps {
   dispatch: Dispatch<any>;
@@ -20,18 +28,21 @@ interface ISaleProps {
 }
 
 const SaleDetails: React.SFC<ISaleProps> = ({ dispatch, saleData, PartitionLandData, LandDetailData}) => {
+
+  
   React.useEffect(() => {
     setStartDate((startDate))
     dispatch(getPartitionLandList());
-    dispatch(getLandDetailList());
-  }, [])
+    dispatch(getLandDetailList());  
+   }, [])
   const [startDate, setStartDate] = useState(new Date());
  // Date < DatePicker selected = { startDate } onChange = { date => { setStartDate(date || new Date()) }} className = "input-text" />
   const onSaleSubmit = () => {
     dispatch(storeSaleData(saleData.saleInput));
   }
 
-  const handleDateChange = (date: any) => {
+ 
+ const handleDateChange = (date: any) => {
     setStartDate(date || new Date());
     saleData.saleInput.saleDate = date;
   }
@@ -100,9 +111,13 @@ const SaleDetails: React.SFC<ISaleProps> = ({ dispatch, saleData, PartitionLandD
                     {PLitems.map((data: any) => { return <IonSelectOption value={data.id} key={data.id} title={data.landDirection} selected={PartitionLandData.PLitems.landDetails}> {data.landDirection} </IonSelectOption> })}
                   </IonSelect>
                   Date  <DatePicker dateFormat="dd/MM/yyyy" selected={startDate} onChange={(date: Date) => handleDateChange(date)} className="input-text" />                    
-                  Quantity <input type="text" placeholder="Material Quantity" className="input-text" onChange={handleQuantityChange} required />
-                  Price <input type="text" placeholder="Material Price" className="input-text" onChange={handlePriceChange} required />
-                  Buyer Name <input type="text" placeholder="Buyer Name" className="input-text" onChange={handleBNChange} required />
+                  
+                  Quantity <input type="text"  data-tip data-for="registerTip" placeholder="Material Quantity" className="input-text" onChange={handleQuantityChange} required />
+                  <ReactTooltip id="registerTip" place="top" effect="solid">
+        Tooltip for the register button
+      </ReactTooltip>
+                  Price price <input type="text" placeholder="Material Price" className="input-text" onChange={handlePriceChange} required />
+                  Buyer Name  <input type="text" placeholder="Buyer Name" className="input-text" onChange={handleBNChange} required />
                   Buyer Mobile Number <input type="text" placeholder="Buyer Phone number" className="input-text" onChange={handleMBChange} required />
                 </IonText>
               </IonCol>

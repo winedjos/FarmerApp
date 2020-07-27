@@ -14,6 +14,7 @@ const initialRegData = {
     email:"",
   },
   isFormSubmit: false,  
+  isLoading:true,
 }
 
 const regData = (state=initialRegData, action:any) => {

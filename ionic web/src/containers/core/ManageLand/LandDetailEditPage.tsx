@@ -1,4 +1,4 @@
-﻿import { IonItem, IonContent, IonPage,IonText,IonCol,IonRow, IonList, IonNote, IonPopover, IonSelectOption, IonLabel, IonSelect } from '@ionic/react';
+﻿import { IonItem, IonContent, IonPage,IonText,IonCol,IonRow, IonList, IonNote, IonPopover, IonSelectOption, IonLabel, IonSelect, IonLoading } from '@ionic/react';
 import React, { useState } from 'react';
 //import './Reg.scss';
 import Header from '../../common/Header';
@@ -157,7 +157,11 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
                 <h1>  Edit Land Detail </h1>
               )}
             </div>
-
+            <IonLoading
+                isOpen={this.state.isFormSubmited}
+                onDidDismiss={() => this.setState({ isFormSubmited: false })}
+                message={'Please wait...'}               
+              />
             {this.state.input && this.state.input !== null && (
               <form className="form">
                 <IonRow>
@@ -177,6 +181,22 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
                           <p className="help is-danger">{this.state.errors.StateId}</p>
                         )}
                       </IonItem>
+                      Land Name <input type="text" name="name" className={`input-text ${this.state.errors.email && 'is-danger'}`} onChange={this.handleChange} value={this.state.input.name} required />
+                      {this.state.errors.name && (
+                        <p className="help is-danger">{this.state.errors.name}</p>
+                      )}
+                      Patta Number <input type="text" name="pattaNumber" className={`input-text ${this.state.errors.email && 'is-danger'}`} onChange={this.handleChange} value={this.state.input.pattaNumber} required />
+                      {this.state.errors.pattaNumber && (
+                        <p className="help is-danger">{this.state.errors.pattaNumber}</p>
+                      )}
+                      Survey Number <input type="text" name="surveyNumber" className={`input-text ${this.state.errors.email && 'is-danger'}`} onChange={this.handleChange} value={this.state.input.surveyNumber} required />
+                      {this.state.errors.pattaNumber && (
+                        <p className="help is-danger">{this.state.errors.pattaNumber}</p>
+                      )}
+                      Area Size <input type="text" name="areaSize" className={`input-text ${this.state.errors.email && 'is-danger'}`} onChange={this.handleChange} value={this.state.input.areaSize} required />
+                      {this.state.errors.areaSize && (
+                        <p className="help is-danger">{this.state.errors.areaSize}</p>
+                      )}
                       City <input type="text" name="city" className={`input-text ${this.state.errors.email && 'is-danger'}`} onChange={this.handleChange} value={this.state.input.city} required />
                       {this.state.errors.city && (
                         <p className="help is-danger">{this.state.errors.city}</p>
@@ -185,18 +205,7 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
                       {this.state.errors.village && (
                         <p className="help is-danger">{this.state.errors.village}</p>
                       )}
-                      Patta Number <input type="text" name="pattaNumber" className={`input-text ${this.state.errors.email && 'is-danger'}`} onChange={this.handleChange} value={this.state.input.pattaNumber} required />
-                      {this.state.errors.pattaNumber && (
-                        <p className="help is-danger">{this.state.errors.pattaNumber}</p>
-                      )}
-                      Area Size <input type="text" name="areaSize" className={`input-text ${this.state.errors.email && 'is-danger'}`} onChange={this.handleChange} value={this.state.input.areaSize} required />
-                      {this.state.errors.areaSize && (
-                        <p className="help is-danger">{this.state.errors.areaSize}</p>
-                      )}
-                      Land Name <input type="text" name="name" className={`input-text ${this.state.errors.email && 'is-danger'}`} onChange={this.handleChange} value={this.state.input.name} required />
-                      {this.state.errors.name && (
-                        <p className="help is-danger">{this.state.errors.name}</p>
-                      )}
+                                                                  
                     </IonText>
                   </IonCol>
                 </IonRow>

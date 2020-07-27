@@ -1,4 +1,4 @@
-﻿import { IonItem, IonContent, IonPage, IonList, IonAlert, IonSelectOption, IonLabel, IonSelect } from '@ionic/react';
+﻿import { IonItem, IonContent, IonPage, IonList, IonAlert, IonSelectOption, IonLabel, IonSelect, IonLoading } from '@ionic/react';
 import React, { useState } from 'react';
 //import './Reg.scss';
 import Header from '../../common/Header';
@@ -24,6 +24,7 @@ const Seeding: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatch, 
   React.useEffect(() => {
     dispatch(getSeedList());
     dispatch(getLandDetailList());
+    setShowLoading(true);
   }, []);
   const [showPopover, setShowPopover] = useState(false);
   // <IonButton onClick={() => setShowModal(false)}>Close Modal</IonButton>
@@ -35,6 +36,7 @@ const Seeding: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatch, 
   //setShowModal(false);
   //<button onClick={() => onaddClick}> add  </button>
   //}
+  const [showLoading, setShowLoading] = useState(false);
   const [Seed, setSeed] = useState();
   const onEditSeedClick = (id:any) => {
     setSeed(id);
@@ -60,9 +62,11 @@ const Seeding: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatch, 
   }
 
   const [SeedData, setSeedData] = useState([]);
-
-  if (seedData.Seeditems.length > 0 && SeedData.length === 0) {
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  if (seedData.isLoading===false && isDataLoaded === false) {
     setSeedData(seedData.Seeditems);
+    setIsDataLoaded(true);
+    setShowLoading(false);
   }
   const Seeditems: any = (SeedData || []);
   const SeedList: any = [];
@@ -84,7 +88,11 @@ const Seeding: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatch, 
           <div className="reg-head">
             <h1>Seeding List </h1>
           </div>
-
+          <IonLoading
+                isOpen={showLoading}
+                onDidDismiss={() => setShowLoading(false)}
+                message={'Please wait...'}               
+              />
           <form className="form">
             <IonItem className="MLand-Lbl">
               <label className="lbl"> Seeding Details </label>
@@ -96,7 +104,9 @@ const Seeding: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatch, 
                 className="add-btn">  ADD  </a>
             </IonItem>
             <IonList>
+            <div className="scroll">
               {SeedList}
+              </div>
             </IonList>
           </form>
           <IonAlert

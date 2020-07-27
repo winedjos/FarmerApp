@@ -57,6 +57,7 @@ import PlowingEditPage from './containers/core/Plowing/PlowingEditPage';
 import Login from './containers/core/Registration/Login';
 import { AppFrame } from './containers/common/AppFrame/intex';
 import ViewReport from './containers/core/Report/ViewReport';
+import ViewAll from './containers/core/Report/ViewAll';
 
 interface IAppProps {
 }
@@ -122,7 +123,8 @@ if (loggedInString && loggedInString!=="" && loggedInString!==null) {
             <Route path="/reports" component={Reports} exact={true} />        
             <Route path="/loginpage" component={LoginPage} exact={true} />        
             <Route path="/firstpage" component={FirstPage} exact={true} />
-          <Route path="/viewReports/:id" component={ViewReport} exact={true} />
+          <Route path="/viewReports" component={ViewReport} exact={true} />
+          <Route path="/viewAll" component={ViewAll} exact={true} />
         
       </IonRouterOutlet>
     </IonReactRouter>

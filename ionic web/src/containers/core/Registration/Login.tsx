@@ -1,4 +1,4 @@
-﻿import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSelect, IonSelectOption, IonText, IonList, IonItem, IonInput, IonCheckbox, IonLabel, IonButton, IonNote, IonBadge, IonRow, IonCol, IonGrid, IonImg, IonFooter } from '@ionic/react';
+﻿import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSelect, IonSelectOption, IonText, IonList, IonItem, IonInput, IonCheckbox, IonLabel, IonButton, IonNote, IonBadge, IonRow, IonCol, IonGrid, IonImg, IonFooter, IonLoading } from '@ionic/react';
 import * as React from 'react';
 import { useState } from 'react';
 import './Reg.scss';
@@ -17,9 +17,11 @@ interface ILoginProps {
 
 const Login: React.SFC<ILoginProps> = ({ dispatch, loginData}) => {
 
+  const [showLoading, setShowLoading] = useState(false);
   const onHandleSubmit = (e: any) => {
     e.preventDefault();
     dispatch(fetchLoginData(loginData.loginInput));
+    setShowLoading(true);
   };
 
   const handleUserNameChange = (event: any) => {
@@ -50,6 +52,7 @@ const Login: React.SFC<ILoginProps> = ({ dispatch, loginData}) => {
       console.log(result);
       result["isgooglelogin"]=true;
       dispatch(fetchLoginData(result));
+      setShowLoading(true);
       // history.push({
       //   pathname: '/home',
       //   state: { name: result.name || result.displayName, image: result.imageUrl, email: result.email }
@@ -68,10 +71,12 @@ const Login: React.SFC<ILoginProps> = ({ dispatch, loginData}) => {
     isShowError = false;
     window.localStorage.setItem('AUTHDATA', JSON.stringify(loginData));
     window.location.href = "/home";
+    setShowLoading(false);
   }
   else if (loginData && loginData.isFormSubmit && !loginData.status.statusValue) {
     isShowError = true;
     window.localStorage.setItem('AUTHDATA', "");
+    setShowLoading(false);
   }  
 
  return (
@@ -81,6 +86,11 @@ const Login: React.SFC<ILoginProps> = ({ dispatch, loginData}) => {
           <div className="reg-head">
             <h1>Login</h1>
           </div>
+          <IonLoading
+                isOpen={showLoading}
+                onDidDismiss={() => setShowLoading(false)}
+                message={'Please wait...'}               
+              />
          <form className="form" >
             <IonRow>
               <IonCol>

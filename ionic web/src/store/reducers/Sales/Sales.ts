@@ -24,6 +24,7 @@ const initialSaleData = {
     buyerMobileNumber: "",
   },
   isFormSubmit: true,
+  isLoading:true,
 }
 
 const saleData = (state = initialSaleData, action: any) => {
@@ -48,16 +49,20 @@ const saleData = (state = initialSaleData, action: any) => {
     case GET_SALES_STARTED:
       return {
         ...state,
+        SaleItems:[],
+        isLoading:true,
       };
     case GET_SALES_COMPLETED:
       return {
         ...state,
         SaleItems: action.payload,
+        isLoading:false,
       };
     case GET_SALES_FAILED:
       return {
         ...state,
-        error: action.error
+        error: action.error,
+        isLoading:false,
       };
     case DELETE_SALES_STARTED:
       return {

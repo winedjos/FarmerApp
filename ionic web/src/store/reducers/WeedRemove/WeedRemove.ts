@@ -23,6 +23,7 @@ const initialWeedRemoveData = {
     labourCost: "",
   },
   isFormSubmit: true,
+  isLoading:true,
 }
 
 const weedRemoveData = (state = initialWeedRemoveData, action: any) => {
@@ -47,16 +48,20 @@ const weedRemoveData = (state = initialWeedRemoveData, action: any) => {
     case GET_WEEDREMOVE_STARTED:
       return {
         ...state,
+        WeedItems:[],
+        isLoading:true,
       };
     case GET_WEEDREMOVE_COMPLETED:
       return {
         ...state,
         WeedItems: action.payload,  
+        isLoading:false,
       };
     case GET_WEEDREMOVE_FAILED:
       return {
         ...state,
-        error: action.error
+        error: action.error,
+        isLoading:false,
       };
     case DELETE_WEEDREMOVE_STARTED:
       return {

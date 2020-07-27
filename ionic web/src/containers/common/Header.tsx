@@ -19,7 +19,7 @@ interface IHeaderProps {
   //LandDetailData: any;  
 }
 
-const Header: React.SFC<IHeaderProps & RouteComponentProps> = ({ history }) => {
+const Header: React.SFC<IHeaderProps & RouteComponentProps> = ({ history ,location,match,route}) => {
  // const BrowserHistory = require('react-router/lib/BrowserHistory').default;
  // onClick = { BrowserHistory.goBack }
   const clickLogout = () => {
@@ -55,17 +55,26 @@ const Header: React.SFC<IHeaderProps & RouteComponentProps> = ({ history }) => {
     }
   });
 
+  function goBack(){    
+    var old=document.referrer;    
+    const previousPath =window.document.referrer;//location.state.from.pathname
+    if (previousPath.indexOf('Edit') > -1){
+      window.location.href = "/home";      
+  } else {    
+    history.goBack();
+  }
+  }
   return (   
     <IonHeader className="headcolor">
        <IonRow>
               <IonCol className="h-img">
-              <img src="assets/backarrow.png" height="20" onClick={history.goBack} className="arrow"></img> 
+              <img src="assets/backarrow.png" height="20" onClick={goBack} className="arrow"></img> 
               </IonCol>
               <IonCol className="h-img">
-              <img src="assets/Logocropped.png" height="40" onClick={()=>{window.location.href = "home";}} className="logo" ></img>
+              <img src="assets/Logocropped.png" height="65" onClick={()=>{window.location.href = "home";}} className="logo" ></img>
               </IonCol>
 
-              <IonCol className="h-img">
+             <IonCol className="h-img">
               
               </IonCol>
 
@@ -73,9 +82,9 @@ const Header: React.SFC<IHeaderProps & RouteComponentProps> = ({ history }) => {
               
               </IonCol>
 
-              <IonCol className="h-img">
-              <img src="assets/searchicon.png" height="20" className="search" ></img>
-              </IonCol>
+              { /*<IonCol className="h-img">
+              <img src="assets/searchicon.png" height="30" className="arrow" ></img>
+              </IonCol>*/}
 
               <IonCol className="h-img">
               <button className="cancel-btn" onClick={clickLogout} style={{width:"auto"}}> Logout </button>
