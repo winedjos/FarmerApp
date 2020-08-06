@@ -16,6 +16,7 @@ export function* storePartitionLandData(request: any) {
     yield put({
       type: STORE_PARTITIONLAND_COMPLETED,
       input: request.input,
+      payload:data
     });
 
   } catch (e) {

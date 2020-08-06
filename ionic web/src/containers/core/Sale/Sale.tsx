@@ -70,23 +70,18 @@ const Sale: React.SFC<ISaleProps & RouteComponentProps> = ({ dispatch, saleData,
       <IonContent className=".reg-login">
         <div className="bg-image">
           <div className="reg-head">
-            <h1>Sale List </h1>
+            <div className="MLand-Lbl">Sale List </div>
+            <a onClick={() => {
+            history.push("/saleEditPage/0")
+              }}
+            className="add-btn">  ADD  </a>
           </div>
           <IonLoading
                 isOpen={showLoading}
                 onDidDismiss={() => setShowLoading(false)}
                 message={'Please wait...'}               
               />
-          <form className="form">
-            <IonItem className="MLand-Lbl">
-              <label className="lbl"> Sale Details </label>
-              <a onClick={() => {
-
-                history.push("/saleEditPage/0")
-              }}
-
-                className="add-btn">  ADD  </a>
-            </IonItem>
+          <form className="form">            
             <IonList>
             <div className="scroll">
               {SaleList}

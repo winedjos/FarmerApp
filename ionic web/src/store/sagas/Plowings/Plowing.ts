@@ -14,6 +14,7 @@ export function* storePlowingData(request: any) {
     yield put({
       type: STORE_PLOWINGS_COMPLETED,
       input: request.input,
+      payload: data
     });
 
   } catch (e) {

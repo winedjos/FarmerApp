@@ -15,6 +15,7 @@ export function* storeWeedRemoveData(request: any) {
     yield put({
       type: STORE_WEEDREMOVE_COMPLETED,
       input: request.input,
+      payload: data
     });
 
   } catch (e) {

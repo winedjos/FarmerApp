@@ -24,7 +24,7 @@ const initialHarvestData = {
     labourCost: "",
   },
   isLoading:true,
-
+  isHarvestExist: false
 }
 
 const harvestData = (state = initialHarvestData, action: any) => {
@@ -41,7 +41,8 @@ const harvestData = (state = initialHarvestData, action: any) => {
         ...state,
         isFormSubmit: false,
         harvestInput: action.input,
-        HarvestItems: data
+        HarvestItems: data,
+        isHarvestExist: action.payload.status
       };
     case STORE_HARVESTINGS_FAILED:
       return {

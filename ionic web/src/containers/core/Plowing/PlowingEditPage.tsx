@@ -74,7 +74,13 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
   }
 
   componentWillReceiveProps(newProps: any) {
-    if (!newProps.plowingData.isFormSubmit) {
+    if(newProps.plowingData.isPlowingExist)
+    {
+      this.setState({ isFormSubmited: false });
+      alert("Given land name exist");
+      return;
+    }
+    if (!newProps.plowingData.isFormSubmit && !newProps.plowingData.isFormSubmit ) {
       window.location.href = '/plowings';
     }
     if (!this.state.isEdit) {
@@ -92,7 +98,7 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
           partitionLandDetailId: item.partitionLandDetailId,
         },
         selectedLand: land,
-        partitionList: land.partitionLandDetails
+        partitionList: land.partitionLandDetails,
         //input.StateId: newProps.LandDetailData.LandItem.selectedStateListId,
         // state: newProps.LandDetailData.Landitems.state
       });
@@ -190,12 +196,12 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
         <Header />
         <IonContent className=".reg-login">
           <div className="bg-image">
-            <div className="reg-head">              
+            <div className="AEreg-head">              
               {!this.state.isEdit && (
-                <h1>  Add Plowing </h1>
+                <div>  Add Plowing </div>
               )}
               {this.state.isEdit && (
-                <h1>  Edit Plowing </h1>
+                <div>  Edit Plowing </div>
               )}
             </div>
             <IonLoading
@@ -242,10 +248,8 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
           </div>
         </IonContent>
         <footer className="footcolor" >
-          <div>
-            <button className="ok-btn" onClick={this.handleOnsubmit}>SAVE </button>
-          </div>
-          <Footer />
+        <Footer />
+            <button className="ok-btn" onClick={this.handleOnsubmit}>SAVE </button>          
         </footer>
       </IonPage>
     );

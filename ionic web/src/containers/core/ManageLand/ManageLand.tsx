@@ -92,7 +92,14 @@ const ManageLand: React.FunctionComponent<ILandDetailProps & RouteComponentProps
       <IonContent className=".reg-login">
         <div className="bg-image">
           <div className="reg-head">
-            <h1>Manage Land </h1>
+            <div className="MLand-Lbl"> Manage Land </div>
+              <a onClick={() =>
+              {
+                history.push("/landDetailEditPage/" + 0);              
+               
+              }}
+                className="add-btn">ADD</a>
+           
           </div>
           <IonLoading
                 isOpen={showLoading}
@@ -100,17 +107,7 @@ const ManageLand: React.FunctionComponent<ILandDetailProps & RouteComponentProps
                 message={'Please wait...'}               
               />
           <form className="form">
-            <IonItem className="MLand-Lbl">
-              <label className="lbl"> Land Details </label>
-              <a onClick={() =>
-              {
-                history.push("/landDetailEditPage/" + 0);
-               
-                //history.push("/landDetails")
-              }}
-
-                className="add-btn">  ADD  </a>
-            </IonItem>
+     
   
             <IonList>
               <div className="scroll">

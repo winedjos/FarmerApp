@@ -84,8 +84,13 @@ class HarvestingEditPage extends React.Component<IHarvestAddEditProps, IHarvestL
   }
 
   componentWillReceiveProps(newProps: any) {
-
-    if (!newProps.harvestData.isFormSubmit) {
+    if(newProps.harvestData.isHarvestExist)
+    {
+      this.setState({ isFormSubmited: false });
+      alert("Given land name exist");
+      return;
+    }
+    if (!newProps.harvestData.isFormSubmit && !newProps.harvestData.isFormSubmit) {
       this.setState({ isFormSubmited: false });
       window.location.href = '/harvestings';
     }
@@ -197,12 +202,12 @@ class HarvestingEditPage extends React.Component<IHarvestAddEditProps, IHarvestL
       <Header />
       <IonContent className=".reg-login">
         <div className="bg-image">
-          <div className="reg-head">
+          <div className="AEreg-head">
             {!this.state.isEdit && (
-              <h1>  Add Harvesting </h1>
+              <div>  Add Harvesting </div>
             )}
             {this.state.isEdit && (
-              <h1>  Edit Harvesting </h1>
+              <div>  Edit Harvesting </div>
             )}
           </div>
           <IonLoading
@@ -251,10 +256,8 @@ class HarvestingEditPage extends React.Component<IHarvestAddEditProps, IHarvestL
         </div>
       </IonContent>
       <footer className="footcolor" >
-        <div>
+      <Footer /> 
           <button className="ok-btn" onClick={this.handleOnsubmit}> SAVE </button>
-        </div>
-        <Footer />
       </footer>
     </IonPage>
   );

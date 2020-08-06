@@ -87,8 +87,13 @@ class SeedEditPage extends React.Component<ISeedAddEditProps, ISeedAddEditState>
   }
 
   componentWillReceiveProps(newProps: any) {
-
-    if (!newProps.seedData.isFormSubmit) {
+    if(newProps.seedData.isSeedExist)
+    {
+      this.setState({ isFormSubmited: false });
+      alert("Given land name exist");
+      return;
+    }
+    if (!newProps.seedData.isFormSubmit && !newProps.seedData.isFormSubmit) {
       window.location.href = '/seedings';
     }
     if (!this.state.isEdit) {
@@ -199,12 +204,12 @@ class SeedEditPage extends React.Component<ISeedAddEditProps, ISeedAddEditState>
         <Header />
         <IonContent className=".reg-login">
           <div className="bg-image">
-            <div className="reg-head">              
+            <div className="AEreg-head">              
               {!this.state.isEdit && (
-                <h1>  Add Seeding </h1>
+                <div>  Add Seeding </div>
               )}
               {this.state.isEdit && (
-                <h1>  Edit Seeding </h1>
+                <div>  Edit Seeding </div>
               )}
             </div>
             <IonLoading
@@ -262,10 +267,8 @@ class SeedEditPage extends React.Component<ISeedAddEditProps, ISeedAddEditState>
           </div>
         </IonContent>
         <footer className="footcolor" >
-          <div>
-            <button className="ok-btn" onClick={this.handleOnsubmit}> SAVE </button>
-          </div>
-          <Footer />
+        <Footer />
+            <button className="ok-btn" onClick={this.handleOnsubmit}> SAVE </button>          
         </footer>
       </IonPage>
     );

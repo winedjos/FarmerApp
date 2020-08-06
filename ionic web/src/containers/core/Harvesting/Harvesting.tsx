@@ -75,23 +75,18 @@ const Harvesting: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatc
       <IonContent className=".reg-login">
         <div className="bg-image">
           <div className="reg-head">
-            <h1>Harvesting Detail List</h1>
+            <div  className="MLand-Lbl">Harvesting Detail List</div>
+            <a onClick={() => {
+              history.push("/harvestingEditPage/0")
+              }}
+            className="add-btn">  ADD  </a>
           </div>
           <IonLoading
                 isOpen={showLoading}
                 onDidDismiss={() => setShowLoading(false)}
                 message={'Please wait...'}               
               />
-          <form className="form">
-            <IonItem className="MLand-Lbl">
-              <label className="lbl"> Harvest Details </label>
-              <a onClick={() => {
-
-                history.push("/harvestingEditPage/0")
-              }}
-
-                className="add-btn">  ADD  </a>
-            </IonItem>
+          <form className="form">            
             <IonList>
             <div className="scroll">
               {HarvestList}

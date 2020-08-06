@@ -72,8 +72,14 @@ class PestControlEditPage extends React.Component<IPestControlAddEditProps, IPes
   }
 
   componentWillReceiveProps(newProps: any) {
-
-    if (!newProps.pestControlData.isFormSubmit) {
+    if(newProps.pestControlData.isPestControlExist)
+    {
+      this.setState({ isFormSubmited: false });
+      alert("Given land name exist");
+      return;
+    }
+    if (!newProps.pestControlData.isFormSubmit && !newProps.pestControlData.isFormSubmit) {
+      this.setState({ isFormSubmited: false });
       window.location.href = '/pestControls';
     }
     if (!this.state.isEdit) {
@@ -186,12 +192,12 @@ class PestControlEditPage extends React.Component<IPestControlAddEditProps, IPes
         <Header />
         <IonContent className=".reg-login">
           <div className="bg-image">
-            <div className="reg-head">                 
+            <div className="AEreg-head">                 
                  {!this.state.isEdit && (
-                   <h1>  Add Pest Control </h1>
+                   <div>  Add Pest Control </div>
                  )}
                  {this.state.isEdit && (
-                   <h1>  Edit Pest Control </h1>
+                   <div>  Edit Pest Control </div>
                  )}
                </div>
                <IonLoading
@@ -247,10 +253,8 @@ class PestControlEditPage extends React.Component<IPestControlAddEditProps, IPes
           </div>
         </IonContent>
         <footer className="footcolor" >
-             <div>
-               <button className="ok-btn" onClick={this.handleOnsubmit}> SAVE </button>
-          </div>
-             <Footer />
+        <Footer />
+               <button className="ok-btn" onClick={this.handleOnsubmit}> SAVE </button>      
         </footer>
       </IonPage>
     );

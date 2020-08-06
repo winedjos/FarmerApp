@@ -25,6 +25,7 @@ const initialPestControlData = {
   },
   isFormSubmit: true,
   isLoading: true,
+  isPestControlExist:false
 }
 
 const pestControlData = (state = initialPestControlData, action: any) => {
@@ -40,6 +41,7 @@ const pestControlData = (state = initialPestControlData, action: any) => {
       return {
         ...state,
         isFormSubmit: false,
+        isPestControlExist: action.payload.status
        // isLoading: false,
         // status: action.payload.status     
       };

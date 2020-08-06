@@ -86,7 +86,11 @@ const Seeding: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatch, 
       <IonContent className=".reg-login">
         <div className="bg-image">
           <div className="reg-head">
-            <h1>Seeding List </h1>
+            <div className="MLand-Lbl">Seeding List </div>
+            <a onClick={() => {
+        history.push("/seedEditPage/0")
+        }}
+        className="add-btn">  ADD  </a>
           </div>
           <IonLoading
                 isOpen={showLoading}
@@ -94,15 +98,6 @@ const Seeding: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatch, 
                 message={'Please wait...'}               
               />
           <form className="form">
-            <IonItem className="MLand-Lbl">
-              <label className="lbl"> Seeding Details </label>
-              <a onClick={() => {
-
-                history.push("/seedEditPage/0")
-              }}
-
-                className="add-btn">  ADD  </a>
-            </IonItem>
             <IonList>
             <div className="scroll">
               {SeedList}

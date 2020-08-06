@@ -82,8 +82,15 @@ class WeedRemoveEditPage extends React.Component<IWeedRemoveAddEditProps, IWeedR
   }
 
   componentWillReceiveProps(newProps: any) {
+    if(newProps.weedRemoveData.isWeedRemoveExist)
+    {
+      this.setState({ isFormSubmited: false });
+      alert("Given land name exist");
+      return;
+    }
 
-    if (!newProps.weedRemoveData.isFormSubmit) {
+    if (!newProps.weedRemoveData.isFormSubmit && !newProps.weedRemoveData.isFormSubmit) {
+      this.setState({ isFormSubmited: false });
       window.location.href = '/weedRemoves';
     }
     if (!this.state.isEdit) {
@@ -194,12 +201,12 @@ class WeedRemoveEditPage extends React.Component<IWeedRemoveAddEditProps, IWeedR
         <Header />
         <IonContent className=".reg-login">
           <div className="bg-image">
-            <div className="reg-head">              
+            <div className="AEreg-head">              
               {!this.state.isEdit && (
-                <h1>  Add Weed Remove </h1>
+                <div>  Add Weed Remove </div>
               )}
               {this.state.isEdit && (
-                <h1>  Edit Weed Remove </h1>
+                <div>  Edit Weed Remove </div>
               )}
             </div>
             <IonLoading
@@ -249,10 +256,8 @@ class WeedRemoveEditPage extends React.Component<IWeedRemoveAddEditProps, IWeedR
           </div>
         </IonContent>
         <footer className="footcolor" >
-          <div>
+        <Footer /> 
             <button className="ok-btn" onClick={this.handleOnsubmit}> SAVE </button>
-          </div>
-          <Footer />         
         </footer>
       </IonPage>
     );

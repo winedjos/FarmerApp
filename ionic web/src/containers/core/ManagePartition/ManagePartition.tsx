@@ -83,30 +83,25 @@ const ManagePartition: React.SFC<IPartitionProps & RouteComponentProps> = ({ dis
       <IonContent className=".reg-login">
         <div className="bg-image">
           <div className="reg-head">
-            <h1>Manage Partition </h1>
+            <div  className="MLand-Lbl">Manage Partition </div>
+            <a onClick={() => {               
+                history.push("/managePartitionEdit/0")
+              
+              }}
+
+                className="add-btn">  ADD  </a>
           </div>
           <IonLoading
                 isOpen={showLoading}
                 onDidDismiss={() => setShowLoading(false)}
                 message={'Please wait...'}               
               />
-          <form className="form">
-            <IonItem className="MLand-Lbl">
-              <label className="lbl">Partition Details </label>
-              <a onClick={() => {               
-                history.push("/managePartitionEdit/0")
-              
-              }}
-
-                className="add-btn">  ADD  </a>
-            </IonItem>
-            
+          <form className="form">                       
             <IonList>
               <div className="scroll">
                 {itemPL}
                 </div>
-                </IonList>
-           
+                </IonList>           
           </form>
 
           <IonAlert

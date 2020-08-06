@@ -29,6 +29,9 @@ export class PArtitionLandAPI {
     }
     else {
       return Http.axios().post(url, tObj)
+      .then(response => {
+        return response;
+      })
         .catch((e) => {
           return e.response;
         }) as AxiosPromise<any>;
@@ -43,7 +46,7 @@ export class PArtitionLandAPI {
   }
 
   public static getPartitionLandByIdList(id: number) {
-    return Http.axios().get('/api/PartitionLand/get-PartitionLand/' + id)
+    return Http.axios().get('/api/PartitionLand/get-PartitionLand/' + id)    
       .catch((e) => {
         return e.response;
       }) as AxiosPromise<any>;

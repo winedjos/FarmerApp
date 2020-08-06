@@ -70,26 +70,10 @@ const Header: React.SFC<IHeaderProps & RouteComponentProps> = ({ history ,locati
               <IonCol className="h-img">
               <img src="assets/backarrow.png" height="20" onClick={goBack} className="arrow"></img> 
               </IonCol>
-              <IonCol className="h-img">
-              <img src="assets/Logocropped.png" height="65" onClick={()=>{window.location.href = "home";}} className="logo" ></img>
+              <IonCol className="h-img">             
+              <img src="assets/logouticon.png" height="40" onClick={clickLogout}></img>
               </IonCol>
-
-             <IonCol className="h-img">
-              
-              </IonCol>
-
-              <IonCol className="h-img">
-              
-              </IonCol>
-
-              { /*<IonCol className="h-img">
-              <img src="assets/searchicon.png" height="30" className="arrow" ></img>
-              </IonCol>*/}
-
-              <IonCol className="h-img">
-              <button className="cancel-btn" onClick={clickLogout} style={{width:"auto"}}> Logout </button>
-              </IonCol>
-              </IonRow>
+        </IonRow>
     
         {/* <img src="assets/backarrow.png" height="20" onClick={history.goBack} className="arrow"></img>
       

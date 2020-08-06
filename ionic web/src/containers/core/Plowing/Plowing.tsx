@@ -76,7 +76,11 @@ const Plowing: React.SFC<IPlowingProps & RouteComponentProps> = ({ dispatch, plo
       <IonContent className=".reg-login">
         <div className="bg-image">
           <div className="reg-head">
-            <h1>Plowing List </h1>
+            <div className="MLand-Lbl">Plowing List </div>
+            <a onClick={() => {
+          history.push("/plowingEditPage/" + 0)
+              }}
+            className="add-btn">  ADD  </a>
           </div>
           <IonLoading
                 isOpen={showLoading}
@@ -84,16 +88,7 @@ const Plowing: React.SFC<IPlowingProps & RouteComponentProps> = ({ dispatch, plo
                 message={'Please wait...'}               
               />
 
-          <form className="form">
-            <IonItem className="MLand-Lbl">
-              <label className="lbl"> Plowing Details </label>
-              <a onClick={() => {
-
-                history.push("/plowingEditPage/" + 0)
-              }}
-
-                className="add-btn">  ADD  </a>
-            </IonItem>
+          <form className="form">            
             <IonList>
             <div className="scroll">
               {PlowingList}

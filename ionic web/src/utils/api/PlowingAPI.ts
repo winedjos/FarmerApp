@@ -28,6 +28,9 @@ export class PlowingAPI {
     }
     else {
       return Http.axios().post(url, tObj)
+      .then(response => {
+        return response;
+      })
         .catch((e) => {
           return e.response;
         }) as AxiosPromise<any>;

@@ -29,9 +29,12 @@ export class LandDetailsAPI {
     }
     else {
       return Http.axios().post(url, tObj)
-        .catch((e) => {
-          return e.response;
-        }) as AxiosPromise<any>;
+      .then((response) => {
+        return response;
+      })      
+      .catch((e) => {
+        return e.response;
+      }) as AxiosPromise<any>;
     }
   }
   public static getLandDetailsList() {

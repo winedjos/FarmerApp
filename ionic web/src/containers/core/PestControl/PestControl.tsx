@@ -70,19 +70,16 @@ const PestControl: React.SFC<IPestControlProps & RouteComponentProps> = ({ dispa
       <IonContent className=".reg-login">
         <div className="bg-image">
           <div className="reg-head">
-            <h1>Pest Control List</h1>
+            <div className="MLand-Lbl">Pest Control List</div>
+            <a className="add-btn" onClick={() => { history.push("/pestControlEditPage/" + 0);}}>  ADD  </a>
           </div>
 
-          <form className="form">
-            <IonItem className="MLand-Lbl">
-              <label className="lbl"> Pest Control Details </label>
-              <a className="add-btn" onClick={() => { history.push("/pestControlEditPage/" + 0);}}>  ADD  </a>
+          <form className="form">           
               <IonLoading
                 isOpen={showLoading}
                 onDidDismiss={() => setShowLoading(false)}
                 message={'Please wait...'}               
               />
-            </IonItem>
             <IonList>
             <div className="scroll">
               {PetsControlList}

@@ -24,6 +24,7 @@ const initialPartitionLandData = {
   isLandId: true,
   isFormSubmit: true,
   isLoading:true,
+  isPartLandNameExist: false
 }
 
 const PartitionLandData = (state = initialPartitionLandData, action: any) => {
@@ -40,7 +41,8 @@ const PartitionLandData = (state = initialPartitionLandData, action: any) => {
         ...state,
         isFormSubmit: false,
         partitionLandInput: action.input,
-        PLitem: data
+        PLitem: data,
+        isPartLandNameExist: action.payload.status
         // status: action.payload.status     
       };
     case STORE_PARTITIONLAND_FAILED:

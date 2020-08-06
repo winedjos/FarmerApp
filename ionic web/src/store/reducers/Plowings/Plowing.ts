@@ -23,6 +23,7 @@ const initialPlowingData = {
   },
   isFormSubmit: true,
   isLoading:true,
+  isPlowingExist: false
 }
 
 const plowingData = (state = initialPlowingData, action: any) => {
@@ -37,6 +38,7 @@ const plowingData = (state = initialPlowingData, action: any) => {
       return {
         ...state,
         isFormSubmit: false,
+        isPlowingExist: action.payload.status
         // status: action.payload.status     
       };
     case STORE_PLOWINGS_FAILED:

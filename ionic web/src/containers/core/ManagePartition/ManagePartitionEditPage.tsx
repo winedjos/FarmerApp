@@ -94,7 +94,14 @@ class ManagePartitionEditPage extends React.Component<IPartLandAddEditProps,IPar
   }
 
   componentWillReceiveProps(newProps: any) {
-    if (!newProps.PartitionLandData.isFormSubmit) {
+    if(newProps.PartitionLandData.isPartLandNameExist)
+    {
+      this.setState({ isFormSubmited: false });
+      alert("Given land name exist");
+      return;
+    }
+    if (!newProps.PartitionLandData.isFormSubmit && !newProps.PartitionLandData.isFormSubmit ) { 
+      this.setState({ isFormSubmited: false });
       window.location.href = '/managePartitions';
     }
     if (!this.state.isEdit) {
@@ -163,13 +170,12 @@ class ManagePartitionEditPage extends React.Component<IPartLandAddEditProps,IPar
         <Header />
         <IonContent className=".reg-login">
           <div className="bg-image">
-            <div className="reg-head">
-               
+            <div className="AEreg-head">               
                {!this.state.isEdit && (
-                 <h1> Add Partition </h1>
+                 <div> Add Partition </div>
                )}
                {this.state.isEdit && (
-                 <h1> Edit Partition </h1>
+                 <div> Edit Partition </div>
                )}
             </div>     
             <IonLoading
@@ -206,10 +212,8 @@ class ManagePartitionEditPage extends React.Component<IPartLandAddEditProps,IPar
           </div>
         </IonContent>
         <footer className="footcolor" >
-          <div>
+        <Footer />
             <button className="ok-btn" onClick={this.handleOnsubmit}>SAVE </button>
-          </div>
-           <Footer />
         </footer>
       </IonPage>
     );

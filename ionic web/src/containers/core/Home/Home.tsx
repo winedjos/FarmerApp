@@ -1,7 +1,7 @@
 ﻿import { IonContent, IonHeader, IonPage, IonTitle, IonItemDivider, IonToolbar, IonSelect, IonSelectOption, IonText, IonList, IonItem, IonInput, IonCheckbox, IonLabel, IonButton, IonNote, IonBadge, IonRow, IonCol, IonGrid, IonImg } from '@ionic/react';
 import * as React from 'react';
 //import './Reg.scss';
-import Header from '../../common/Header';
+import HomeHeader from '../../common/HomeHeader';
 import { Http } from "../../../utils/Http";
 
 interface IHomeProps {
@@ -70,12 +70,9 @@ class Home extends React.Component<IHomeProps, IHeaderState>{
  public render() {
   return (
     <IonPage>
-      <Header />
+      <HomeHeader />
       <IonContent className=".reg-login">
-        <div className="bg-image">
-          <div className="reg-head">
-            <h1>Home Page</h1>
-          </div>
+        <div className="bg-image">         
           <form className="form">
             <IonRow>
               <IonCol className="h-img">

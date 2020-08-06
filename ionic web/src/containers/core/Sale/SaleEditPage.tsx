@@ -197,12 +197,12 @@ class SaleEditPage extends React.Component<ISaleAddEditProps, ISaleAddEditState>
         <Header />
         <IonContent className=".reg-login">
           <div className="bg-image">
-            <div className="reg-head">              
+            <div className="AEreg-head">              
               {!this.state.isEdit && (
-                <h1>  Add Sale </h1>
+                <div>  Add Sale </div>
               )}
               {this.state.isEdit && (
-                <h1>  Edit Sale </h1>
+                <div>  Edit Sale </div>
               )}
             </div>   
             <IonLoading
@@ -257,11 +257,8 @@ class SaleEditPage extends React.Component<ISaleAddEditProps, ISaleAddEditState>
           </div>
         </IonContent>
         <footer className="footcolor" >
-          <div>
+        <Footer />
             <button className="ok-btn" onClick={this.handleOnsubmit}> SAVE </button>
-
-          </div>
-          <Footer />
         </footer>
       </IonPage>
     );

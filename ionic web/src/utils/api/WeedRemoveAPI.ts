@@ -29,7 +29,9 @@ export class WeedRemoveAPI {
     }
     else {
       return Http.axios().post(url, tObj)
-        .catch((e) => {
+      .then(response => {
+        return response;
+      }).catch((e) => {
           return e.response;
         }) as AxiosPromise<any>;
     }

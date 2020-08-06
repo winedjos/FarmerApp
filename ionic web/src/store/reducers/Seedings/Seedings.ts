@@ -25,6 +25,7 @@ const initialSeedData = {
     labourCost: "",
   },
   isLoading:true,
+  isSeedExist :false
 }
 
 const seedData = (state = initialSeedData, action: any) => {
@@ -38,7 +39,8 @@ const seedData = (state = initialSeedData, action: any) => {
     case STORE_SEEDINGS_COMPLETED:
       return {
         ...state,
-        isFormSubmit: false      
+        isFormSubmit: false   ,
+        isSeedExist: action.payload.status   
       };
     case STORE_SEEDINGS_FAILED:
       return {

@@ -15,6 +15,7 @@ export function* storePestControlData(request: any) {
     yield put({
       type: STORE_PESTCONTROL_COMPLETED,
       input: request.input,
+      payload: data
     });
 
   } catch (e) {

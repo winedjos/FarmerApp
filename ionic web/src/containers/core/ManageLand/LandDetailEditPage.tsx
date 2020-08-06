@@ -1,4 +1,4 @@
-﻿import { IonItem, IonContent, IonPage,IonText,IonCol,IonRow, IonList, IonNote, IonPopover, IonSelectOption, IonLabel, IonSelect, IonLoading } from '@ionic/react';
+﻿import { IonItem, IonContent, IonPage,IonText,IonCol,IonRow, IonList, IonNote, IonPopover, IonSelectOption, IonLabel, IonSelect, IonLoading, isPlatform } from '@ionic/react';
 import React, { useState } from 'react';
 //import './Reg.scss';
 import Header from '../../common/Header';
@@ -22,7 +22,6 @@ interface ILandAddEditProps {
   stateListData: any;
   match: any;
   params: any;
- 
 }
 
 interface ILandAddEditState {
@@ -36,7 +35,7 @@ interface ILandAddEditState {
 class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteComponentProps, ILandAddEditState> {
   constructor(props: any) {
     super(props);
-    
+   
     this.state = {
       input: this.inputInit,
       isFormSubmited: false,
@@ -48,8 +47,6 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
     this.handleOnsubmit = this.handleOnsubmit.bind(this);
   }
 
-  
-
   inputInit = {
     id: 0,
     StateId: 0,
@@ -60,7 +57,6 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
     areaSize: "",
     name: "",
     isFormSubmited: false
-
   };
   
   componentWillMount() {
@@ -76,8 +72,13 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
   }
 
   componentWillReceiveProps(newProps: any) {
-    
-    if (this.state.isFormSubmited &&!newProps.LandDetailData.isFormSubmit) {
+    if(newProps.LandDetailData.isLandNameExist)
+    {
+      this.setState({ isFormSubmited: false });
+      alert("Given land name exist");
+      return;
+    }
+    if (this.state.isFormSubmited && !newProps.LandDetailData.isFormSubmit) {
       this.setState({ isFormSubmited: false });
       window.location.href = '/manageLands';
       //this.props.history.push('/manageLands');
@@ -89,7 +90,6 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
     else if (this.state.isEdit && newProps.LandDetailData.LandItem) {
       this.setState({
         input: {
-
           ...newProps.LandDetailData.LandItem,
           StateId: newProps.LandDetailData.LandItem.selectedStateListId
         },
@@ -103,8 +103,7 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
     event.preventDefault();        
     var errors = validateLandDetails(this.state.input);
     this.setState({ isSubmitting: true, errors: errors });
-    this.processSave(this.state.input, errors, true);
-    
+    this.processSave(this.state.input, errors, true);    
   }
 
   processSave(values: any, errors: any, isSubmit: boolean) {
@@ -126,7 +125,6 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
           [name]: value
         },
         errors: errors
-       
       });
     }
   }
@@ -141,20 +139,18 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
     });
   }
 
-
   render() {    
-   
     return (
       <IonPage>
         <Header />
         <IonContent className=".reg-login">
           <div className="bg-image">
-            <div className="reg-head">
+            <div className="AEreg-head">
               {!this.state.isEdit && (
-                <h1>  Add Land Detail </h1>
+                 <div> Add Land Detail </div>
               )}
               {this.state.isEdit && (
-                <h1>  Edit Land Detail </h1>
+                <div>  Edit Land Detail </div>
               )}
             </div>
             <IonLoading
@@ -213,16 +209,13 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
             )}
           </div>
         </IonContent>
-        <footer className="footcolor" >
-          <div>
-            <button className="ok-btn" onClick={this.handleOnsubmit}> Save </button>
-          </div>
-          <Footer />
+        <footer className="footcolor" > 
+        <Footer />        
+          <button className="ok-btn" onClick={this.handleOnsubmit}> SAVE </button> 
         </footer>
       </IonPage>
     );
   }
-
 };
 
 const mapStateToProps = (state: any) => {
@@ -247,6 +240,5 @@ const mapDisptchToProps = (dispatch: any) => {
     }
   };
 };
-
 
 export default connect(mapStateToProps, mapDisptchToProps)(LandDetailEditPage);

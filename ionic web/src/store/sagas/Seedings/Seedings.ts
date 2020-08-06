@@ -15,6 +15,7 @@ export function* storeSeedData(request: any) {
     yield put({
       type: STORE_SEEDINGS_COMPLETED,
       input: request.input,
+      payload: data
     });
 
   } catch (e) {

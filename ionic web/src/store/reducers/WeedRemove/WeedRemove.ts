@@ -24,6 +24,7 @@ const initialWeedRemoveData = {
   },
   isFormSubmit: true,
   isLoading:true,
+  isWeedRemoveExist:false
 }
 
 const weedRemoveData = (state = initialWeedRemoveData, action: any) => {
@@ -38,6 +39,7 @@ const weedRemoveData = (state = initialWeedRemoveData, action: any) => {
       return {
         ...state,
         isFormSubmit: false,
+        isWeedRemoveExist: action.payload.status
         // status: action.payload.status     
       };
     case STORE_WEEDREMOVE_FAILED:

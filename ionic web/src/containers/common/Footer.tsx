@@ -11,11 +11,11 @@ interface IHeaderProps {
 const Footer: React.SFC<IHeaderProps & RouteComponentProps> = ({ history }) => {
 
   return (
-    <IonFooter className="md footer-md hydrated">    
-      <div>
+  
+     
         <button className="cancel-btn" onClick={history.goBack}> CANCEL </button>
-        </div>
-    </IonFooter>
+        
+    
   );
 };
 
