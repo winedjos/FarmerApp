@@ -64,6 +64,7 @@ class SeedEditPage extends React.Component<ISeedAddEditProps, ISeedAddEditState>
     seedCost: 0,
     noOfLabours: 0,
     labourCost: 0,
+    notes: "",
     date: new Date(),
     id: 0,
     landDetailId: 0,
@@ -260,6 +261,11 @@ class SeedEditPage extends React.Component<ISeedAddEditProps, ISeedAddEditState>
                     {this.state.errors.labourCost && (
                       <p className="help is-danger">{this.state.errors.labourCost}</p>
                     )}
+                      Notes <textarea name="notes" className="input-text" onChange={this.handleChange} value={this.state.input.notes} />
+                    {this.state.errors.notes && (
+                      <p className="help is-danger">{this.state.errors.notes}</p>
+                    )}
+
                   </IonText>
                 </IonCol>
               </IonRow>

@@ -18,6 +18,7 @@ const initialPartitionLandData = {
   partitionLandInput: {
     landDirection: "",
     areaSize: "",
+    notes: "", 
     landDetailId: 0,
     ID: 0
   },

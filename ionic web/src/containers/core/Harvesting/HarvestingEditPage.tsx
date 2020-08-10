@@ -62,6 +62,7 @@ class HarvestingEditPage extends React.Component<IHarvestAddEditProps, IHarvestL
   partitionLandDetailId: 0,
   cost: 0,
   noOfLabours: 0,
+  notes: "", 
   labourCost: 0,
   id: 0,
   date: new Date()
@@ -248,6 +249,10 @@ class HarvestingEditPage extends React.Component<IHarvestAddEditProps, IHarvestL
                     Labour Cost <input type="text" name="labourCost" className="input-text" onChange={this.handleChange} value={this.state.input.labourCost} />
                     {this.state.errors.labourCost && (
                       <p className="help is-danger">{this.state.errors.labourCost}</p>
+                    )}
+                     Notes <textarea name="notes" className="input-text" onChange={this.handleChange} value={this.state.input.notes} />
+                    {this.state.errors.notes && (
+                      <p className="help is-danger">{this.state.errors.notes}</p>
                     )}
                 </IonText>
               </IonCol>

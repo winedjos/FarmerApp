@@ -70,8 +70,8 @@ class ViewReport extends React.Component<IViewReportProps, ISeedAddEditState> {
                         <div className="col"> Module</div>                                                 
                         </IonRow>
                         <IonRow>
-                        <div className="col"> Land Name</div>
-                        <div className="col"> Partition Land</div>
+                        <div className="col"> {this.state.name}</div>
+                        <div className="col">Part Land</div>
                         <div className="col"> Income</div>
                         <div className="col"> Module</div>    
                          

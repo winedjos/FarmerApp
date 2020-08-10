@@ -22,6 +22,7 @@ const initialPestControlData = {
     cost: "",
     purpose: "",
     labourCost: "",
+    notes: "", 
   },
   isFormSubmit: true,
   isLoading: true,

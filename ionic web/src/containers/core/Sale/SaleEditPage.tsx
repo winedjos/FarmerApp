@@ -65,6 +65,7 @@ class SaleEditPage extends React.Component<ISaleAddEditProps, ISaleAddEditState>
     buyerMobileNumber: "",
     landDetailId: 0,
     partitionLandDetailId: 0,
+    notes: "", 
   };
 
 
@@ -249,6 +250,10 @@ class SaleEditPage extends React.Component<ISaleAddEditProps, ISaleAddEditState>
                       Buyer Mobile Number <input type="text" name="buyerMobileNumber" className="input-text" onChange={this.handleChange} value={this.state.input.buyerMobileNumber} required />
                     {this.state.errors.buyerMobileNumber && (
                       <p className="help is-danger">{this.state.errors.buyerMobileNumber}</p>
+                    )}
+                     Notes <textarea name="notes" className="input-text" onChange={this.handleChange} value={this.state.input.notes} />
+                    {this.state.errors.notes && (
+                      <p className="help is-danger">{this.state.errors.notes}</p>
                     )}
                   </IonText>
                 </IonCol>

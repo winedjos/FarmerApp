@@ -22,6 +22,7 @@ const initialSaleData = {
     price: "",
     buyerName: "",
     buyerMobileNumber: "",
+    notes: "", 
   },
   isFormSubmit: true,
   isLoading:true,

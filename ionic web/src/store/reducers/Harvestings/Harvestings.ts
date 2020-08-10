@@ -22,6 +22,7 @@ const initialHarvestData = {
     cost: "",
     noOfLabours: "",
     labourCost: "",
+    notes: "", 
   },
   isLoading:true,
   isHarvestExist: false

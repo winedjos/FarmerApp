@@ -58,7 +58,7 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
     plowingDate: new Date(),
     typeofPlowing: "",
     plowingExp: "", 
-
+    notes: "", 
   };
 
   componentWillMount() {
@@ -240,6 +240,10 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
                       {this.state.errors.plowingExp && (
                         <p className="help is-danger">{this.state.errors.plowingExp}</p>
                       )}
+                       Notes <textarea name="notes" className="input-text" onChange={this.handleChange} value={this.state.input.notes} />
+                    {this.state.errors.notes && (
+                      <p className="help is-danger">{this.state.errors.notes}</p>
+                    )}
                   </IonText>
                 </IonCol>
               </IonRow>

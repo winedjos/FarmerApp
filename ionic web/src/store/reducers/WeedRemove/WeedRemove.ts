@@ -21,6 +21,7 @@ const initialWeedRemoveData = {
     cost: "",
     noOfLabours: "",
     labourCost: "",
+    notes: "", 
   },
   isFormSubmit: true,
   isLoading:true,

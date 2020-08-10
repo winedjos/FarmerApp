@@ -55,6 +55,7 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
     village: "",
     pattaNumber: "",
     areaSize: "",
+    notes: "",
     name: "",
     isFormSubmited: false
   };
@@ -72,7 +73,7 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
   }
 
   componentWillReceiveProps(newProps: any) {
-    if(newProps.LandDetailData.isLandNameExist)
+    if(this.state.isFormSubmited && newProps.LandDetailData.isLandNameExist)
     {
       this.setState({ isFormSubmited: false });
       alert("Given land name exist");
@@ -200,6 +201,11 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
                       Village <input type="text" name="village" className={`input-text ${this.state.errors.email && 'is-danger'}`} onChange={this.handleChange} value={this.state.input.village} required />
                       {this.state.errors.village && (
                         <p className="help is-danger">{this.state.errors.village}</p>
+                      )}
+
+                      Notes <textarea name="notes" className={`input-text ${this.state.errors.email && 'is-danger'}`} onChange={this.handleChange} value={this.state.input.notes} required />
+                      {this.state.errors.notes && (
+                        <p className="help is-danger">{this.state.errors.notes}</p>
                       )}
                                                                   
                     </IonText>

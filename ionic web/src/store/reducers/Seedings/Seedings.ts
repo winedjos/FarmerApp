@@ -23,6 +23,7 @@ const initialSeedData = {
     seedCost: "",
     noOfLabours: "",
     labourCost: "",
+    notes: "",
   },
   isLoading:true,
   isSeedExist :false

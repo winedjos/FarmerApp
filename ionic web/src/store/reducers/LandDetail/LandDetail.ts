@@ -22,6 +22,7 @@ const initialLandDetailData = {
     pattaNumber: "",
     surveyNumber: "",
     areaSize: "",
+    notes: "",
     name: "",
   },
   isFormSubmit: true,

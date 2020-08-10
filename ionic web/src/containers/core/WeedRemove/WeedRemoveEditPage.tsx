@@ -60,6 +60,7 @@ class WeedRemoveEditPage extends React.Component<IWeedRemoveAddEditProps, IWeedR
     Cost: 0,
     NOofLabours: 0,
     LabourCost: 0,
+    notes: "", 
     date: new Date(),
     landDetailId: 0,
     partitionLandDetailId: 0,
@@ -249,6 +250,10 @@ class WeedRemoveEditPage extends React.Component<IWeedRemoveAddEditProps, IWeedR
                       {this.state.errors.labourCost && (
                         <p className="help is-danger">{this.state.errors.labourCost}</p>
                       )}
+                       Notes <textarea name="notes" className="input-text" onChange={this.handleChange} value={this.state.input.notes} />
+                    {this.state.errors.notes && (
+                      <p className="help is-danger">{this.state.errors.notes}</p>
+                    )}
                     </IonText>
                   </IonCol>
                 </IonRow>

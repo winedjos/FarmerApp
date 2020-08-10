@@ -62,6 +62,7 @@ class ManagePartitionEditPage extends React.Component<IPartLandAddEditProps,IPar
   }
   inputInit = {
     landDirection: "",
+    notes: "",
     areaSize: 0,
     landDetailId: 0,
     id: 0,
@@ -94,7 +95,7 @@ class ManagePartitionEditPage extends React.Component<IPartLandAddEditProps,IPar
   }
 
   componentWillReceiveProps(newProps: any) {
-    if(newProps.PartitionLandData.isPartLandNameExist)
+    if(this.state.isFormSubmited && newProps.PartitionLandData.isPartLandNameExist)
     {
       this.setState({ isFormSubmited: false });
       alert("Given land name exist");
@@ -204,6 +205,11 @@ class ManagePartitionEditPage extends React.Component<IPartLandAddEditProps,IPar
                            Area Size <input type="text" className="input-text"  name="areaSize" onChange={this.handleChange} value={this.state.input.areaSize}  /> 
                         {this.state.errors.areaSize && (
                           <p className="help is-danger">{this.state.errors.areaSize}</p>
+                         )}
+
+                          Notes <textarea  className="input-text"  name="notes" onChange={this.handleChange} value={this.state.input.notes}  /> 
+                        {this.state.errors.notes && (
+                          <p className="help is-danger">{this.state.errors.notes}</p>
                          )}
                       </IonText>
                   </IonCol>
