@@ -46,7 +46,7 @@ class ViewReport extends React.Component<IViewReportProps, ISeedAddEditState> {
       })
     }
   }
-  
+  //{this.state.id > 0 && (      )}
   render() {
 
     return (
@@ -57,33 +57,31 @@ class ViewReport extends React.Component<IViewReportProps, ISeedAddEditState> {
             <div className="reg-head">
               <h1>View Reports </h1>
             </div>
-            {this.state.id > 0 && (
+           
               <form className="form">
                 <IonRow>
                   <IonCol>
                     <IonText className="reg-fields">
-                      <div className="row header">
-                        <div className="col"> Land Name</div>
-                        <div className="col"> Land Name</div>
-                       </div>
-                        <input type="text" name="quantity" className="input-text" value={this.state.name} />
                       <IonGrid>
                         <IonRow>
-                          <IonCol>Land Name</IonCol>
-                          <IonCol>Partition Land</IonCol>
-                          <IonCol>Total </IonCol>                          
+                        <div className="col"> Land Name</div>
+                        <div className="col"> Partition Land</div>
+                        <div className="col"> Income</div>
+                        <div className="col"> Module</div>                                                 
                         </IonRow>
                         <IonRow>
-                          <IonCol>{this.state.name}</IonCol>
-                          <IonCol>Partition Land</IonCol>
-                          <IonCol>Total </IonCol>
+                        <div className="col"> Land Name</div>
+                        <div className="col"> Partition Land</div>
+                        <div className="col"> Income</div>
+                        <div className="col"> Module</div>    
+                         
                         </IonRow>
                       </IonGrid>
                     </IonText>
                   </IonCol>
                 </IonRow>
               </form>
-            )}
+           
           </div>
         </IonContent>
        </IonPage>
