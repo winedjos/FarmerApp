@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">Thaniyas</string>
-    <string name="title_activity_main">Thaniyas</string>
-    <string name="package_name">io.ionic.starter</string>
-    <string name="custom_url_scheme">io.ionic.starter</string>
-    <string name="server_client_id">825025305729-e1b9kjkf9hqfv62j38b304nl0r69grd6.apps.googleusercontent.com</string>
-</resources>

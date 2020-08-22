@@ -123,7 +123,7 @@ if (loggedInString && loggedInString!=="" && loggedInString!==null) {
             <Route path="/reports" component={Reports} exact={true} />        
             <Route path="/loginpage" component={LoginPage} exact={true} />        
             <Route path="/firstpage" component={FirstPage} exact={true} />
-          <Route path="/viewReports" component={ViewReport} exact={true} />
+          <Route path="/viewReports/:id" component={ViewReport} exact={true} />
           <Route path="/viewAll" component={ViewAll} exact={true} />
         
       </IonRouterOutlet>

@@ -5,36 +5,41 @@ import Header from '../../common/Header';
 import Footer from '../../common/Footer';
 import { Dispatch } from 'redux';
 import { getLandDetailById } from "../../../store/actions/LandDetail";
+//import { getPartitionLandById } from "../../../store/actions/PartitionLand";
 import { getPartitionLandList } from "../../../store/actions/PartitionLand";
 import { useDispatch, connect } from 'react-redux';
 
 interface IViewReportProps {
   dispatch: Dispatch<any>;
   getLandDetailById1: any;
+  getPartitionLandList1: any;
   match: any;
   params: any;
   PartitionLandData: any;
   LandDetailData: any;
 }
 
-interface ISeedAddEditState {
+interface IViewReportState {
   name: any;
   id: 0;
+  //landDirection : any;  
   }
 
 
-class ViewReport extends React.Component<IViewReportProps, ISeedAddEditState> {
+class ViewReport extends React.Component<IViewReportProps, IViewReportState> {
   constructor(props: any) {
     super(props);
 
     this.state = {
       name: null,
       id: 0,
+      //landDirection: null,
     };
   }
 
   componentWillMount() {
-    this.props.getLandDetailById1(this.props.match.params.id);   
+    this.props.getLandDetailById1(this.props.match.params.id);  
+    this.props.getPartitionLandList1(this.props.match.params.id);   
   }
 
   componentWillReceiveProps(newProps: any) {   
@@ -57,31 +62,32 @@ class ViewReport extends React.Component<IViewReportProps, ISeedAddEditState> {
             <div className="reg-head">
               <h1>View Reports </h1>
             </div>
-           
+            {this.state.id > 0 && ( 
               <form className="form">
                 <IonRow>
                   <IonCol>
                     <IonText className="reg-fields">
                       <IonGrid>
-                        <IonRow>
-                        <div className="col"> Land Name</div>
-                        <div className="col"> Partition Land</div>
-                        <div className="col"> Income</div>
-                        <div className="col"> Module</div>                                                 
-                        </IonRow>
-                        <IonRow>
-                        <div className="col"> {this.state.name}</div>
-                        <div className="col">Part Land</div>
-                        <div className="col"> Income</div>
-                        <div className="col"> Module</div>    
-                         
-                        </IonRow>
+                      <table className="table">
+                          <tr>
+                            <th>Land </th>
+                            <th>Partition Land</th> 
+                            <th>Income</th>
+                            <th>cost</th>
+                            <th>Module</th>
+                          </tr>
+                          <tr>
+                            <td>{this.state.name} </td>
+                            <td>{this.state.id}</td>
+                            <td>50</td>
+                          </tr>                         
+                        </table>
                       </IonGrid>
                     </IonText>
                   </IonCol>
                 </IonRow>
               </form>
-           
+           )}
           </div>
         </IonContent>
        </IonPage>
@@ -102,6 +108,9 @@ const mapDisptchToProps = (dispatch: any) => {
   return {
     getLandDetailById1: (id: any) => {
       dispatch(getLandDetailById(id));
+    },
+    getPartitionLandList1: () => {
+      dispatch(getPartitionLandList);
     },
   };
 };
