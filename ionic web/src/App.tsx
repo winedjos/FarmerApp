@@ -58,6 +58,7 @@ import Login from './containers/core/Registration/Login';
 import { AppFrame } from './containers/common/AppFrame/intex';
 import ViewReport from './containers/core/Report/ViewReport';
 import ViewAll from './containers/core/Report/ViewAll';
+import Reportcopy from './containers/core/Report/Reportcopy';
 
 interface IAppProps {
 }
@@ -125,7 +126,7 @@ if (loggedInString && loggedInString!=="" && loggedInString!==null) {
             <Route path="/firstpage" component={FirstPage} exact={true} />
           <Route path="/viewReports/:id" component={ViewReport} exact={true} />
           <Route path="/viewAll" component={ViewAll} exact={true} />
-        
+          <Route path="/reportcopy" component={Reportcopy} exact={true} />
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>

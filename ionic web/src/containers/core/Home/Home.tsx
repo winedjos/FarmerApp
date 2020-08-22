@@ -121,7 +121,7 @@ class Home extends React.Component<IHomeProps, IHeaderState>{
                 </a>  
               </IonCol>
               <IonCol className="h-img">
-                <a href="reports">
+                <a href="reportcopy">
                   <img src="assets/Report.png" height="75" width="75"></img>Report
                 </a>  
               </IonCol>              
