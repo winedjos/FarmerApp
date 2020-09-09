@@ -75,7 +75,7 @@ const Harvesting: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatc
       <IonContent className=".reg-login">
         <div className="bg-image">
           <div className="reg-head">
-            <div  className="MLand-Lbl">Harvesting List</div>
+            <div  className="MLand-Lbl">Harvesting Detail List</div>
             <a onClick={() => {
               history.push("/harvestingEditPage/0")
               }}

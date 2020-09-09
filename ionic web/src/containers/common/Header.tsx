@@ -70,7 +70,7 @@ const Header: React.SFC<IHeaderProps & RouteComponentProps> = ({ history ,locati
               <IonCol className="h-img">
               <img src="assets/backarrow.png" height="20" onClick={goBack} className="arrow"></img> 
               </IonCol>
-              <IonCol className="logout-img">             
+              <IonCol className="h-img">             
               <img src="assets/logouticon.png" height="40" onClick={clickLogout}></img>
               </IonCol>
         </IonRow>

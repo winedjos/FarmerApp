@@ -76,7 +76,7 @@ const HomeHeader: React.SFC<IHeaderProps & RouteComponentProps> = ({ history ,lo
               <img src="assets/searchicon.png" height="30" className="arrow" ></img>
               </IonCol>*/}
 
-              <IonCol className="logout-img">             
+              <IonCol className="h-img">             
               <img src="assets/logouticon.png" height="40" onClick={clickLogout}></img>
               </IonCol>
               </IonRow>

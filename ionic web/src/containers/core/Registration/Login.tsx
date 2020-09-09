@@ -18,7 +18,7 @@ interface ILoginProps {
 const Login: React.SFC<ILoginProps> = ({ dispatch, loginData}) => {
 
   const [showLoading, setShowLoading] = useState(false);
- /* const onHandleSubmit = (e: any) => {
+  const onHandleSubmit = (e: any) => {
     e.preventDefault();
     dispatch(fetchLoginData(loginData.loginInput));
     setShowLoading(true);
@@ -29,7 +29,7 @@ const Login: React.SFC<ILoginProps> = ({ dispatch, loginData}) => {
   };
   const handlePWDChange = (event: any) => {
     loginData.loginInput.password = event.target.value;
-  };*/
+  };
 
   var isShowError = false;
   const loggedInString = localStorage.getItem('AUTHDATA');
@@ -79,7 +79,20 @@ const Login: React.SFC<ILoginProps> = ({ dispatch, loginData}) => {
     setShowLoading(false);
   }  
 
-/*  <IonRow>
+ return (
+    <IonPage>    
+      <IonContent className="reg-login">
+        <div className="bg-image">
+          <div className="reg-head">
+            <h1>Login</h1>
+          </div>
+          <IonLoading
+                isOpen={showLoading}
+                onDidDismiss={() => setShowLoading(false)}
+                message={'Please wait...'}               
+              />
+         <form className="form" >
+            <IonRow>
               <IonCol>
                <IonText className="reg-fields">
                  User Name <input type="text" placeholder="User Name" onChange={handleUserNameChange} className="input-text" required />
@@ -95,25 +108,8 @@ const Login: React.SFC<ILoginProps> = ({ dispatch, loginData}) => {
                  Or 
                 </IonText>
               </IonCol>
-           </IonRow>*/
+           </IonRow>
 
- return (
-    <IonPage>    
-      <IonContent className="reg-login">
-        <div className="bg-image">
-          <div className="reg-head">
-            <h1>Login</h1>
-          </div>
-          <IonLoading
-                isOpen={showLoading}
-                onDidDismiss={() => setShowLoading(false)}
-                message={'Please wait...'}               
-              />
-         <form className="form" >
-          <div className="loginhead">Welcome to Thaniyas</div>
-         <IonCol className="h-img">
-              <img src="assets/Logocropped.png" onClick={()=>{window.location.href = "home";}} className="logo" ></img>
-          </IonCol>
            <IonRow>
               <IonCol>
                <IonText className="reg-fields">                 
