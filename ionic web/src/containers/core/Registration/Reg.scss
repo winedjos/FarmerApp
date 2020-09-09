@@ -124,6 +124,7 @@
 @media screen and (max-width: 600px) {
     .reg-btn {
        width:87%;
+       margin-left: 18px;
     }
    
 }
@@ -266,7 +267,7 @@
 }
 
 @media screen and (max-width: 600px) {
-.h-img{
+.logout-img{
     text-align:right;
 }
 }
@@ -436,4 +437,9 @@ table, th, td {
   }
   th {
     text-align: left;
+  }
+
+  .loginhead{
+    font-size: 2rem;
+    color: #0b540e;
   }

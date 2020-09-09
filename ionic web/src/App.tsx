@@ -59,6 +59,10 @@ import { AppFrame } from './containers/common/AppFrame/intex';
 import ViewReport from './containers/core/Report/ViewReport';
 import ViewAll from './containers/core/Report/ViewAll';
 import Reportcopy from './containers/core/Report/Reportcopy';
+import "@codetrix-studio/capacitor-google-auth";
+import { Plugins } from '@capacitor/core';
+
+
 
 interface IAppProps {
 }
