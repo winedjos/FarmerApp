@@ -91,8 +91,8 @@ const Login: React.SFC<ILoginProps> = ({ dispatch, loginData}) => {
                 onDidDismiss={() => setShowLoading(false)}
                 message={'Please wait...'}               
               />
-         <form className="form" >
-            <IonRow>
+         <div className="form" >
+            {/* <IonRow>
               <IonCol>
                <IonText className="reg-fields">
                  User Name <input type="text" placeholder="User Name" onChange={handleUserNameChange} className="input-text" required />
@@ -100,14 +100,23 @@ const Login: React.SFC<ILoginProps> = ({ dispatch, loginData}) => {
                  <button className="reg-btn" onClick={onHandleSubmit}> Login </button>
                 </IonText>
               </IonCol>
-           </IonRow>
+           </IonRow> */}
 
            <IonRow>
-              <IonCol>
+              {/* <IonCol>
                <IonText className="reg-fields">
                  Or 
                 </IonText>
-              </IonCol>
+              </IonCol> */}
+                        
+              <IonCol>
+              <div className="loginhead">Welcome to Thaniyas</div>
+              </IonCol> 
+           </IonRow>
+           <IonRow>              
+              <IonCol className="h-img">
+                  <img src="assets/Logocropped.png"  className="logo" ></img>
+              </IonCol> 
            </IonRow>
 
            <IonRow>
@@ -121,7 +130,7 @@ const Login: React.SFC<ILoginProps> = ({ dispatch, loginData}) => {
              <span>{loginData.action.status.statusDisplay}</span>
            )
            }
-          </form>
+          </div>
         </div>
       </IonContent>
       <IonFooter className="footcolor" >

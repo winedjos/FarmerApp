@@ -27,6 +27,9 @@
     padding-top: 3px;
     //padding-bottom: 2px;
 }
+.reg-head h1{
+    margin-top: 0;
+}
 .AEreg-head {
 
     text-align: center;
@@ -124,6 +127,7 @@
 @media screen and (max-width: 600px) {
     .reg-btn {
        width:87%;
+       margin-left: 18px;
     }
    
 }
@@ -266,7 +270,10 @@
 }
 
 @media screen and (max-width: 600px) {
-.h-img{
+// .h-img{
+//     text-align:right;
+// }
+.logout-img{
     text-align:right;
 }
 }
@@ -387,12 +394,13 @@ label{
         margin-left: 50%;
     }
 .Logout {
-    float:right;
+    // float:right;
+    float: right;
     margin-top: -32px;
     background-color: #859d7f;
     padding: 5px 10px 5px 10px;
     color: wheat;
-    display: inline-block;
+    display: block;
 }
 
 .footer-md{
@@ -436,4 +444,9 @@ table, th, td {
   }
   th {
     text-align: left;
+  }
+
+.loginhead{
+    font-size: 2rem;
+    color: #0b540e;
   }
