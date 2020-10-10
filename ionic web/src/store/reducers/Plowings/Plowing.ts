@@ -19,7 +19,7 @@ const initialPlowingData = {
     ID: 0,
     plowingDate: "",
     typeofPlowing: "",
-    plowingExp: "", 
+    plowingExp: 0, 
     notes: "",   
   },
   isFormSubmit: true,

@@ -21,7 +21,8 @@ import { GET_STATELIST_STARTED } from '../actions/StateList';
 import { getStateList } from './StateList/StateList';
 import { FETCH_LOGIN_STARTED } from '../actions/Login';
 import { fetchLoginData } from './Login/Login';
-
+import { GET_VIEWREPORT_STARTED } from '../actions/ViewReport';
+import { getViewReportList} from './ViewReport/ViewReport';
 export default function* rootSaga() {
   yield all([
     takeLatest(FETCH_LOGIN_STARTED, fetchLoginData),
@@ -59,6 +60,6 @@ export default function* rootSaga() {
     takeLatest(GET_PESTCONTROLBYID_STARTED, getPestControlByIdList),
     takeLatest(GET_PLOWINGSBYID_STARTED, getPlowingByIdList),
     takeLatest(GET_SALESBYID_STARTED, getSaleByIdList),
-   
+    takeLatest(GET_VIEWREPORT_STARTED, getViewReportList),
   ]);
 }

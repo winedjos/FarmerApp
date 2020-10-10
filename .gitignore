@@ -118,3 +118,5 @@ ionic web/old android/gradle/wrapper/gradle-wrapper.properties
 ionic web/old android/gradlew
 ionic web/old android/gradlew.bat
 ionic web/old android/settings.gradle
+ionic web android/android/app/build/intermediates/transforms/dexBuilder/debug/184.jar
+/ionic web android

@@ -218,7 +218,7 @@ class SeedEditPage extends React.Component<ISeedAddEditProps, ISeedAddEditState>
                 onDidDismiss={() => this.setState({ isFormSubmited: false })}
                 message={'Please wait...'}               
               />
-            <form className="form">
+            <form className="form AddEditScroll">
               <IonRow>
                 <IonCol>
                     <IonText className="reg-fields">

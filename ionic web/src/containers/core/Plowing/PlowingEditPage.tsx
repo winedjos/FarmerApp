@@ -57,7 +57,7 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
     partitionLandDetailId: 0,
     plowingDate: new Date(),
     typeofPlowing: "",
-    plowingExp: "", 
+    plowingExp: 0, 
     notes: "", 
   };
 

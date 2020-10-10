@@ -4,25 +4,31 @@ import React, { useState } from 'react';
 import Header from '../../common/Header';
 import Footer from '../../common/Footer';
 import { Dispatch } from 'redux';
-import { getLandDetailById } from "../../../store/actions/LandDetail";
+import { getViewReportList } from "../../../store/actions/ViewReport";
 //import { getPartitionLandById } from "../../../store/actions/PartitionLand";
-import { getPartitionLandList } from "../../../store/actions/PartitionLand";
+//import { getPartitionLandById } from "../../../store/actions/PartitionLand";
 import { useDispatch, connect } from 'react-redux';
+import viewReportData from '../../../store/reducers/ViewReport/ViewReport';
+
 
 interface IViewReportProps {
   dispatch: Dispatch<any>;
-  getLandDetailById1: any;
-  getPartitionLandList1: any;
+  getViewReportList1: any; 
   match: any;
   params: any;
   PartitionLandData: any;
   LandDetailData: any;
+  viewReportData:any;
 }
 
 interface IViewReportState {
   name: any;
   id: 0;
-  //landDirection : any;  
+  landDirection : any;  
+  income: any;
+  purpose: any;
+  expense:any;
+  ViewReportdata :any;
   }
 
 
@@ -31,29 +37,34 @@ class ViewReport extends React.Component<IViewReportProps, IViewReportState> {
     super(props);
 
     this.state = {
+      ViewReportdata: [],
       name: null,
       id: 0,
-      //landDirection: null,
+      landDirection: null,
+      income: null,
+      purpose: null,
+      expense: null     
     };
   }
 
   componentWillMount() {
-    this.props.getLandDetailById1(this.props.match.params.id);  
-    this.props.getPartitionLandList1(this.props.match.params.id);   
+    this.props.getViewReportList1(this.props.match.params.id);
   }
 
-  componentWillReceiveProps(newProps: any) {   
-    if (newProps.LandDetailData.LandItem) {
-      this.setState({        
-        name: newProps.LandDetailData.LandItem.name,
-        id: newProps.LandDetailData.LandItem.id,
-        // state: newProps.LandDetailData.Landitems.state
+  componentWillReceiveProps(newprops:any) {   
+    if (newprops.viewReportData.viewReports) {
+      this.setState({  
+        ViewReportdata: newprops.viewReportData.viewReports  
+        //name: newprops.viewReportData.viewReports.landName,
+        //landDirection: newprops.landDirection,
+        //income: newprops.state.income,
+        //purpose: newprops.state.purpose,
+        //expense: newprops.state.expense
       })
     }
   }
   //{this.state.id > 0 && (      )}
   render() {
-
     return (
       <IonPage>
         <Header />
@@ -62,7 +73,7 @@ class ViewReport extends React.Component<IViewReportProps, IViewReportState> {
             <div className="reg-head">
               <h1>View Reports </h1>
             </div>
-            {this.state.id > 0 && ( 
+           
               <form className="form">
                 <IonRow>
                   <IonCol>
@@ -71,23 +82,28 @@ class ViewReport extends React.Component<IViewReportProps, IViewReportState> {
                       <table className="table">
                           <tr>
                             <th>Land </th>
-                            <th>Partition Land</th> 
-                            <th>Income</th>
-                            <th>cost</th>
-                            <th>Module</th>
+                            <th>Partition</th> 
+                            <th>Purpose</th>
+                            <th>Inc</th>
+                            <th>Exp</th>
                           </tr>
-                          <tr>
-                            <td>{this.state.name} </td>
-                            <td>{this.state.id}</td>
-                            <td>50</td>
-                          </tr>                         
+                          { this.state.ViewReportdata && this.state.ViewReportdata.map((report : any, i : any) => 
+                                <tr>
+                                  <td key={report.id}>{report.landName}</td>
+                                  <td>{report.partition}</td>
+                                  <td>{report.purpose}</td>
+                                  <td>{report.income}</td>
+                                  <td>{report.expense}</td>                                  
+                                </tr> 
+                            )
+                          };
                         </table>
                       </IonGrid>
                     </IonText>
                   </IonCol>
                 </IonRow>
               </form>
-           )}
+          
           </div>
         </IonContent>
        </IonPage>
@@ -97,21 +113,19 @@ class ViewReport extends React.Component<IViewReportProps, IViewReportState> {
 };
 
 const mapStateToProps = (state: any) => {
-  const { LandDetailData, PartitionLandData } = state;
+  const { LandDetailData, PartitionLandData, viewReportData } = state;
 
   return {
-    LandDetailData, PartitionLandData
+    LandDetailData, PartitionLandData, viewReportData
   };
 };
 
 const mapDisptchToProps = (dispatch: any) => {
   return {
-    getLandDetailById1: (id: any) => {
-      dispatch(getLandDetailById(id));
+    getViewReportList1: (id:any) => {
+      dispatch(getViewReportList(id));
     },
-    getPartitionLandList1: () => {
-      dispatch(getPartitionLandList);
-    },
+   
   };
 };
 

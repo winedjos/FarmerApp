@@ -215,7 +215,7 @@ class HarvestingEditPage extends React.Component<IHarvestAddEditProps, IHarvestL
                 isOpen={this.state.isFormSubmited}
                 message={'Please wait...'}               
               />
-          <form className="form">
+          <form className="form AddEditScroll">
             <IonRow>
               <IonCol>
                   <IonText className="reg-fields">

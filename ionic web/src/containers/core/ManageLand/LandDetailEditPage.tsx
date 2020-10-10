@@ -10,7 +10,9 @@ import { getLandDetailById, storeLandDetailData } from "../../../store/actions/L
 import { useDispatch, connect } from 'react-redux';
 import { getStatelList } from '../../../store/actions/StateList';
 import { RouteComponentProps } from 'react-router';
-import useForm from '../../common/UseForm';
+
+
+
 
 
 interface ILandAddEditProps {
@@ -53,11 +55,12 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
     selectedStateListId: 0,
     city: "",
     village: "",
-    pattaNumber: "",
-    areaSize: "",
+    pattaNumber: 0,
+    areaSize: 0.0,
     notes: "",
     name: "",
-    isFormSubmited: false
+    isFormSubmited: false,
+    surveyNumber: 0
   };
   
   componentWillMount() {
@@ -160,7 +163,7 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
                 message={'Please wait...'}               
               />
             {this.state.input && this.state.input !== null && (
-              <form className="form">
+              <form className="form AddEditScroll">
                 <IonRow>
                   <IonCol>
                     <IonText className="reg-fields">
@@ -186,11 +189,13 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
                       {this.state.errors.pattaNumber && (
                         <p className="help is-danger">{this.state.errors.pattaNumber}</p>
                       )}
-                      Survey Number <input type="text" name="surveyNumber" className={`input-text ${this.state.errors.email && 'is-danger'}`} onChange={this.handleChange} value={this.state.input.surveyNumber} required />
-                      {this.state.errors.pattaNumber && (
-                        <p className="help is-danger">{this.state.errors.pattaNumber}</p>
+                      Survey Number <input type="text" name="surveyNumber" className={`input-text ${this.state.errors.surveyNumber && 'is-danger'}`} onChange={this.handleChange} value={this.state.input.surveyNumber} required />
+                      {this.state.errors.surveyNumber && (
+                        <p className="help is-danger">{this.state.errors.surveyNumber}</p>
                       )}
-                      Area Size <input type="text" name="areaSize" className={`input-text ${this.state.errors.email && 'is-danger'}`} onChange={this.handleChange} value={this.state.input.areaSize} required />
+                      
+                      Area Size <input type="number"  name="areaSize" className={`input-text ${this.state.errors.email && 'is-danger'}` } onChange={this.handleChange} value={this.state.input.areaSize} />
+                     
                       {this.state.errors.areaSize && (
                         <p className="help is-danger">{this.state.errors.areaSize}</p>
                       )}

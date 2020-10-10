@@ -23,7 +23,7 @@
     margin:auto;
     width:360px;
     font-size: 15px;
-    height: 4.5%;
+    height: 7%;
     padding-top: 3px;
     //padding-bottom: 2px;
 }
@@ -38,7 +38,7 @@
     margin:auto;
     width:360px;
     font-size: 20px;
-    height: 4%;
+    height: 5.5%;
     padding-top: 3px;
 }
 
@@ -51,7 +51,7 @@
     margin:auto;
     width:350px;
     font-size: 20px;
-    height: 4%;
+    height: 5.5%;
     padding-top: 7px;
 }
 }
@@ -141,14 +141,22 @@
 .bg-image {
     // padding-bottom: 110px;
     //z-index: -10;
-    height: 150vh;
+    height: 100%;
     background-size: cover;
     padding-top: 5px;
+   // position: absolute;
+   // margin-left: 50%;
     background-image: url('../../images/bg.jpg');
     background-attachment: fixed;
     background-repeat: no-repeat, repeat;
     /*--background-image: url('../../src/pages/images/naturaldrawing.jpg');*/
 }
+
+//@media screen and (max-width: 600px) {
+ //@at-root//   .bg-image {
+        //position: absolute;
+    //}
+//}
 
     .drop {
         color: white;
@@ -450,3 +458,15 @@ table, th, td {
     font-size: 2rem;
     color: #0b540e;
   }
+
+  .AddEditScroll{
+      height: 80%;
+      overflow-y: scroll;
+  }
+
+  @media screen and (max-width: 600px) {
+    .AddEditScroll {
+        height: 90%;
+        overflow-y: scroll;
+    }
+}

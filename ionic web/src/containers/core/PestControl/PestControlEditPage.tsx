@@ -55,9 +55,9 @@ class PestControlEditPage extends React.Component<IPestControlAddEditProps, IPes
   landDetailId: 0,
   partitionLandDetailId: 0,
   nameofthePestSide: "",
-  cost: "",
+  cost: 0,
   purpose: "",
-  labourCost: "",
+  labourCost: 0,
   notes: "", 
   pestControlDate: new Date(),
 };
@@ -206,7 +206,7 @@ class PestControlEditPage extends React.Component<IPestControlAddEditProps, IPes
                 onDidDismiss={() => this.setState({ isFormSubmited: false })}
                 message={'Please wait...'}               
               />
-            <form className="form">
+            <form className="form AddEditScroll">
               <IonRow>
                 <IonCol>
                      <IonText className="reg-fields">
