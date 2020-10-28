@@ -74,29 +74,31 @@ class ViewReport extends React.Component<IViewReportProps, IViewReportState> {
               <h1>View Reports </h1>
             </div>
            
-              <form className="form">
+              <form className="Viewform">
                 <IonRow>
                   <IonCol>
                     <IonText className="reg-fields">
                       <IonGrid>
+                        {this.state.ViewReportdata && this.state.ViewReportdata.length > 0 &&
+                          <label>{this.state.ViewReportdata[0].landName}</label>
+                        }                    
                       <table className="table">
-                          <tr>
-                            <th>Land </th>
+                          <tr>                            
                             <th>Partition</th> 
                             <th>Purpose</th>
                             <th>Inc</th>
                             <th>Exp</th>
                           </tr>
                           { this.state.ViewReportdata && this.state.ViewReportdata.map((report : any, i : any) => 
-                                <tr>
-                                  <td key={report.id}>{report.landName}</td>
+                             
+                                <tr>                                 
                                   <td>{report.partition}</td>
                                   <td>{report.purpose}</td>
                                   <td>{report.income}</td>
                                   <td>{report.expense}</td>                                  
                                 </tr> 
                             )
-                          };
+                          }
                         </table>
                       </IonGrid>
                     </IonText>

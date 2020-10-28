@@ -7,11 +7,26 @@
     padding: 1.5% 1.5% 1.5% 1.5%;
     margin: auto;
     margin-top: .5%;
-   // min-height: 60%;
-   // overflow: scroll;
+    //height: 80%;
+   // overflow-y: scroll;
 }
 @media screen and (max-width: 600px) {
     .form {
+        width: 350px;
+        padding: 3% 3% 3% 3%;
+    }
+}
+.Viewform{
+    background: rgba(255,255,255,0.5);
+    width: 360px;
+    padding: 1.5% 1.5% 1.5% 1.5%;
+    margin: auto;
+    margin-top: .5%;
+    height: 80%;
+    overflow-y: scroll;
+}
+@media screen and (max-width: 600px) {
+    .Viewform {
         width: 350px;
         padding: 3% 3% 3% 3%;
     }

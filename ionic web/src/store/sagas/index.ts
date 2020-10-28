@@ -23,6 +23,8 @@ import { FETCH_LOGIN_STARTED } from '../actions/Login';
 import { fetchLoginData } from './Login/Login';
 import { GET_VIEWREPORT_STARTED } from '../actions/ViewReport';
 import { getViewReportList} from './ViewReport/ViewReport';
+import { GET_VIEWALLREPORT_STARTED } from '../actions/ViewAllReport';
+import { getViewAllReportList} from './ViewAllReport/ViewAllReport';
 export default function* rootSaga() {
   yield all([
     takeLatest(FETCH_LOGIN_STARTED, fetchLoginData),
@@ -61,5 +63,6 @@ export default function* rootSaga() {
     takeLatest(GET_PLOWINGSBYID_STARTED, getPlowingByIdList),
     takeLatest(GET_SALESBYID_STARTED, getSaleByIdList),
     takeLatest(GET_VIEWREPORT_STARTED, getViewReportList),
+    takeLatest(GET_VIEWALLREPORT_STARTED, getViewAllReportList),
   ]);
 }

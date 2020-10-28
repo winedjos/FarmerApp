@@ -125,7 +125,7 @@ if (loggedInString && loggedInString!=="" && loggedInString!==null) {
             <Route path="/loginpage" component={LoginPage} exact={true} />        
             <Route path="/firstpage" component={FirstPage} exact={true} />
           <Route path="/viewReports/:id" component={ViewReport} exact={true} />
-          <Route path="/viewAll" component={ViewAll} exact={true} />
+          <Route path="/viewAll/:id" component={ViewAll} exact={true} />
           <Route path="/reportcopy" component={Reportcopy} exact={true} />
       </IonRouterOutlet>
     </IonReactRouter>

@@ -194,7 +194,7 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
                         <p className="help is-danger">{this.state.errors.surveyNumber}</p>
                       )}
                       
-                      Area Size <input type="number"  name="areaSize" className={`input-text ${this.state.errors.email && 'is-danger'}` } onChange={this.handleChange} value={this.state.input.areaSize} />
+                      Area Size (By Acre)<input type="number"  name="areaSize" className={`input-text ${this.state.errors.email && 'is-danger'}` } onChange={this.handleChange} value={this.state.input.areaSize} />
                      
                       {this.state.errors.areaSize && (
                         <p className="help is-danger">{this.state.errors.areaSize}</p>

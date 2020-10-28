@@ -10,7 +10,8 @@ import PartitionLandData from './PartitionLand/PartitionLand';
 import LandDetailData from './LandDetail/LandDetail';
 import stateListData from './StateList/SateList';
 import loginData from './Login/Login';
-import viewReportData from './ViewReport/ViewReport'
+import viewReportData from './ViewReport/ViewReport';
+import viewAllReportData from './ViewAllReport/ViewAllReport';
 const reducers = combineReducers({
   regData,
   harvestData,
@@ -23,7 +24,8 @@ const reducers = combineReducers({
   LandDetailData,
   loginData,
   stateListData,
-  viewReportData
+  viewReportData,
+  viewAllReportData
 })
 
 export default reducers;
