@@ -30,10 +30,10 @@ const Report: React.SFC<IReportProps & RouteComponentProps> = ({ dispatch, LandD
     history.push("/viewReports/" + id);
   }
 
-  const [viewAllReport, setviewAllReport] = useState();
-  const onViewAllReportClick = (id: any) => {
-    setviewAllReport(id);
-    history.push("/viewAll/" + id);
+ // const [viewAllReport, setviewAllReport] = useState();
+  const onViewAllReportClick = () => {
+   // setviewAllReport;
+    history.push("/viewAll/ ");
   }
 
   if (LandDetailData.Landitems.length > 0 && LandData.length === 0) {
@@ -62,7 +62,7 @@ const Report: React.SFC<IReportProps & RouteComponentProps> = ({ dispatch, LandD
 
           <form className="form">
           
-           <button className="view-btn" onClick={() => onViewAllReportClick(Landitems.id)}> View All </button>
+           <button className="view-btn" onClick={() => onViewAllReportClick()}> View All </button>
             <img src="assets/share.png" className="share-icon"></img>   
             <IonList>
               <div className="scroll">

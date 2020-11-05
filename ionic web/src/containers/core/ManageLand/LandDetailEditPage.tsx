@@ -107,7 +107,11 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
     event.preventDefault();        
     var errors = validateLandDetails(this.state.input);
     this.setState({ isSubmitting: true, errors: errors });
-    this.processSave(this.state.input, errors, true);    
+    this.processSave(this.state.input, errors, true); 
+    //if((this.state.input.areaSize.values >= 0)||(this.state.input.pattaNumber.values >= 0) || (this.state.input.surveyNumber.values >=0))
+   // {
+     // alert("Please enter valid value");
+    //}   
   }
 
   processSave(values: any, errors: any, isSubmit: boolean) {
@@ -119,8 +123,9 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
   }
 
   handleChange(event: any) {
-    const { name, value } = event.target;
+    const { name, value } = event.target;    
     var errors = validateLandDetails(this.state.input);
+   
     if (this.state) {
       const { input } = this.state;
       this.setState({
@@ -130,6 +135,9 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
         },
         errors: errors
       });
+    }
+    if(name == "areaSize" && value == 0){
+      return false;
     }
   }
 
@@ -185,16 +193,16 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
                       {this.state.errors.name && (
                         <p className="help is-danger">{this.state.errors.name}</p>
                       )}
-                      Patta Number <input type="text" name="pattaNumber" className={`input-text ${this.state.errors.email && 'is-danger'}`} onChange={this.handleChange} value={this.state.input.pattaNumber} required />
+                      Patta Number <input type="number" name="pattaNumber" className={`input-text ${this.state.errors.email && 'is-danger'}`} onChange={this.handleChange} value={this.state.input.pattaNumber} required />
                       {this.state.errors.pattaNumber && (
                         <p className="help is-danger">{this.state.errors.pattaNumber}</p>
                       )}
-                      Survey Number <input type="text" name="surveyNumber" className={`input-text ${this.state.errors.surveyNumber && 'is-danger'}`} onChange={this.handleChange} value={this.state.input.surveyNumber} required />
+                      Survey Number <input type="number" name="surveyNumber" className={`input-text ${this.state.errors.surveyNumber && 'is-danger'}`} onChange={this.handleChange} value={this.state.input.surveyNumber} required />
                       {this.state.errors.surveyNumber && (
                         <p className="help is-danger">{this.state.errors.surveyNumber}</p>
                       )}
                       
-                      Area Size (By Acre)<input type="number"  name="areaSize" className={`input-text ${this.state.errors.email && 'is-danger'}` } onChange={this.handleChange} value={this.state.input.areaSize} />
+                      Area Size (By Acre)<input type="number"  name="areaSize" className={`input-text ${this.state.errors.email && 'is-danger'}` } onChange={this.handleChange} value={this.state.input.areaSize} required />
                      
                       {this.state.errors.areaSize && (
                         <p className="help is-danger">{this.state.errors.areaSize}</p>
@@ -253,3 +261,4 @@ const mapDisptchToProps = (dispatch: any) => {
 };
 
 export default connect(mapStateToProps, mapDisptchToProps)(LandDetailEditPage);
+

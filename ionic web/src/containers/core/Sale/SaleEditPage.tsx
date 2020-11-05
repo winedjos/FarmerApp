@@ -215,7 +215,7 @@ class SaleEditPage extends React.Component<ISaleAddEditProps, ISaleAddEditState>
               <IonRow>
                 <IonCol>
                     <IonText className="reg-fields">
-                    <label> Land  NameName
+                    <label> Land Name
                        </label>
                     {this.props.LandDetailData.Landitems && (
                       <IonSelect className="dropclr" onIonChange={this.handleLandChange} value={this.state.input.landDetailId}>
@@ -247,7 +247,7 @@ class SaleEditPage extends React.Component<ISaleAddEditProps, ISaleAddEditState>
                     {this.state.errors.buyerName && (
                       <p className="help is-danger">{this.state.errors.buyerName}</p>
                     )}
-                      Buyer Mobile Number <input type="text" name="buyerMobileNumber" className="input-text" onChange={this.handleChange} value={this.state.input.buyerMobileNumber} required />
+                      Buyer Mobile Number <input type="number" name="buyerMobileNumber" className="input-text" onChange={this.handleChange} value={this.state.input.buyerMobileNumber} required />
                     {this.state.errors.buyerMobileNumber && (
                       <p className="help is-danger">{this.state.errors.buyerMobileNumber}</p>
                     )}

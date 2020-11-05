@@ -202,7 +202,7 @@ class ManagePartitionEditPage extends React.Component<IPartLandAddEditProps,IPar
                         )}
                       
                         
-                           Area Size (By Acre) <input type="text" className="input-text"  name="areaSize" onChange={this.handleChange} value={this.state.input.areaSize}  /> 
+                           Area Size (By Acre) <input type="number" className="input-text"  name="areaSize" onChange={this.handleChange} value={this.state.input.areaSize}  /> 
                         {this.state.errors.areaSize && (
                           <p className="help is-danger">{this.state.errors.areaSize}</p>
                          )}

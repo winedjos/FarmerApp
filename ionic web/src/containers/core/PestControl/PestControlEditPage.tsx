@@ -140,6 +140,7 @@ class PestControlEditPage extends React.Component<IPestControlAddEditProps, IPes
     return null;
   }
   handleLandChange = (event: any) => {
+    if (this.state.isSubmitting) { return; }
     var errors = validatePestControl(this.state.input);
     var selectedLand = this.getLand(event.target.value);
     if (this.state) {
@@ -229,11 +230,11 @@ class PestControlEditPage extends React.Component<IPestControlAddEditProps, IPes
                          {this.state.errors.pestControlDate && (
                            <p className="help is-danger">{this.state.errors.pestControlDate}</p>
                          )}
-                         Name of the PestSide Name<input type="text" name="nameofthePestSide" className="input-text" onChange={this.handleChange} value={this.state.input.nameofthePestSide} required />
+                         Name of the Pesticide Name<input type="text" name="nameofthePestSide" className="input-text" onChange={this.handleChange} value={this.state.input.nameofthePestSide} required />
                          {this.state.errors.nameofthePestSide && (
                            <p className="help is-danger">{this.state.errors.nameofthePestSide}</p>
                          )}
-                         Cost <input type="text" name="cost" className="input-text" onChange={this.handleChange} value={this.state.input.cost} required />
+                         Cost <input type="number" name="cost" className="input-text" onChange={this.handleChange} value={this.state.input.cost} required />
                          {this.state.errors.cost && (
                            <p className="help is-danger">{this.state.errors.cost}</p>
                          )}
@@ -241,7 +242,7 @@ class PestControlEditPage extends React.Component<IPestControlAddEditProps, IPes
                          {this.state.errors.purpose && (
                            <p className="help is-danger">{this.state.errors.purpose}</p>
                          )}
-                         Labour Cost <input type="text" name="labourCost" className="input-text" onChange={this.handleChange} value={this.state.input.labourCost} required />
+                         Labour Cost <input type="number" name="labourCost" className="input-text" onChange={this.handleChange} value={this.state.input.labourCost} required />
                          {this.state.errors.labourCost && (
                            <p className="help is-danger">{this.state.errors.labourCost}</p>
                          )}

@@ -236,7 +236,7 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
                       {this.state.errors.typeofPlowing && (
                         <p className="help is-danger">{this.state.errors.typeofPlowing}</p>
                       )}
-                      Plowing Expenses <input type="text" name="plowingExp" className="input-text" onChange={this.handleChange} value={this.state.input.plowingExp} required />
+                      Plowing Expenses <input type="number" name="plowingExp" className="input-text" onChange={this.handleChange} value={this.state.input.plowingExp} required />
                       {this.state.errors.plowingExp && (
                         <p className="help is-danger">{this.state.errors.plowingExp}</p>
                       )}

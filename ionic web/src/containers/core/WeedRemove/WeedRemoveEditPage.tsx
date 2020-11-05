@@ -238,15 +238,15 @@ class WeedRemoveEditPage extends React.Component<IWeedRemoveAddEditProps, IWeedR
                       {this.state.errors.date && (
                         <p className="help is-danger">{this.state.errors.date}</p>
                       )}
-                    Cost <input type="text" name="cost" className="input-text" onChange={this.handleChange} value={this.state.input.cost} />
+                    Cost <input type="number" name="cost" className="input-text" onChange={this.handleChange} value={this.state.input.cost} />
                       {this.state.errors.cost && (
                         <p className="help is-danger">{this.state.errors.cost}</p>
                       )}
-                    NO of Labours <input type="text" name="noOfLabours" className="input-text" onChange={this.handleChange} value={this.state.input.noOfLabours} />
+                    NO of Labours <input type="number" name="noOfLabours" className="input-text" onChange={this.handleChange} value={this.state.input.noOfLabours} />
                       {this.state.errors.noOfLabours && (
                         <p className="help is-danger">{this.state.errors.noOfLabours}</p>
                       )}
-                    Labour Cost <input type="text" name="labourCost" className="input-text" onChange={this.handleChange} value={this.state.input.labourCost} />
+                    Labour Cost <input type="number" name="labourCost" className="input-text" onChange={this.handleChange} value={this.state.input.labourCost} />
                       {this.state.errors.labourCost && (
                         <p className="help is-danger">{this.state.errors.labourCost}</p>
                       )}

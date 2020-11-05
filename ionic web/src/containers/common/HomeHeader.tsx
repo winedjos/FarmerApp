@@ -68,7 +68,7 @@ const HomeHeader: React.SFC<IHeaderProps & RouteComponentProps> = ({ history ,lo
     <IonHeader className="headcolor">
        <IonRow>
               <IonCol className="h-img">
-              <img src="assets/Logocropped.png" height="40" onClick={()=>{window.location.href = "home";}} className="logo" ></img>
+              <img src="assets/Logocropped.png" height="40" onClick={()=>{window.location.href = "home";}} className="Headerlogo" ></img>
               </IonCol>
                      
 
