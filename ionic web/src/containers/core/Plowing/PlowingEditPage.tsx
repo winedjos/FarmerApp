@@ -228,7 +228,7 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
                       {this.state.errors.partitionLandDetailId && (
                         <p className="help is-danger">{this.state.errors.partitionLandDetailId}</p>
                       )}
-                      <IonRow> Date </IonRow><IonRow> <DatePicker selected={moment(this.state.input.plowingDate).toDate()} dateFormat="dd/MM/yyyy" onChange={(date) => this.setDate(date)} className="input-text" /> </IonRow>
+                      <IonRow> Date </IonRow><IonRow> <DatePicker selected={moment(this.state.input.plowingDate).toDate()} dateFormat="dd/MM/yyyy" onChange={(date) => this.setDate(date)} className="input-text date" /> </IonRow>
                       {this.state.errors.plowingDate && (
                         <p className="help is-danger">{this.state.errors.plowingDate}</p>
                       )}

@@ -234,8 +234,8 @@ class SeedEditPage extends React.Component<ISeedAddEditProps, ISeedAddEditState>
                     <IonSelect className="dropclr" onIonChange={this.handlePLChange} value={this.state.input.partitionLandDetailId}>
                       {this.state.partitionList.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.landDirection} selected={data.id == this.state.input.partitionLandDetailId} > {data.landDirection} </IonSelectOption>) })}
                     </IonSelect>
-                    {this.state.errors.landDetailId && (
-                      <p className="help is-danger">{this.state.errors.landDetailId}</p>
+                    {this.state.errors.partitionLandDetailId && (
+                      <p className="help is-danger">{this.state.errors.partitionLandDetailId}</p>
                     )}
                     <IonRow> Date </IonRow><IonRow> <DatePicker selected={moment(this.state.input.date).toDate()} dateFormat="dd/MM/yyyy" onChange={(date) => this.setDate(date)} className="input-text" /> </IonRow>
                     {this.state.errors.date && (
@@ -245,7 +245,7 @@ class SeedEditPage extends React.Component<ISeedAddEditProps, ISeedAddEditState>
                     {this.state.errors.quantity && (
                       <p className="help is-danger">{this.state.errors.quantity}</p>
                     )}
-                      Seed Name <input type="text" name="seedName" className="input-text" onChange={this.handleChange} value={this.state.input.seedName} />
+                      Seed Name <input type="text" pattern="[A-Za-z]" name="seedName" className="input-text" onChange={this.handleChange} value={this.state.input.seedName} />
                     {this.state.errors.seedName && (
                       <p className="help is-danger">{this.state.errors.seedName}</p>
                     )}
@@ -254,8 +254,8 @@ class SeedEditPage extends React.Component<ISeedAddEditProps, ISeedAddEditState>
                       <p className="help is-danger">{this.state.errors.seedCost}</p>
                     )}
                       NO of Labours <input type="number" name="noOfLabours" className="input-text" onChange={this.handleChange} value={this.state.input.noOfLabours} />
-                    {this.state.errors.landDetailId && (
-                      <p className="help is-danger">{this.state.errors.landDetailId}</p>
+                    {this.state.errors.noOfLabours && (
+                      <p className="help is-danger">{this.state.errors.noOfLabours}</p>
                     )}
                       Labour Cost <input type="number" name="labourCost" className="input-text" onChange={this.handleChange} value={this.state.input.labourCost} />
                     {this.state.errors.labourCost && (

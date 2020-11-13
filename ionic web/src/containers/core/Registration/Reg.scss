@@ -488,3 +488,13 @@ table, th, td {
         overflow-y: scroll;
     }
 }
+
+.react-datepicker-wrapper{
+    width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    .react-datepicker-wrapper{
+        width: 100%;
+    }
+}
