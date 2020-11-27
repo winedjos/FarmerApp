@@ -26,10 +26,8 @@ const initialAccounts = {
     deleted: false
   },
 
-  sessionTimeout: 10,
- // isLoading: true,
-  isFormSubmit: false,  
- // isLoggedIn: false,
+  sessionTimeout: 10, 
+  isFormSubmit: false,   
   error: '', 
 };
 
@@ -38,13 +36,11 @@ const loginData = (state = initialAccounts, action: any) => {
   switch (action.type) {
     case FETCH_LOGIN_STARTED:
       return {
-        ...state,
-       //isLoading: true,
+        ...state,       
         isFormSubmit: false,
         loginInput: action.input
       };
-    case FETCH_LOGIN_COMPLETED:
-     // console.log(event);
+    case FETCH_LOGIN_COMPLETED:     
         return {
 
           ...state,
@@ -59,24 +55,19 @@ const loginData = (state = initialAccounts, action: any) => {
     case FETCH_LOGIN_FAILED:
       return {
         ...state,
-        isLoading: true,
-        //isLoading: true,
+        isLoading: true,        
       };
     case FETCH_LOGOUT_STARTED:
       return {
-        ...state,
-        //isLoading: true,
+        ...state,        
       };
     case FETCH_LOGOUT_COMPLETED:
       return {
-        ...state,
-       // isLoading: false,
-       //status: action.payload
+        ...state,       
       };
     case FETCH_LOGOUT_FAILED:
       return {
-        ...state,
-        //isLoading: true,
+        ...state,        
       };
     default:
       return state;

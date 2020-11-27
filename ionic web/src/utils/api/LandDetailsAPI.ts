@@ -9,8 +9,7 @@ export class LandDetailsAPI {
     var obj = JSON.stringify(input);
     var tObj = JSON.parse(obj);
     var url = '/api/LandDetails/add-LandDetail';
-    if (input.id && input.id !== 0) {
-      // url = '/api/Harvesting/add-Harvestings/' + input.id + "?";
+    if (input.id && input.id !== 0) {      
       return Http.axios().post(url, obj,
         {
           headers: {

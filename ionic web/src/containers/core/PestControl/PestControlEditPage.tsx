@@ -1,6 +1,5 @@
 ﻿import { IonItem, IonContent, IonPage, IonRow, IonCol, IonText, IonList, IonNote, IonPopover, IonSelectOption, IonLabel, IonSelect, IonLoading } from '@ionic/react';
 import React, { useState } from 'react';
-//import './Reg.scss';
 import Header from '../../common/Header';
 import { Dispatch } from 'redux';
 import { getPestControlById, storePestControlData } from "../../../store/actions/PestControl";
@@ -134,14 +133,14 @@ class PestControlEditPage extends React.Component<IPestControlAddEditProps, IPes
   getLand(id: any) {
     if (this.props.LandDetailData.Landitems.length > 0) {
       var item = this.props.LandDetailData.Landitems.find((x: { id: any; }) => x.id === id);
-      //setLandData(LandDetailData.Landitems);
+      
       return item;
     }
     return null;
   }
   handleLandChange = (event: any) => {
     if (this.state.isSubmitting) { return; }
-    var errors = validatePestControl(this.state.input);
+   
     var selectedLand = this.getLand(event.target.value);
     if (this.state) {
       const { input } = this.state;
@@ -153,13 +152,13 @@ class PestControlEditPage extends React.Component<IPestControlAddEditProps, IPes
         },
         selectedLand: selectedLand,
         partitionList: selectedLand.partitionLandDetails
-        , errors: errors
+       
       });
     }
   }
 
   handlePLChange = (event: any) => {
-    var errors = validatePestControl(this.state.input);
+    
     if (this.state) {
       const { input } = this.state;
       this.setState({
@@ -167,7 +166,7 @@ class PestControlEditPage extends React.Component<IPestControlAddEditProps, IPes
           ...input,
           partitionLandDetailId: event.target.value
         }
-        , errors: errors
+       
       });
     }
   }
@@ -175,7 +174,7 @@ class PestControlEditPage extends React.Component<IPestControlAddEditProps, IPes
 
   handleChange(event: any) {
     const { name, value } = event.target;
-    var errors = validatePestControl(this.state.input);
+   
     if (this.state) {
       const { input } = this.state;
       this.setState({
@@ -183,7 +182,7 @@ class PestControlEditPage extends React.Component<IPestControlAddEditProps, IPes
           ...input,
           [name]: value
         },
-        errors: errors
+        
       });
     }
   }

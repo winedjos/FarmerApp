@@ -83,8 +83,7 @@ const harvestData = (state = initialHarvestData, action: any) => {
       };
       return {
         ...state,
-        isFormSubmit: true,
-        // status: action.payload,
+        isFormSubmit: true,        
         harvestInput: action.input,
         HarvestList: HarvestList
       };

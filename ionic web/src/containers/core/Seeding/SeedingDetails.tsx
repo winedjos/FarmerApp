@@ -18,7 +18,7 @@ interface ISeedProps {
 }
 
 const SeedingDetails: React.SFC<ISeedProps> = ({ dispatch, seedData, PartitionLandData, LandDetailData}) => {
-  // <IonImg src="assets/naturaldrawing.jpg" ></IonImg>  
+ 
 
   React.useEffect(() => {
     dispatch(getPartitionLandList());

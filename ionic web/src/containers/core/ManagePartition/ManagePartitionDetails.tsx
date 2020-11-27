@@ -1,14 +1,12 @@
 ﻿import { IonContent, IonHeader, IonPage, IonSpinner, IonToolbar, IonSelect, IonSelectOption, IonText, IonList, IonItem, IonInput, IonCheckbox, IonLabel, IonButton, IonNote, IonBadge, IonRow, IonCol, IonGrid, IonImg } from '@ionic/react';
 import React, { useState } from 'react';
-//import './Reg.scss';
 import Header from '../../common/Header';
 import Footer from '../../common/Footer';
 import { storePartitionLandData } from '../../../store/actions/PartitionLand';
 import { getLandDetailList } from '../../../store/actions/LandDetail';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-//import { DropDownList } from '@progress/kendo-react-dropdowns';
-//import { StateList } from '../ManageLand/StateList';
+
 
 
 interface IPartitionLandProps {
@@ -19,7 +17,7 @@ interface IPartitionLandProps {
 }
 
 const ManagePartitionDetails: React.SFC<IPartitionLandProps> = ({ dispatch, PartitionLandData, LandDetailData}) => {
-  // <IonImg src="assets/naturaldrawing.jpg" ></IonImg>  
+    
   React.useEffect(() => {
     dispatch(getLandDetailList());
   }, [dispatch]);

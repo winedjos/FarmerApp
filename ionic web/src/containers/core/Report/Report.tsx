@@ -1,6 +1,5 @@
 ﻿import { IonContent, IonHeader, IonPage, IonTitle, IonItemDivider, IonToolbar, IonSelect, IonSelectOption, IonText, IonList, IonItem, IonInput, IonCheckbox, IonLabel, IonButton, IonNote, IonBadge, IonRow, IonCol, IonGrid, IonImg } from '@ionic/react';
 import React, { useState } from 'react';
-//import './Reg.scss';
 import Header from '../../common/Header';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -13,7 +12,7 @@ interface IReportProps {
   dispatch: Dispatch<any>;
   LandDetailData: any;
   route: RouteComponentProps;
-   //LandDetailData: any;  
+  
 }
 
 const Report: React.SFC<IReportProps & RouteComponentProps> = ({ dispatch, LandDetailData, history }) => {
@@ -21,7 +20,7 @@ const Report: React.SFC<IReportProps & RouteComponentProps> = ({ dispatch, LandD
   React.useEffect(() => {
     dispatch(getLandDetailList());
   }, []);
-  //<img src="assets/share.png" height="75" width="75"></img>
+  
   const [LandData, setLandData] = useState([]);
 
   const [viewReport, setviewReport] = useState();
@@ -30,9 +29,9 @@ const Report: React.SFC<IReportProps & RouteComponentProps> = ({ dispatch, LandD
     history.push("/viewReports/" + id);
   }
 
- // const [viewAllReport, setviewAllReport] = useState();
+
   const onViewAllReportClick = () => {
-   // setviewAllReport;
+
     history.push("/viewAll/ ");
   }
 

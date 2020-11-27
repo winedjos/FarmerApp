@@ -1,6 +1,5 @@
 ﻿import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSelect, IonSelectOption, IonText, IonLoading, IonList, IonItem, IonInput, IonCheckbox, IonLabel, IonButton, IonNote, IonBadge, IonRow, IonCol, IonGrid, IonImg } from '@ionic/react';
 import * as React from 'react';
-//import './Reg.scss';
 import Header from '../../common/Header';
 import Footer from '../../common/Footer';
 import DatePicker from "react-datepicker";
@@ -34,13 +33,13 @@ const PestControlDetails: React.SFC<IPestControlProps> = ({ dispatch, pestContro
   const handleDateChange = (date: any) => {
     setStartDate(date || new Date());
     pestControlData.pestControlInput.pestControlDate = date;
-    //date => { setStartDate(date || new Date()) } 
+
   }
 
   const handleLandChange = (event: any) => {
     pestControlData.pestControlInput.landDetailId = event.target.value;
     var items = PLitems.filter((item: any) => item.landDetailId == PartitionLandData.partitionLandInput.id);
-    //dispatch(getPartitionLandList);
+ 
     return items;
   }
   const handlePLChange = (event: any) => {      
@@ -84,13 +83,7 @@ const PestControlDetails: React.SFC<IPestControlProps> = ({ dispatch, pestContro
       <IonLabel> {Landitems.name} </IonLabel>
     </IonItem>));
 
-  //<label> Partition Land Name </label>
-  //  <IonSelect placeholder="Select One" className="dropclr" onIonChange={handlePLChange}>
-  //    {PLitems.map((data: any) => { return <IonSelectOption value={data.id} key={data.id} title={data.landDirection} selected={PartitionLandData.PLitems.landDetails}> {data.landDirection} </IonSelectOption> })}
-  //  </IonSelect>
-  //<IonSelect placeholder="Select One" className="dropclr" onIonChange={handlePLChange}>
-  //  {PLitems.filter((v: any) => v.landDetailId ==  pestControlData.pestControlInput.partitionLandDetailId).map(function (data: any) { return <IonSelectOption value={data.id} key={data.id} title={data.landDirection} > {data.landDirection} </IonSelectOption> })}
-  //</IonSelect>  
+ 
 
   return (
     <IonPage>

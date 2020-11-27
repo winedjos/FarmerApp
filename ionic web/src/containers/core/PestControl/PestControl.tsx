@@ -1,8 +1,6 @@
 ﻿import { IonItem, IonContent, IonPage, IonList, IonLoading, IonSelectOption, IonLabel, IonSelect, IonAlert } from '@ionic/react';
 import React, { useState } from 'react';
-//import './Reg.scss';
 import Header from '../../common/Header';
-import Footer from '../../common/Footer';
 import { getPestControlList, deletePestControl } from '../../../store/actions/PestControl';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';

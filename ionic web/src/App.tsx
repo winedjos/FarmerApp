@@ -2,8 +2,6 @@ import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-//import Home from './pages/Home';
-//import FirstPage from './pages/FirstPage';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -21,8 +19,7 @@ import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 
-/* Theme variables */
-//import './theme/variables.css';
+
 import OtpPage from './containers/pages/OtpPage';
 import LoginPage from './containers/pages/LoginPage';
 import FirstPage from './containers/pages/FirstPage';
@@ -37,7 +34,6 @@ import Harvestings from './containers/pages/Harvestings/Harvestings';
 import Sales from './containers/pages/Sales/Sales';
 import Homes from './containers/pages/Homes/Homes';
 import Reports from './containers/pages/Reports/Reports';
-import Tab1 from './containers/core/ManageLand/sample';
 import LandDetails from './containers/core/ManageLand/LandDetails';
 import HarvestDetails from './containers/core/Harvesting/HarvestDetails';
 import ManagePartitionDetails from './containers/core/ManagePartition/ManagePartitionDetails';
@@ -92,14 +88,11 @@ if (loggedInString && loggedInString!=="" && loggedInString!==null) {
           <Route path="/registrations" component={Registrations} exact={true} />
           <Route path="/otpPage" component={OtpPage} exact={true} />
           <Route path="/login" component={Login} exact={true} />
-                  <Route exact path="/" render={() => <Redirect to="/login" />} />
-          
-            <Route path="/home" component={Homes} exact={true} /> 
-            
+          <Route exact path="/" render={() => <Redirect to="/login" />} />          
+            <Route path="/home" component={Homes} exact={true} />             
             <Route path="/manageLands" component={ManageLands} exact={true} />
             <Route path="/landDetails" component={LandDetails} exact={true} />
-            <Route path="/landDetailEditPage/:id" component={LandDetailEditPage} exact={true} />
-            <Route path="/tab1" component={Tab1} exact={true} />        
+            <Route path="/landDetailEditPage/:id" component={LandDetailEditPage} exact={true} />                   
             <Route path="/managePartitions" component={ManagePartitions} exact={true} />
             <Route path="/managePartitionDetails" component={ManagePartitionDetails} exact={true} />
             <Route path="/managePartitionEdit/:id" component={ManagePartitionEditPage} exact={true} />

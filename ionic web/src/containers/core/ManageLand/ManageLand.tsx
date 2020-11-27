@@ -1,25 +1,18 @@
 ﻿import { IonItem, IonContent, IonPage, IonList, IonAlert, IonPopover, IonSelectOption, IonLabel, IonSelect, IonVirtualScroll, IonLoading } from '@ionic/react';
 import React, { useState, useEffect } from 'react';
-//import './Reg.scss';
 import Header from '../../common/Header';
 import Confirm from '../../common/Confirm';
-import Footer from '../../common/Footer';
 import { getLandDetailList, deleteLand } from '../../../store/actions/LandDetail';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { IonicImageLoader, ImgLoaderComponent, ImageLoader } from 'ionic-image-loader';
-
-import { createBrowserHistory } from "history";
-//import { __RouterContext as RouterContext, withRouter } from 'react-router';
-
 interface Props extends RouteComponentProps { }
 
 interface ILandDetailProps {
   dispatch: Dispatch<any>;
   LandDetailData: any;
   route: RouteComponentProps;
-  //LandDetailData: any;  
+   
 }
 
 
@@ -28,18 +21,10 @@ const ManageLand: React.FunctionComponent<ILandDetailProps & RouteComponentProps
     dispatch(getLandDetailList());
     setShowLoading(true);
   }, []);
-  //var history = createBrowserHistory();
+
   const [deleteProcess, setDeleteProcess] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
-  // <IonButton onClick={() => setShowModal(false)}>Close Modal</IonButton>
-  //const onaddClick = () => {
-    //alert("Edit");
-   // window.location.href ="/landDetails";
-   // setShowModal(true);
-    //isShowAddEditModal: true;
-    //setShowModal(false);
-  //<button onClick={() => onaddClick}> add  </button>
-  //}
+
    
 
   const [Land, setLand] = useState();

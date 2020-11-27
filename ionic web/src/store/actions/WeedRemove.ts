@@ -6,9 +6,6 @@ export const GET_WEEDREMOVE_STARTED = "GET_WEEDREMOVE_STARTED";
 export const GET_WEEDREMOVE_COMPLETED = "GET_WEEDREMOVE_COMPLETED";
 export const GET_WEEDREMOVE_FAILED = "GET_WEEDREMOVE_FAILED";
 
-//export const SAVE_PARTITIONLAND_STARTED = "SAVE_PARTITIONLAND_STARTED";
-//export const SAVE_PARTITIONLAND_COMPLETED = "SAVE_PARTITIONLAND_COMPLETED";
-//export const SAVE_PARTITIONLAND_FAILED = "SAVE_PARTITIONLAND_FAILED";
 
 export const DELETE_WEEDREMOVE_STARTED = "DELETE_WEEDREMOVE_STARTED";
 export const DELETE_WEEDREMOVE_COMPLETED = "DELETE_WEEDREMOVE_COMPLETED";
@@ -38,13 +35,7 @@ export const getWeedRemoveById = (id: any) => {
   };
 };
 
-//export const savePartitionLand = (input: any) => {
-//  return {
-//    type: SAVE_PARTITIONLAND_STARTED,
-//    //payload: status,
-//    input: input
-//  };
-//};
+
 
 export const deleteWeedRemove = (id: any) => {
   return {

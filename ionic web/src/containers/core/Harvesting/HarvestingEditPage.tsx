@@ -1,6 +1,5 @@
 ﻿import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSelect, IonSelectOption, IonText, IonList, IonItem, IonInput, IonCheckbox, IonLabel, IonButton, IonNote, IonBadge, IonRow, IonCol, IonGrid, IonImg, IonLoading } from '@ionic/react';
 import React, { useState } from 'react';
-//import './Reg.scss';
 import Header from '../../common/Header';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -12,8 +11,7 @@ import moment from 'moment';
 import { getLandDetailList } from '../../../store/actions/LandDetail';
 import { validateHarvesting } from '../../common/FormValidationRules';
 
-interface IHarvestAddEditProps {
-  //partitionLandInput: any;
+interface IHarvestAddEditProps {  
   dispatch: Dispatch<any>;
   getHarvestById1: any;
   storeHarvestData1: any;
@@ -56,8 +54,7 @@ class HarvestingEditPage extends React.Component<IHarvestAddEditProps, IHarvestL
   }
 
 
-  inputInit = {
-  // harvestData: {},
+  inputInit = {  
   landDetailId: 0,
   partitionLandDetailId: 0,
   cost: 0,
@@ -148,8 +145,7 @@ class HarvestingEditPage extends React.Component<IHarvestAddEditProps, IHarvestL
     }
     return null;
   }
-  handleLandChange = (event: any) => {
-    var errors = validateHarvesting(this.state.input);
+  handleLandChange = (event: any) => {   
     var selectedLand = this.getLand(event.target.value);
     if (this.state) {
       const { input } = this.state;
@@ -160,38 +156,33 @@ class HarvestingEditPage extends React.Component<IHarvestAddEditProps, IHarvestL
           partitionLandDetailId:0
         },
         selectedLand: selectedLand,
-        partitionList: selectedLand.partitionLandDetails
-        , errors: errors
+        partitionList: selectedLand.partitionLandDetails      
       });
     }
   }
 
-  handlePLChange = (event: any) => {
-    var errors = validateHarvesting(this.state.input);
+  handlePLChange = (event: any) => {  
     if (this.state) {
       const { input } = this.state;
       this.setState({
         input: {
           ...input,
           partitionLandDetailId: event.target.value
-        }
-        , errors: errors
+        }       
       });
     }
   }
 
 
   handleChange(event: any) {
-    const { name, value } = event.target;
-    var errors = validateHarvesting(this.state.input);
+    const { name, value } = event.target;   
     if (this.state) {
       const { input } = this.state;
       this.setState({
         input: {
           ...input,
           [name]: value
-        },
-        errors: errors
+        },       
       });
     }
   }

@@ -36,8 +36,7 @@ export const getPartitionLandById = (id:any) => {
 
 export const deletePartitionLand = (id:any) => {
   return {
-    type: DELETE_PARTITIONLAND_STARTED,
-    //payload: status,
+    type: DELETE_PARTITIONLAND_STARTED,   
     id: id
   };
 };

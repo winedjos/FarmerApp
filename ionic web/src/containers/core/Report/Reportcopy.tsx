@@ -1,11 +1,7 @@
 ﻿import { IonContent, IonHeader, IonPage, IonTitle, IonItemDivider, IonToolbar, IonSelect, IonSelectOption, IonText, IonList, IonItem, IonInput, IonCheckbox, IonLabel, IonButton, IonNote, IonBadge, IonRow, IonCol, IonGrid, IonImg } from '@ionic/react';
 import React, { useState } from 'react';
-//import './Reg.scss';
 import Header from '../../common/Header';
-import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
-import { getLandDetailList } from '../../../store/actions/LandDetail';
-import { RouteComponentProps, withRouter } from 'react-router';
+
 
 
 const Reportcopy: React.SFC = () => {

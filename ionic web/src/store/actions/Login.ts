@@ -23,8 +23,7 @@ export interface IAccounts {
 
 export const fetchLoginData = (loginInput: any) => {
   return {
-    type: FETCH_LOGIN_STARTED,
-    //payload: status,
+    type: FETCH_LOGIN_STARTED,    
     input: loginInput
   };
 };
@@ -32,7 +31,6 @@ export const fetchLoginData = (loginInput: any) => {
 export const fetchLogout = () => {
   return {
     type: FETCH_LOGOUT_STARTED,
-  //  payload: status,
-
+ 
   };
 };

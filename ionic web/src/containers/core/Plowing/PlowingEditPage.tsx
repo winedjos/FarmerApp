@@ -1,6 +1,5 @@
 ﻿import { IonItem, IonContent, IonPage, IonRow, IonCol, IonText, IonList, IonNote, IonPopover, IonSelectOption, IonLabel, IonSelect, IonLoading } from '@ionic/react';
 import React, { useState } from 'react';
-//import './Reg.scss';
 import Header from '../../common/Header';
 import { Dispatch } from 'redux';
 import { getPlowingById, storePlowingData } from "../../../store/actions/Plowing";
@@ -64,7 +63,7 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
   componentWillMount() {
     var id = this.props.match.params.id;
     if (id && id !== null && id !== 0 && id !== "0") {
-      //this.props.getPlowingById1(this.props.match.params.id);
+    
       this.setState({ isEdit: true });
     }
     else {
@@ -99,8 +98,7 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
         },
         selectedLand: land,
         partitionList: land.partitionLandDetails,
-        //input.StateId: newProps.LandDetailData.LandItem.selectedStateListId,
-        // state: newProps.LandDetailData.Landitems.state
+        
       });
     }    
   }
@@ -137,13 +135,13 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
   getLand(id: any) {
     if (this.props.LandDetailData.Landitems.length > 0) {
       var item = this.props.LandDetailData.Landitems.find((x: { id: any; }) => x.id === id);
-      //setLandData(LandDetailData.Landitems);
+     
       return item;
     }
     return null;
   }
   handleLandChange = (event: any) => {
-    var errors = validatePlowingDetails(this.state.input);
+  
     var selectedLand = this.getLand(event.target.value);
     if (this.state) {
       const { input } = this.state;
@@ -155,37 +153,38 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
         },
         selectedLand: selectedLand,
         partitionList: selectedLand.partitionLandDetails
-        , errors: errors
+       
       });
     }    
   }
 
-  handlePLChange = (event: any) => {
-    var errors = validatePlowingDetails(this.state.input);
+  handlePLChange = (event: any) => {   
+   
     if (this.state) {
       const { input } = this.state;
       this.setState({
         input: {
           ...input,
           partitionLandDetailId: event.target.value
+          
         }
-        , errors: errors
+      
       });
     }    
   }
 
 
   handleChange(event: any) {
-    const { name, value } = event.target;
-    var errors = validatePlowingDetails(this.state.input);
+    const { name, value } = event.target; 
     if (this.state) {
-      const { input } = this.state;
-      this.setState({
+      const { input } = this.state;      
+      this.setState({       
         input: {
           ...input,
           [name]: value
+          
         },
-        errors: errors
+       
       });
     }
   }
@@ -210,14 +209,15 @@ class PlowingEditPage extends React.Component<IPlowingAddEditProps, IPlowingAddE
                 message={'Please wait...'}               
               />
             {this.state.input !== null && this.state.input  && (
-            <form className="form">
+            <form className="form AddEditScroll">
               <IonRow>
                 <IonCol>
                   <IonText className="reg-fields">
-                    <label> Land Name </label>                    
+                    <label> Land Name </label>   
+                           
                       <IonSelect className="dropclr" onIonChange={this.handleLandChange} value={this.state.input.landDetailId}>
-                        {this.props.LandDetailData.Landitems.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.name} selected={data.id == this.state.input.landDetailId} > {data.name} </IonSelectOption>) })}
-                      </IonSelect>
+                        {this.props.LandDetailData.Landitems.map((data: any) => { return (< IonSelectOption value={data.id} key={data.id} title={data.name} selected={data.id == this.state.input.landDetailId}> {data.name} </IonSelectOption>) })}
+                      </IonSelect> 
                       {this.state.errors.landDetailId && (
                         <p className="help is-danger">{this.state.errors.landDetailId}</p>
                       )}

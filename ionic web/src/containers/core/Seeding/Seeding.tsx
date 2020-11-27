@@ -1,6 +1,6 @@
 ﻿import { IonItem, IonContent, IonPage, IonList, IonAlert, IonSelectOption, IonLabel, IonSelect, IonLoading } from '@ionic/react';
 import React, { useState } from 'react';
-//import './Reg.scss';
+
 import Header from '../../common/Header';
 import Footer from '../../common/Footer';
 import { Dispatch } from 'redux';
@@ -27,15 +27,7 @@ const Seeding: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatch, 
     setShowLoading(true);
   }, []);
   const [showPopover, setShowPopover] = useState(false);
-  // <IonButton onClick={() => setShowModal(false)}>Close Modal</IonButton>
-  //const onaddClick = () => {
-  //alert("Edit");
-  // window.location.href ="/landDetails";
-  // setShowModal(true);
-  //isShowAddEditModal: true;
-  //setShowModal(false);
-  //<button onClick={() => onaddClick}> add  </button>
-  //}
+
   const [showLoading, setShowLoading] = useState(false);
   const [Seed, setSeed] = useState();
   const onEditSeedClick = (id:any) => {

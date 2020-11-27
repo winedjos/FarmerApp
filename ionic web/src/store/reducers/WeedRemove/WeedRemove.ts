@@ -40,8 +40,7 @@ const weedRemoveData = (state = initialWeedRemoveData, action: any) => {
       return {
         ...state,
         isFormSubmit: false,
-        isWeedRemoveExist: action.payload.status
-        // status: action.payload.status     
+        isWeedRemoveExist: action.payload.status        
       };
     case STORE_WEEDREMOVE_FAILED:
       return {
@@ -81,8 +80,7 @@ const weedRemoveData = (state = initialWeedRemoveData, action: any) => {
       };
       return {
         ...state,
-        isFormSubmit: true,
-        // status: action.payload,
+        isFormSubmit: true,        
         weedRemoveInput: action.input,
         WeedRemoveList: WeedRemoveList
       };

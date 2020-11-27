@@ -3,8 +3,7 @@ import {
   FETCH_LOGIN_FAILED, FETCH_LOGIN_COMPLETED, FETCH_LOGOUT_FAILED, FETCH_LOGOUT_COMPLETED
 } from "../../actions/Login";
 import { LoginAPI } from "../../../utils/api/LoginAPI";
-import { any } from "prop-types";
-import { AxiosPromise } from "axios";
+
 
 
 export function* fetchLoginData(request: any) {
@@ -13,10 +12,7 @@ export function* fetchLoginData(request: any) {
     console.log(result.data);
     var status = result.data;
     yield put({
-      type: FETCH_LOGIN_COMPLETED,
-      //for web
-      //payload: result.data.result,
-      //for mobile
+      type: FETCH_LOGIN_COMPLETED,      
       payload: result.data,
       input: request.input,
       sessionTimeout: result.data.sessionTimeout

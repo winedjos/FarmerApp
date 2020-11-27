@@ -1,6 +1,5 @@
 ﻿import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSelect, IonSelectOption, IonText, IonList, IonItem, IonInput, IonCheckbox, IonLabel, IonButton, IonNote, IonBadge, IonRow, IonCol, IonGrid, IonImg } from '@ionic/react';
 import * as React from 'react';
-//import './Reg.scss';
 import Header from '../../common/Header';
 import Footer from '../../common/Footer';
 import DatePicker from "react-datepicker";
@@ -47,7 +46,7 @@ const PlowingDetails: React.SFC<IPlowProps> = ({ dispatch, plowingData, Partitio
   const handleDateChange = (date: any) => {  
     setStartDate(date || new Date());
     plowingData.plowingInput.plowingDate = date;
-    //date => { setStartDate(date || new Date()) } 
+    
   }
 
   const [PartLandData, setPartLandData] = useState([]);

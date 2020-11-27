@@ -1,8 +1,6 @@
-﻿import { IonItem, IonContent, IonPage, IonList, IonAlert, IonSelectOption, IonLabel, IonSelect, IonLoading } from '@ionic/react';
+﻿import { IonItem, IonContent, IonPage, IonList, IonAlert,  IonLabel,  IonLoading } from '@ionic/react';
 import React, { useState } from 'react';
-//import './Reg.scss';
 import Header from '../../common/Header';
-import Footer from '../../common/Footer';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { getHarvestList, deleteHarvest } from '../../../store/actions/Harvestings';

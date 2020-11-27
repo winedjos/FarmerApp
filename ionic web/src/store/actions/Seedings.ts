@@ -6,10 +6,6 @@ export const GET_SEEDING_STARTED = "GET_SEEDING_STARTED";
 export const GET_SEEDING_COMPLETED = "GET_SEEDING_COMPLETED";
 export const GET_SEEDING_FAILED = "GET_SEEDING_FAILED";
 
-//export const SAVE_PARTITIONLAND_STARTED = "SAVE_PARTITIONLAND_STARTED";
-//export const SAVE_PARTITIONLAND_COMPLETED = "SAVE_PARTITIONLAND_COMPLETED";
-//export const SAVE_PARTITIONLAND_FAILED = "SAVE_PARTITIONLAND_FAILED";
-
 export const DELETE_SEEDING_STARTED = "DELETE_SEEDING_STARTED";
 export const DELETE_SEEDING_COMPLETED = "DELETE_SEEDING_COMPLETED";
 export const DELETE_SEEDING_FAILED = "DELETE_SEEDING_FAILED";
@@ -38,13 +34,6 @@ export const getSeedById = (id: any) => {
   };
 };
 
-//export const savePartitionLand = (input: any) => {
-//  return {
-//    type: SAVE_PARTITIONLAND_STARTED,
-//    //payload: status,
-//    input: input
-//  };
-//};
 
 export const deleteSeed = (id: any) => {
   return {

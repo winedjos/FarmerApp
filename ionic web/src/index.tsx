@@ -6,10 +6,7 @@ import { Provider } from 'react-redux';
 import { Router } from 'react-router';
 import { createBrowserHistory } from 'history';
 import store from './store';
-//import { IonicImageLoader } from 'ionic-image-loader';
 
-
-//IonicImageLoader.forRoot();
 const history = createBrowserHistory();
 
 ReactDOM.render(

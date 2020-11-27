@@ -1,17 +1,10 @@
 ﻿import { HttpLocal, Http } from "../Http";
 import { AxiosPromise, AxiosRequestConfig } from "axios";
-import axios from 'axios';
-import { HTTP,  } from '@ionic-native/http/ngx';
 
-export class LoginAPI {
-  //static http: HTTP;
-  //private httpionic: HTTP
-  //constructor(private http: HTTP) {}
 
-  //const axios = require('axios');
+export class LoginAPI { 
   public static fetchLoginData(input: any) {
     var obj = JSON.stringify(input);
-    //For mobile app
     
     var url = "api/Accounts/login";
     if(input.isgooglelogin===true){

@@ -1,15 +1,11 @@
-﻿import { IonContent, IonHeader, IonPage, IonTitle, IonItemDivider, IonToolbar, IonSelect, IonSelectOption, IonText, IonList, IonItem, IonInput, IonCheckbox, IonLabel, IonButton, IonNote, IonBadge, IonRow, IonCol, IonGrid, IonImg } from '@ionic/react';
+﻿import { IonContent,  IonPage,   IonRow, IonCol, } from '@ionic/react';
 import * as React from 'react';
-//import './Reg.scss';
+
 import HomeHeader from '../../common/HomeHeader';
-import { Http } from "../../../utils/Http";
+
 
 interface IHomeProps {
-  //sessionTimeout: number;
-  //login: any;
-  //loginData: any;
- // userName: string;
- // isAdmin: boolean;
+ 
 }
 
 interface IHeaderState {
@@ -23,50 +19,7 @@ interface IHeaderState {
 }
 
 class Home extends React.Component<IHomeProps, IHeaderState>{
-  //constructor(props:any) {
-  //  super(props);
-  //  this.state = {
-  //    dropdownOpen: false,
-  //    dropdownUsersOpen: false,
-  //    dropdownLogoutOpen: false,
-  //    islocalTimerStart: false,
-  //    isTimeOutCalled: false,
-  //    CHECK_INTERVAL: 60000,  
-  //  };  
-  //}
-  //select() {
-  //  window.localStorage.setItem('AUTHDATA', "");
-  //  window.location.href = "/login";
-  //}
-  //initInterval() {
-  //  setInterval(() => {
-  //    this.check();
-  //  }, this.state.CHECK_INTERVAL);
-  //}
-
-
-  //check() {
-  //  const loggedInString = localStorage.getItem('AUTHDATA');
-  //  if (loggedInString) {
-  //    const loggedInData = JSON.parse(loggedInString);
-  //    Http.axios().get('/Account/CheckIsCurrentUserValid?userName=' + this.props.userName)
-  //      .then((e) => {
-  //        var results = e.data;
-  //        if (results.status.statusValue === true) {
-  //          if (this.state.isTimeOutCalled === true && this.state.islocalTimerStart === false) {
-  //            this.setState({ islocalTimerStart: true });
-  //            this.initInterval();
-  //          }
-  //        }
-  //        else {
-  //          window.location.href = "/login";
-  //        }
-  //      })
-  //  }
-  //}
-     
-   
-    // <IonImg src="assets/naturaldrawing.jpg" ></IonImg>  
+ 
  public render() {
   return (
     <IonPage>

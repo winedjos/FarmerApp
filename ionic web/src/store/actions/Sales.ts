@@ -6,10 +6,6 @@ export const GET_SALES_STARTED = "GET_SALES_STARTED";
 export const GET_SALES_COMPLETED = "GET_SALES_COMPLETED";
 export const GET_SALES_FAILED = "GET_SALES_FAILED";
 
-//export const SAVE_PARTITIONLAND_STARTED = "SAVE_PARTITIONLAND_STARTED";
-//export const SAVE_PARTITIONLAND_COMPLETED = "SAVE_PARTITIONLAND_COMPLETED";
-//export const SAVE_PARTITIONLAND_FAILED = "SAVE_PARTITIONLAND_FAILED";
-
 export const DELETE_SALES_STARTED = "DELETE_SALES_STARTED";
 export const DELETE_SALES_COMPLETED = "DELETE_SALES_COMPLETED";
 export const DELETE_SALES_FAILED = "DELETE_SALES_FAILED";
@@ -37,14 +33,6 @@ export const getSaleById = (id: any) => {
     id: id
   };
 };
-
-//export const savePartitionLand = (input: any) => {
-//  return {
-//    type: SAVE_PARTITIONLAND_STARTED,
-//    //payload: status,
-//    input: input
-//  };
-//};
 
 export const deleteSale = (id: any) => {
   return {

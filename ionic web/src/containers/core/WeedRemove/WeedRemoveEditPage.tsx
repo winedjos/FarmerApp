@@ -1,6 +1,5 @@
 ﻿import { IonItem, IonContent, IonPage,IonRow,IonCol,IonText, IonList, IonNote, IonPopover, IonSelectOption, IonLabel, IonSelect, IonLoading } from '@ionic/react';
 import React, { useState } from 'react';
-//import './Reg.scss';
 import Header from '../../common/Header';
 import { Dispatch } from 'redux';
 import { getWeedRemoveById, storeWeedRemoveData } from "../../../store/actions/WeedRemove";
@@ -148,7 +147,7 @@ class WeedRemoveEditPage extends React.Component<IWeedRemoveAddEditProps, IWeedR
     return null;
   }
   handleLandChange = (event: any) => {
-    var errors = validateWeedRemove(this.state.input);
+   
     var selectedLand = this.getLand(event.target.value);
     if (this.state) {
       const { input } = this.state;
@@ -160,13 +159,13 @@ class WeedRemoveEditPage extends React.Component<IWeedRemoveAddEditProps, IWeedR
         },
         selectedLand: selectedLand,
         partitionList: selectedLand.partitionLandDetails
-        , errors: errors
+        
       });
     }
   }
 
   handlePLChange = (event: any) => {
-    var errors = validateWeedRemove(this.state.input);
+  
     if (this.state) {
       const { input } = this.state;
       this.setState({
@@ -174,7 +173,7 @@ class WeedRemoveEditPage extends React.Component<IWeedRemoveAddEditProps, IWeedR
           ...input,
           partitionLandDetailId: event.target.value
         }
-        , errors: errors
+      
       });
     }
   }
@@ -182,7 +181,7 @@ class WeedRemoveEditPage extends React.Component<IWeedRemoveAddEditProps, IWeedR
 
   handleChange(event: any) {
     const { name, value } = event.target;
-    var errors = validateWeedRemove(this.state.input);
+   
     if (this.state) {
       const { input } = this.state;
       this.setState({
@@ -190,7 +189,7 @@ class WeedRemoveEditPage extends React.Component<IWeedRemoveAddEditProps, IWeedR
           ...input,
           [name]: value
         },
-        errors: errors
+      
       });
     }
   }
@@ -238,7 +237,7 @@ class WeedRemoveEditPage extends React.Component<IWeedRemoveAddEditProps, IWeedR
                       {this.state.errors.date && (
                         <p className="help is-danger">{this.state.errors.date}</p>
                       )}
-                    Cost <input type="number" name="cost" className="input-text" onChange={this.handleChange} value={this.state.input.cost} />
+                    Cost <input type="number" name="cost" className="input-text" onChange={this.handleChange} value={this.state.input.cost } />
                       {this.state.errors.cost && (
                         <p className="help is-danger">{this.state.errors.cost}</p>
                       )}

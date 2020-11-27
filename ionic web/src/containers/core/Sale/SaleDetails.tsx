@@ -1,6 +1,5 @@
 ﻿import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSelect, IonSelectOption, IonText, IonList, IonItem, IonInput, IonCheckbox, IonLabel, IonButton, IonNote, IonBadge, IonRow, IonCol, IonGrid, IonImg } from '@ionic/react';
 import * as React from 'react';
-//import './Reg.scss';
 import Header from '../../common/Header';
 import Footer from '../../common/Footer';
 import DatePicker, { setDefaultLocale } from "react-datepicker";
@@ -11,12 +10,6 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { getPartitionLandList } from '../../../store/actions/PartitionLand';
 import { getLandDetailList } from '../../../store/actions/LandDetail';
-//import mobiscroll from '@mobiscroll/react';
-//import { TooltipsModule } from 'ionic-tooltips';
-import { setPriority } from 'os';
-import { text } from 'ionicons/icons';
-//import '@mobiscroll/react/dist/css/mobiscroll.min.css';
-//import { setContext } from 'redux-saga/effects';
 import ReactTooltip from "react-tooltip"
 
 
@@ -36,7 +29,7 @@ const SaleDetails: React.SFC<ISaleProps> = ({ dispatch, saleData, PartitionLandD
     dispatch(getLandDetailList());  
    }, [])
   const [startDate, setStartDate] = useState(new Date());
- // Date < DatePicker selected = { startDate } onChange = { date => { setStartDate(date || new Date()) }} className = "input-text" />
+ 
   const onSaleSubmit = () => {
     dispatch(storeSaleData(saleData.saleInput));
   }

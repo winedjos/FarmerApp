@@ -7,8 +7,7 @@ export class PestControlAPI {
     setUserForCRUD(input);
     var obj = JSON.stringify(input);
     var tObj = JSON.parse(obj);
-    var url = '/api/PestControl/add-PestControl';    
-      // url = '/api/Harvesting/add-Harvestings/' + input.id + "?";
+    var url = '/api/PestControl/add-PestControl';        
       return Http.axios().post(url, obj,
         {
           headers: {

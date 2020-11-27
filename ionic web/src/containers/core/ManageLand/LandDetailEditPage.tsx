@@ -1,12 +1,10 @@
 ﻿import { IonItem, IonContent, IonPage,IonText,IonCol,IonRow, IonList, IonNote, IonPopover, IonSelectOption, IonLabel, IonSelect, IonLoading, isPlatform } from '@ionic/react';
 import React, { useState } from 'react';
-//import './Reg.scss';
 import Header from '../../common/Header';
 import Footer from '../../common/Footer';
 import { validateLandDetails} from '../../common/FormValidationRules';
 import { Dispatch } from 'redux';
 import { getLandDetailById, storeLandDetailData } from "../../../store/actions/LandDetail";
-//import { getStatelList } from "../../../store/actions/StateList";
 import { useDispatch, connect } from 'react-redux';
 import { getStatelList } from '../../../store/actions/StateList';
 import { RouteComponentProps } from 'react-router';
@@ -85,7 +83,7 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
     if (this.state.isFormSubmited && !newProps.LandDetailData.isFormSubmit) {
       this.setState({ isFormSubmited: false });
       window.location.href = '/manageLands';
-      //this.props.history.push('/manageLands');
+   
     }
     var id = this.props.match.params.id;
     if (!this.state.isEdit) {
@@ -97,8 +95,7 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
           ...newProps.LandDetailData.LandItem,
           StateId: newProps.LandDetailData.LandItem.selectedStateListId
         },
-        //input.StateId: newProps.LandDetailData.LandItem.selectedStateListId,
-       // state: newProps.LandDetailData.Landitems.state
+       
       })
     }
   }
@@ -108,10 +105,7 @@ class LandDetailEditPage extends React.Component<ILandAddEditProps & RouteCompon
     var errors = validateLandDetails(this.state.input);
     this.setState({ isSubmitting: true, errors: errors });
     this.processSave(this.state.input, errors, true); 
-    //if((this.state.input.areaSize.values >= 0)||(this.state.input.pattaNumber.values >= 0) || (this.state.input.surveyNumber.values >=0))
-   // {
-     // alert("Please enter valid value");
-    //}   
+      
   }
 
   processSave(values: any, errors: any, isSubmit: boolean) {

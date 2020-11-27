@@ -1,6 +1,5 @@
 ﻿import { IonItem, IonContent, IonPage, IonAlert, IonSelectOption, IonLabel, IonSelect, IonList, IonLoading } from '@ionic/react';
 import React, { useState } from 'react';
-//import './Reg.scss';
 import Header from '../../common/Header';
 import Footer from '../../common/Footer';
 import { Dispatch } from 'redux';
@@ -26,15 +25,7 @@ const WeedRemove: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatc
     setShowLoading(true);
   }, []);
   const [showPopover1, setShowPopover1] = useState(false);
-  // <IonButton onClick={() => setShowModal(false)}>Close Modal</IonButton>
-  //const onaddClick = () => {
-  //alert("Edit");
-  // window.location.href ="/landDetails";
-  // setShowModal(true);
-  //isShowAddEditModal: true;
-  //setShowModal(false);
-  //<button onClick={() => onaddClick}> add  </button>
-  //}
+
   const [showLoading, setShowLoading] = useState(false);
   const [showAlert1, setShowAlert1] = useState(false);
   const [weedRemoveDel, setWeedRemoveDel] = useState();
@@ -68,9 +59,6 @@ const WeedRemove: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatc
     setShowLoading(false);
   }
 
-  //{deleted == true && (
-   // {WeeditemLandList}
-   // )}
 
   const WeedItems: any = (WeedData || []);
   const WeeditemLandList: any = [];
@@ -113,9 +101,7 @@ const WeedRemove: React.SFC<IWeedRemoveProps & RouteComponentProps> = ({ dispatc
           </form>
           <IonAlert
             isOpen={showAlert1}
-            onDidDismiss={() => setShowAlert1(false)}
-            // header={'Alert'}
-            // subHeader={'Subtitle'}
+            onDidDismiss={() => setShowAlert1(false)}            
             message={'Successfully Deleted'}
             buttons={['OK']}
           />

@@ -1,8 +1,6 @@
 ﻿import { IonItem, IonContent, IonPage, IonList, IonAlert, IonSelectOption, IonLabel, IonSelect, IonLoading } from '@ionic/react';
 import React, { useState } from 'react';
-//import './Reg.scss';
 import Header from '../../common/Header';
-import Footer from '../../common/Footer';
 import { getPlowingList, deletePlowing } from '../../../store/actions/Plowing';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';

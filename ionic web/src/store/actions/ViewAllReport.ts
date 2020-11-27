@@ -7,7 +7,7 @@ export const GET_VIEWALLREPORT_FAILED = "GET_VIEWALLREPORT_FAILED";
 export const getViewAllReportList = () => {
   return {
     type: GET_VIEWALLREPORT_STARTED,
-    //id: id
+    
   };
 };
 

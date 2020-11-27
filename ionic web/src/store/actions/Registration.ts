@@ -4,8 +4,7 @@ export const STORE_REG_FAILED = "STORE_REG_FAILED";
 
 export const storeRegData = (regInput:any) => {
   return {
-    type: STORE_REG_STARTED,
-   // payload: status,
+    type: STORE_REG_STARTED,   
     input: regInput
   };
 };

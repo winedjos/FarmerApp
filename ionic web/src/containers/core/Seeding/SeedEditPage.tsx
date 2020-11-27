@@ -1,6 +1,5 @@
 ﻿import { IonItem, IonContent, IonPage, IonRow,IonCol,IonText, IonList, IonNote, IonPopover, IonSelectOption, IonLabel, IonSelect, IonLoading } from '@ionic/react';
 import React, { useState } from 'react';
-//import './Reg.scss';
 import Header from '../../common/Header';
 import { Dispatch } from 'redux';
 import { getSeedById, storeSeedData } from "../../../store/actions/Seedings";
@@ -152,7 +151,7 @@ class SeedEditPage extends React.Component<ISeedAddEditProps, ISeedAddEditState>
     return null;
   }
   handleLandChange = (event: any) => {
-    var errors = validateSeeding(this.state.input);
+   
     var selectedLand = this.getLand(event.target.value);
     if (this.state) {
       const { input } = this.state;
@@ -164,13 +163,13 @@ class SeedEditPage extends React.Component<ISeedAddEditProps, ISeedAddEditState>
         },
         selectedLand: selectedLand,
         partitionList: selectedLand.partitionLandDetails
-        , errors: errors
+      
       });
     }
   }
 
   handlePLChange = (event: any) => {
-    var errors = validateSeeding(this.state.input);
+    
     if (this.state) {
       const { input } = this.state;
       this.setState({
@@ -178,14 +177,14 @@ class SeedEditPage extends React.Component<ISeedAddEditProps, ISeedAddEditState>
           ...input,
           partitionLandDetailId: event.target.value
         }
-        , errors: errors
+      
       });
     }
   }
 
   handleChange(event: any) {
     const { name, value } = event.target;
-    var errors = validateSeeding(this.state.input);
+   
     if (this.state) {
       const { input } = this.state;
       this.setState({
@@ -193,7 +192,7 @@ class SeedEditPage extends React.Component<ISeedAddEditProps, ISeedAddEditState>
           ...input,
           [name]: value
         },
-        errors: errors
+        
       });
     }
   }

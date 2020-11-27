@@ -1,27 +1,20 @@
 ﻿import { IonItem, IonContent, IonPage, IonList, IonAlert,  IonVirtualScroll, IonNote, IonPopover, IonSelectOption, IonLabel, IonSelect, IonLoading } from '@ionic/react';
 import React, { useState } from 'react';
-//import './Reg.scss';
 import Header from '../../common/Header';
-import Footer from '../../common/Footer';
-//import ReactTable from 'react-table';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { RouteComponentProps, withRouter } from 'react-router';
-//import { storeLandDetailData } from '../../../store/actions/LandDetail';
 import { getPartitionLandList, deletePartitionLand } from '../../../store/actions/PartitionLand';
 import { getLandDetailList } from '../../../store/actions/LandDetail';
 import Confirm from '../../common/Confirm';
-//import { CANCEL } from 'redux-saga';
-//import PartitionLandData from '../../../store/reducers/PartitionLand/PartitionLand';
-//import PartitionLandData from '../../../store/reducers/PartitionLand/PartitionLand';
+
 
 interface Props extends RouteComponentProps { }
 
 interface IPartitionProps {
   dispatch: Dispatch<any>;
   PartitionLandData: any;
-  route: RouteComponentProps;
-  //LandDetailData: any;  
+  route: RouteComponentProps; 
 }
 
 const ManagePartition: React.SFC<IPartitionProps & RouteComponentProps> = ({ dispatch, PartitionLandData, history }) => {
@@ -39,8 +32,7 @@ const ManagePartition: React.SFC<IPartitionProps & RouteComponentProps> = ({ dis
   const [deleteProcess, setDeleteProcess] = useState(false);
   const onEditPartitionClick = (id: any) => {
     setPartitionLand(id);
-    history.push("/managePartitionEdit/" + id);
-   // dispatch(savePartitionLand(id));
+    history.push("/managePartitionEdit/" + id);  
   }
   const [partInput, setPartrInput] = useState();
   const onDeletePartitionClick = (id:any) => {
@@ -111,30 +103,7 @@ const ManagePartition: React.SFC<IPartitionProps & RouteComponentProps> = ({ dis
             buttons={['OK']}
           />
           <Confirm showConfirm={showConfirm} setShowConfirm={setShowConfirm} processDelete={processDelete}  message="<strong>Are you sure do you want to delete it?</strong>!!!" />          
-          {/* <IonAlert isOpen={showAlert}
-            onDidDismiss={() => setShowAlert(false)}
-            message={'Are you sure want to delete..?'}            
-            buttons={[
-              {
-                text: 'Cancel',
-                handler: blah => {
-
-                  //setShowAlert(true),
-                  console.log('Confirm Cancel: blah');                  
-                }
-              },
-              {
-                text: 'Okay',                
-                handler: () => {                  
-                  var idvalue = partInput;
-                  if (idvalue != null) {
-                    dispatch(deletePartitionLand(idvalue));  
-                  }                                                   
-                  console.log('Confirm Okay');
-                }
-              }
-            ]}
-          /> */}
+          {}
          
         </div> 
       </IonContent>     

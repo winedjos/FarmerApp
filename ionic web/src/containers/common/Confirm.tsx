@@ -17,8 +17,7 @@ const Confirm: React.SFC<IHeaderProps> = ({ showConfirm, setShowConfirm, process
     <IonAlert
       isOpen={showConfirm}
       onDidDismiss={() => setShowConfirm(false)}
-      header={'Confirm!'}
-      //message={'<strong>Are you sure do you want to delete it?</strong>!!!'}
+      header={'Confirm!'}  
       message={message}
       buttons={[
         {

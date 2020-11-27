@@ -1,8 +1,7 @@
-﻿import { IonContent, IonHeader, IonPage, IonAlert, IonToolbar, IonSelect, IonSelectOption, IonText, IonList, IonItem, IonInput, IonCheckbox, IonLabel, IonButton, IonNote, IonBadge, IonRow, IonCol, IonGrid, IonImg, withIonLifeCycle } from '@ionic/react';
+﻿import { IonContent,  IonPage,   IonSelect, IonSelectOption, IonText,  IonItem,   IonLabel,    IonRow, IonCol,  } from '@ionic/react';
 import * as React from 'react';
-//import './Reg.scss';
 import Header from '../../common/Header';
-import Footer from '../../common/Footer';
+
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
@@ -36,17 +35,16 @@ const HarvestDetails: React.SFC<IHarvestProps> = ({ harvestData, dispatch, Parti
   const handleDateChange = (date: any) => {
     setStartDate(date || new Date());
     harvestData.harvestInput.date = date;
-    //date => { setStartDate(date || new Date()) } 
+    
   }
 
   
 
   const [startDate, setStartDate] = useState(new Date());
- // const [partitionData, setPartitionData] = useState([]);
+ 
   const handleLandChange = (event: any) => {
     harvestData.harvestInput.landDetailId = event.target.value;
-   // var items = PLitems.filter((item: any) => item.landDetailId == event.target.value);
-    //dispatch(getPartitionLandById(Landitems.id)); 
+   
   };
   const handlePLChange = (event: any) => {
         harvestData.harvestInput.partitionLandDetailId = event.target.value;
@@ -88,12 +86,6 @@ const HarvestDetails: React.SFC<IHarvestProps> = ({ harvestData, dispatch, Parti
     <IonItem key={Landitems.id}>
       <IonLabel> {Landitems.name} </IonLabel>
     </IonItem>));
-
-    //<label> Partition Land Name </label>
-                  //<IonSelect placeholder="Select One" className="dropclr" onIonChange={handlePLChange}>
-                  //  {PLitems.filter((item:any) => item.landDetailId == 1).map((data: any) => { return <IonSelectOption value={data.id} key={data.id} title={data.landDirection}> {data.landDirection} </IonSelectOption> })}
-                  //</IonSelect>
-
 
   return (
     <IonPage>

@@ -35,22 +35,18 @@ const pestControlData = (state = initialPestControlData, action: any) => {
       return {
         ...state,
         isFormSubmit: true,
-        pestControlInput: action.input,
-       // isLoading: true,
+        pestControlInput: action.input,       
       };
     case STORE_PESTCONTROL_COMPLETED:
       return {
         ...state,
         isFormSubmit: false,
-        isPestControlExist: action.payload.status
-       // isLoading: false,
-        // status: action.payload.status     
+        isPestControlExist: action.payload.status          
       };
     case STORE_PESTCONTROL_FAILED:
       return {
         ...state,
-        isFormSubmit: true,
-       // isLoading: true,
+        isFormSubmit: true,       
       };
     case GET_PESTCONTROL_STARTED:
       return {
@@ -85,8 +81,7 @@ const pestControlData = (state = initialPestControlData, action: any) => {
       };
       return {
         ...state,
-        isFormSubmit: false,
-        // status: action.payload,
+        isFormSubmit: false,        
         pestControlInput: action.input,
         PestControlList: PestControlList
       };

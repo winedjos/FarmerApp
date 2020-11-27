@@ -44,7 +44,7 @@ const PartitionLandData = (state = initialPartitionLandData, action: any) => {
         partitionLandInput: action.input,
         PLitem: data,
         isPartLandNameExist: action.payload.status
-        // status: action.payload.status     
+        
       };
     case STORE_PARTITIONLAND_FAILED:
       return {
@@ -84,8 +84,7 @@ const PartitionLandData = (state = initialPartitionLandData, action: any) => {
       };
       return {
         ...state,
-        isFormSubmit: true,
-       // status: action.payload,
+        isFormSubmit: true,      
         partitionLandInput: action.input,
         PartLandList: PartLandList
       };

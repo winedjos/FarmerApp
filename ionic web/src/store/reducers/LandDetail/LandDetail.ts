@@ -42,8 +42,7 @@ const LandDetailData = (state = initialLandDetailData, action: any) => {
       return {
         ...state,
         isFormSubmit: false,
-        isLandNameExist: action.payload.status
-        // status: action.payload.status     
+        isLandNameExist: action.payload.status           
       };
     case STORE_LANDDETAIL_FAILED:
       return {

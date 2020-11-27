@@ -1,14 +1,10 @@
 ﻿import { IonItem, IonContent, IonPage, IonRow, IonCol, IonText, IonGrid, IonList, IonNote, IonPopover, IonSelectOption, IonLabel, IonSelect } from '@ionic/react';
 import React, { useState } from 'react';
-//import './Reg.scss';
 import Header from '../../common/Header';
-import Footer from '../../common/Footer';
 import { Dispatch } from 'redux';
 import { getViewAllReportList } from "../../../store/actions/ViewAllReport";
-//import { getPartitionLandById } from "../../../store/actions/PartitionLand";
-//import { getPartitionLandById } from "../../../store/actions/PartitionLand";
 import { useDispatch, connect } from 'react-redux';
-import viewReportData from '../../../store/reducers/ViewReport/ViewReport';
+
 
 
 interface IViewReportProps {
@@ -53,15 +49,11 @@ class ViewAll extends React.Component<IViewReportProps, IViewReportState> {
     if (newprops.viewAllReportData.viewAllReports) {
       this.setState({  
         ViewAllReportdata: newprops.viewAllReportData.viewAllReports  
-        //name: newprops.viewReportData.viewReports.landName,
-        //landDirection: newprops.landDirection,
-        //income: newprops.state.income,
-        //purpose: newprops.state.purpose,
-        //expense: newprops.state.expense
+       
       })
     }
   }
-  //{this.state.id > 0 && (      )}
+ 
   render() {
     return (
       <IonPage>

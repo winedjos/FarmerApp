@@ -39,8 +39,7 @@ const saleData = (state = initialSaleData, action: any) => {
     case STORE_SALES_COMPLETED:
       return {
         ...state,
-        isFormSubmit: false,
-        // status: action.payload.status     
+        isFormSubmit: false,        
       };
     case STORE_SALES_FAILED:
       return {
@@ -80,8 +79,7 @@ const saleData = (state = initialSaleData, action: any) => {
       };
       return {
         ...state,
-        isFormSubmit: true,
-        // status: action.payload,
+        isFormSubmit: true,       
         saleInput: action.input,
         SaleList: SaleList
       };

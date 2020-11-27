@@ -1,15 +1,10 @@
 ﻿import { IonItem, IonContent, IonPage, IonList, IonNote, IonPopover, IonSelectOption, IonLabel, IonSelect, IonLoading, IonRow, IonCol, IonText } from '@ionic/react';
 import React, { useState } from 'react';
-//import './Reg.scss';
 import Header from '../../common/Header';
 import Footer from '../../common/Footer';
 import { Dispatch } from 'redux';
 import { getPartitionLandById, storePartitionLandData } from "../../../store/actions/PartitionLand";
-import { getLandDetailList } from '../../../store/actions/LandDetail';
 import { useDispatch, connect } from 'react-redux';
-import { resolveAny } from 'dns';
-import { URLSearchParams } from 'url';
-import { useLocation } from 'react-router';
 import { validatePartiation } from '../../common/FormValidationRules';
 
 interface IPartLandAddEditProps {
@@ -88,7 +83,7 @@ class ManagePartitionEditPage extends React.Component<IPartLandAddEditProps,IPar
   getLand(id: any) {
     if (this.props.LandDetailData.Landitems.length > 0) {
       var item = this.props.LandDetailData.Landitems.find((x: { id: any; }) => x.id === id);
-      //setLandData(LandDetailData.Landitems);
+      
       return item;
     }
     return null;
@@ -141,7 +136,7 @@ class ManagePartitionEditPage extends React.Component<IPartLandAddEditProps,IPar
 
  
     handleLandChange = (event : any) => {      
-      var errors = validatePartiation(this.state.input);
+     
       var selectedLand = this.getLand(event.target.value);
       if (this.state) {
         const { input } = this.state;
@@ -152,18 +147,13 @@ class ManagePartitionEditPage extends React.Component<IPartLandAddEditProps,IPar
             partitionLandDetailId:0
           },
           selectedLand: selectedLand
-          , errors: errors
+        
         });
       }   
     }
  
 
-   // {this.props.LandDetailData.areaSize && (
-     // <div>
-    //  Area Size <input type="text" className="input-text"  name="areaSize" onChange={this.handleChange} value={this.state.input.areaSize}  /></div> ) }
-    //{this.state.errors.areaSize && (
-   //   <p className="help is-danger">{this.state.errors.areaSize}</p>
-   // )}
+  
 
   render() {
      return (

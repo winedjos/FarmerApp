@@ -1,12 +1,7 @@
-﻿//import classnames from 'classnames';
-import * as React from 'react';
-//import * as styles from './AppFrame.module.scss';
-//import Header from '../Header';
-//import { createStore } from 'redux';
+﻿import * as React from 'react';
 import Home from '../../core/Home/Home';
-//import { Container, Col, Row } from 'reactstrap';
+
 interface IAppFrameProps {
- // children: React.ReactNode;
   isLogged?: boolean;
 }
 interface IAppFrameState { 
@@ -14,14 +9,13 @@ interface IAppFrameState {
   sessionTimeOut: number;
   isValid: boolean;
 }
-//const store = createStore(reducer);
+
 class AppFrame extends React.Component<IAppFrameProps, IAppFrameState> {
   constructor(props:any) {
     super(props);
     this.state = {
       sessionTimeOut: 10,
-      isValid: false,
-      //isAdmin: false,
+      isValid: false,     
       userName: ""
     };
   }
@@ -39,8 +33,7 @@ class AppFrame extends React.Component<IAppFrameProps, IAppFrameState> {
       if (currentLocation.includes('homes') && (loggedInData.userDetail.isFirstTimeLogin)) {
         window.location.href = "/postlogin";
       }
-      this.setState({ userName: loggedInData.userDetail.userName });
-    //  this.setState({ isAdmin: loggedInData.userDetail.roleID === 1 });
+      this.setState({ userName: loggedInData.userDetail.userName });   
       if (currentLocation.includes('users')) {
         window.location.href = "/home";
       }

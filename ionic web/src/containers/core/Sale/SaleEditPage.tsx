@@ -1,6 +1,5 @@
 ﻿import { IonItem, IonContent, IonText, IonPage, IonRow, IonCol, IonSelect,IonSelectOption, IonLoading } from '@ionic/react';
 import React, { useState } from 'react';
-//import './Reg.scss';
 import Header from '../../common/Header';
 import { Dispatch } from 'redux';
 import { getSaleById, storeSaleData } from "../../../store/actions/Sales";
@@ -145,7 +144,7 @@ class SaleEditPage extends React.Component<ISaleAddEditProps, ISaleAddEditState>
     return null;
   }
   handleLandChange = (event: any) => {
-    var errors = validateSale(this.state.input);
+   
     var selectedLand = this.getLand(event.target.value);
     if (this.state) {
       const { input } = this.state;
@@ -157,13 +156,13 @@ class SaleEditPage extends React.Component<ISaleAddEditProps, ISaleAddEditState>
         },
         selectedLand: selectedLand,
         partitionList: selectedLand.partitionLandDetails
-        , errors: errors
+       
       });
     }
   }
 
   handlePLChange = (event: any) => {
-    var errors = validateSale(this.state.input);
+  
     if (this.state) {
       const { input } = this.state;
       this.setState({
@@ -171,7 +170,7 @@ class SaleEditPage extends React.Component<ISaleAddEditProps, ISaleAddEditState>
           ...input,
           partitionLandDetailId: event.target.value
         }
-        , errors: errors
+       
       });
     }
   }
@@ -179,7 +178,7 @@ class SaleEditPage extends React.Component<ISaleAddEditProps, ISaleAddEditState>
 
   handleChange(event: any) {
     const { name, value } = event.target;
-    var errors = validateSale(this.state.input);
+  
     if (this.state) {
       const { input } = this.state;
       this.setState({
@@ -187,7 +186,7 @@ class SaleEditPage extends React.Component<ISaleAddEditProps, ISaleAddEditState>
           ...input,
           [name]: value
         },
-        errors: errors
+       
       });
     }
   }

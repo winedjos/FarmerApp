@@ -81,8 +81,7 @@ const seedData = (state = initialSeedData, action: any) => {
       };
       return {
         ...state,
-        isFormSubmit: true,
-        // status: action.payload,
+        isFormSubmit: true,       
         seedInput: action.input,
         SeedList: SeedList
       };
